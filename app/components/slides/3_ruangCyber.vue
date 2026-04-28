@@ -5,7 +5,8 @@
     <div class="ambient-orb orb-2"></div>
     <div class="grid-overlay"></div>
 
-    <div class="slide-inner">
+    <div class="scroll-wrapper" ref="scrollWrapper">
+      <div class="slide-inner">
       <!-- Header -->
       <div class="header-section">
         <div class="header-badge">
@@ -91,13 +92,58 @@
           </div>
         </div>
       </div>
+
+      <!-- Chart Section -->
+      <div class="chart-section">
+        <div class="chart-header">
+          <i class="fa-solid fa-spider"></i>
+          <h3>Ancaman Dark Web pada Indonesia</h3>
+        </div>
+        <p class="chart-subtitle">Distribusi Ancaman Dark Web Berdasarkan Industri</p>
+        
+        <div class="chart-container">
+          <ClientOnly>
+            <apexchart type="bar" width="100%" height="450" :options="barChartOptions" :series="barChartSeries"></apexchart>
+          </ClientOnly>
+        </div>
+        <p class="chart-source">Sumber: Indonesia Threat Landscape Report 2025</p>
+      </div>
+
+      <!-- Case Study / Alert Section -->
+      <div class="alert-section">
+        <div class="alert-header">
+          <i class="fa-solid fa-triangle-exclamation text-danger pulse"></i>
+          <h3>Aktivitas Dark Web Terkini: Penargetan Entitas Indonesia</h3>
+        </div>
+        <p class="alert-subtitle">Dugaan Penjualan Data Warga Negara Indonesia di Forum Bawah Tanah</p>
+
+        <div class="alert-card">
+          <!-- Mockup of the Dark Web Post -->
+          <div class="forum-image-wrapper">
+            <img src="/leak1.png" alt="Dark Web Post - Data Kab Lahat" class="forum-image" />
+          </div>
+
+          <!-- Description Text -->
+          <div class="alert-text">
+            <p><strong>SOCRadar</strong> telah mendeteksi unggahan baru di forum peretasan <em>dark web</em> yang mengiklankan penjualan data pribadi yang diklaim milik warga negara Indonesia. Daftar tersebut, yang dilabeli <strong>"DATA KAB LAHAT"</strong>, dilaporkan mencakup:</p>
+            <ul class="alert-list">
+              <li><i class="fa-solid fa-id-card"></i> Nomor Induk Kependudukan (NIK)</li>
+              <li><i class="fa-solid fa-location-dot"></i> Alamat Lengkap Tempat Tinggal</li>
+              <li><i class="fa-solid fa-database"></i> Rincian Data Pribadi Lainnya</li>
+            </ul>
+            <p>Kumpulan data tersebut ditawarkan seharga <strong>$100</strong>, dengan transaksi dan informasi kontak yang disediakan melalui platform Telegram.</p>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { watch } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
+import VueApexCharts from 'vue3-apexcharts';
 
 const props = defineProps({
   active: Boolean
@@ -116,8 +162,102 @@ const threats = [
   { title: 'Ransomware', icon: 'fa-solid fa-biohazard' }
 ];
 
+const scrollWrapper = ref(null);
+
+const handleKeyDown = (e) => {
+  if (!props.active || !scrollWrapper.value) return;
+  const step = 200;
+  if (e.key === 'ArrowDown') {
+    e.stopPropagation();
+    e.preventDefault();
+    scrollWrapper.value.scrollBy({ top: step, behavior: 'smooth' });
+  } else if (e.key === 'ArrowUp') {
+    e.stopPropagation();
+    e.preventDefault();
+    scrollWrapper.value.scrollBy({ top: -step, behavior: 'smooth' });
+  }
+};
+
+const barChartSeries = [{
+  name: 'Distribusi Industri',
+  data: [34.93, 12.59, 6.30, 5.96, 3.95, 3.27, 3.02, 2.60, 2.52, 2.52]
+}];
+
+const barChartOptions = {
+  chart: {
+    type: 'bar',
+    background: 'transparent',
+    fontFamily: 'inherit',
+    toolbar: { show: false }
+  },
+  plotOptions: {
+    bar: {
+      horizontal: true,
+      borderRadius: 4,
+      dataLabels: { position: 'top' }
+    }
+  },
+  dataLabels: {
+    enabled: true,
+    offsetX: -6,
+    style: { fontSize: '12px', colors: ['#fff'] },
+    formatter: function(val) {
+      return val.toFixed(2).replace('.', ',') + '%';
+    }
+  },
+  xaxis: {
+    categories: [
+      'Administrasi Publik',
+      'Layanan Pendidikan',
+      'Keuangan & Asuransi',
+      'Informasi',
+      'Perdagangan Ritel',
+      'Perbankan Komersial',
+      'Layanan Teknis Profesional',
+      'Seni & Hiburan',
+      'Telekomunikasi',
+      'Layanan Lainnya'
+    ],
+    labels: {
+      style: { colors: '#94a3b8' },
+      formatter: function(val) { return val + '%'; }
+    },
+    axisBorder: { show: false },
+    axisTicks: { show: false }
+  },
+  yaxis: {
+    labels: { style: { colors: '#cbd5e1', fontSize: '13px', fontWeight: 'bold' } }
+  },
+  colors: ['#60a5fa'], // blue similar to the image
+  theme: { mode: 'dark' },
+  grid: {
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+    xaxis: { lines: { show: true } },
+    yaxis: { lines: { show: false } }
+  },
+  tooltip: {
+    theme: 'dark',
+    y: {
+      formatter: function (val) {
+        return val.toFixed(2) + "%"
+      }
+    }
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown, { capture: true });
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown, { capture: true });
+});
+
 watch(() => props.active, (val) => {
   if (val) {
+    if (scrollWrapper.value) {
+      scrollWrapper.value.scrollTop = 0;
+    }
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     tl.fromTo('.slide-cyber-space .header-badge',
@@ -181,13 +321,23 @@ watch(() => props.active, (val) => {
 <style scoped>
 .slide-content {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 6vw;
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
+
+.scroll-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 8rem 6vw 8rem 6vw;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-light) transparent;
+}
+
+.scroll-wrapper::-webkit-scrollbar { width: 4px; }
+.scroll-wrapper::-webkit-scrollbar-track { background: transparent; }
+.scroll-wrapper::-webkit-scrollbar-thumb { background: var(--accent-light); border-radius: 10px; }
 
 /* ─── Ambient ─── */
 .ambient-orb {
@@ -229,6 +379,7 @@ watch(() => props.active, (val) => {
 .slide-inner {
   width: 100%;
   max-width: 1350px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
@@ -236,7 +387,8 @@ watch(() => props.active, (val) => {
 /* ─── Header ─── */
 .header-section {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
+  margin-top: 3rem;
 }
 
 .header-badge {
@@ -554,6 +706,159 @@ watch(() => props.active, (val) => {
   color: white;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+/* ─── Chart Section ─── */
+.chart-section {
+  margin-top: 4rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.chart-header i {
+  font-size: 1.8rem;
+  color: #60a5fa;
+}
+
+.chart-header h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.chart-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chart-container {
+  width: 100%;
+  min-height: 450px;
+}
+
+.chart-source {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  margin-top: 1rem;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Alert Section ─── */
+.alert-section {
+  margin-top: 5rem;
+}
+
+.alert-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.alert-header i {
+  font-size: 1.8rem;
+}
+
+.text-danger { color: #ef4444; }
+.pulse { animation: pulse 2s infinite; }
+
+.alert-header h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.alert-subtitle {
+  font-size: 1rem;
+  color: #94a3b8;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.alert-card {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ─── Forum Image Wrapper ─── */
+.forum-image-wrapper {
+  background: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  width: 100%;
+}
+
+.forum-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* ─── Alert Text ─── */
+.alert-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.alert-text strong {
+  color: white;
+}
+
+.alert-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.alert-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.alert-list li i {
+  color: #3b82f6;
+  width: 20px;
+  text-align: center;
 }
 
 /* ─── Responsive ─── */

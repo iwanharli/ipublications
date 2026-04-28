@@ -5,66 +5,128 @@
     <div class="ambient-orb orb-2"></div>
     <div class="grid-overlay"></div>
 
-    <div class="slide-inner">
-      <!-- Header -->
-      <div class="header-section">
-        <div class="header-badge">
-          <span class="badge-pulse"></span>
-          <span class="badge-label">THREAT LANDSCAPE ANALYSIS</span>
+    <div class="scroll-wrapper" ref="scrollWrapper" @scroll="handleScroll">
+      <div class="slide-inner">
+        <!-- Header -->
+        <div class="header-section">
+          <div class="header-badge">
+            <span class="badge-pulse"></span>
+            <span class="badge-label">THREAT LANDSCAPE ANALYSIS</span>
+          </div>
+          <h1 class="slide-title">
+            Spektrum <span class="title-highlight">Ancaman Siber Modern</span>
+          </h1>
+          <p class="slide-subtitle">Pemetaan ancaman berdasarkan tingkat kekritisan dan dampak strategis</p>
         </div>
-        <h1 class="slide-title">
-          Spektrum <span class="title-highlight">Ancaman Siber Modern</span>
-        </h1>
-        <p class="slide-subtitle">Pemetaan ancaman berdasarkan tingkat kekritisan dan dampak strategis</p>
-      </div>
 
-      <!-- Threat Grid -->
-      <div class="threat-grid">
-        <div
-          v-for="(threat, index) in threats"
-          :key="index"
-          class="threat-card"
-          :class="`severity-${threat.severity}`"
-        >
-          <div class="card-border-glow" :class="`border-${threat.severity}`"></div>
-          <div class="card-inner">
-            <!-- Severity indicator -->
-            <div class="card-top-row">
-              <div class="threat-icon-wrap" :class="`icon-${threat.severity}`">
-                <i :class="threat.icon"></i>
+        <!-- Threat Grid -->
+        <div class="threat-grid">
+          <div
+            v-for="(threat, index) in threats"
+            :key="index"
+            class="threat-card"
+            :class="`severity-${threat.severity}`"
+          >
+            <div class="card-border-glow" :class="`border-${threat.severity}`"></div>
+            <div class="card-inner">
+              <!-- Severity indicator -->
+              <div class="card-top-row">
+                <div class="threat-icon-wrap" :class="`icon-${threat.severity}`">
+                  <i :class="threat.icon"></i>
+                </div>
+                <div class="severity-tag" :class="`tag-${threat.severity}`">
+                  <span class="tag-dot" :class="`dot-${threat.severity}`"></span>
+                  {{ threat.severityLabel }}
+                </div>
               </div>
-              <div class="severity-tag" :class="`tag-${threat.severity}`">
-                <span class="tag-dot" :class="`dot-${threat.severity}`"></span>
-                {{ threat.severityLabel }}
-              </div>
-            </div>
 
-            <!-- Title -->
-            <h3 class="threat-title">{{ threat.title }}</h3>
+              <!-- Title -->
+              <h3 class="threat-title">{{ threat.title }}</h3>
 
-            <!-- Severity bar -->
-            <div class="severity-bar">
-              <div class="bar-track">
-                <div class="bar-fill" :class="`fill-${threat.severity}`" :data-width="threat.level"></div>
+              <!-- Severity bar -->
+              <div class="severity-bar">
+                <div class="bar-track">
+                  <div class="bar-fill" :class="`fill-${threat.severity}`" :data-width="threat.level"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Impact Section -->
-      <div class="impact-strip">
-        <div class="strip-label">
-          <i class="fa-solid fa-bolt"></i>
-          <span>DAMPAK STRATEGIS</span>
-        </div>
-        <div class="strip-divider"></div>
-        <div class="strip-chips">
-          <div v-for="(imp, i) in impacts" :key="i" class="impact-chip">
-            <div class="chip-icon" :class="`chip-color-${i}`">
-              <i class="fa-solid fa-circle-dot"></i>
+        <!-- Impact Section -->
+        <div class="impact-strip">
+          <div class="strip-label">
+            <i class="fa-solid fa-bolt"></i>
+            <span>DAMPAK STRATEGIS</span>
+          </div>
+          <div class="strip-divider"></div>
+          <div class="strip-chips">
+            <div v-for="(imp, i) in impacts" :key="i" class="impact-chip">
+              <div class="chip-icon" :class="`chip-color-${i}`">
+                <i class="fa-solid fa-circle-dot"></i>
+              </div>
+              <span>{{ imp }}</span>
             </div>
-            <span>{{ imp }}</span>
+          </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-section">
+          <div class="chart-header">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h3>Data Breaches Across Industries</h3>
+          </div>
+          <div class="chart-layout">
+            <div class="chart-wrapper">
+              <ClientOnly>
+                <apexchart type="donut" width="100%" height="450" :options="chartOptions" :series="chartSeries"></apexchart>
+              </ClientOnly>
+            </div>
+            
+            <div class="custom-legend-container">
+              <div class="custom-legend">
+                <div v-for="(label, i) in chartLabels" :key="i" class="legend-item">
+                  <div class="legend-marker" :style="{ backgroundColor: chartColors[i] }"></div>
+                  <span class="legend-text">{{ label }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="chart-source">Sumber: Global Cyber Security Report 2025</p>
+        </div>
+
+        <!-- Top Ransomware Actors Section -->
+        <div class="chart-section">
+          <div class="chart-header">
+            <i class="fa-solid fa-users-viewfinder"></i>
+            <h3>Top Ransomware Actors 2025</h3>
+          </div>
+          <div class="chart-container" style="min-height: 350px;">
+            <ClientOnly>
+              <apexchart type="bar" width="100%" height="350" :options="barChartOptions" :series="barChartSeries"></apexchart>
+            </ClientOnly>
+          </div>
+          <div class="actor-descriptions">
+            <div class="actor-row">
+              <span class="actor-name qilin">Qilin</span>
+              <span class="actor-desc">— Target tersebar dengan fokus pada sektor Konstruksi dan Manufaktur.</span>
+            </div>
+            <div class="actor-row">
+              <span class="actor-name akira">Akira</span>
+              <span class="actor-desc">— Sangat produktif dan tanpa pandang bulu, menargetkan berbagai macam industri.</span>
+            </div>
+            <div class="actor-row">
+              <span class="actor-name clop">CL0P</span>
+              <span class="actor-desc">— Spesialis dalam serangan bervolume tinggi dan berdurasi pendek melalui eksploitasi <em>zero-day</em>.</span>
+            </div>
+            <div class="actor-row">
+              <span class="actor-name play">Play</span>
+              <span class="actor-desc">— Target luas dengan fokus utama pada sektor Konstruksi dan Layanan Profesional.</span>
+            </div>
+            <div class="actor-row">
+              <span class="actor-name inc">INC Ransom</span>
+              <span class="actor-desc">— Aktivitas konsisten yang menargetkan sektor kritis seperti Layanan Kesehatan dan Pemerintahan.</span>
+            </div>
           </div>
         </div>
       </div>
@@ -73,12 +135,33 @@
 </template>
 
 <script setup>
-import { watch } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import gsap from 'gsap';
+import VueApexCharts from 'vue3-apexcharts';
 
 const props = defineProps({
   active: Boolean
 });
+
+const scrollWrapper = ref(null);
+
+const handleScroll = () => {
+  // Can be used to trigger animations on scroll if needed later
+};
+
+const handleKeyDown = (e) => {
+  if (!props.active || !scrollWrapper.value) return;
+  const step = 200;
+  if (e.key === 'ArrowDown') {
+    e.stopPropagation();
+    e.preventDefault();
+    scrollWrapper.value.scrollBy({ top: step, behavior: 'smooth' });
+  } else if (e.key === 'ArrowUp') {
+    e.stopPropagation();
+    e.preventDefault();
+    scrollWrapper.value.scrollBy({ top: -step, behavior: 'smooth' });
+  }
+};
 
 const threats = [
   { title: 'Ransomware', icon: 'fa-solid fa-biohazard', severity: 'critical', severityLabel: 'KRITIS', level: '95%' },
@@ -94,8 +177,161 @@ const threats = [
 
 const impacts = ['Ekonomi', 'Operasional', 'Sosial', 'Hukum', 'Reputasi'];
 
+const chartSeries = [998, 634, 387, 362, 307, 208, 187, 166, 161, 147, 146, 117, 110, 99, 99, 74, 70, 56, 50, 209];
+const chartLabels = [
+  'Government & LEA', 'BFSI', 'Education', 'IT & ITES', 'Retail',
+  'Telecommunication', 'Healthcare', 'Professional Services', 'Technology',
+  'Transportation & Logistics', 'Media & Entertainment', 'Consumer Goods',
+  'Automotive', 'Organisation', 'Energy & Utilities', 'Hospitality',
+  'Manufacturing', 'Food & Beverages', 'Unknown', 'Others'
+];
+
+const chartColors = [
+  '#2563eb', '#ea580c', '#16a34a', '#dc2626', '#9333ea', 
+  '#0284c7', '#059669', '#ca8a04', '#e11d48', '#7c3aed', 
+  '#0891b2', '#10b981', '#f59e0b', '#f43f5e', '#6366f1', 
+  '#3b82f6', '#22c55e', '#f97316', '#8b5cf6', '#06b6d4'
+];
+
+const chartOptions = {
+  chart: {
+    type: 'donut',
+    background: 'transparent',
+    fontFamily: 'inherit',
+    animations: {
+      enabled: true,
+      easing: 'easeinout',
+      speed: 800,
+      dynamicAnimation: { enabled: true, speed: 350 }
+    }
+  },
+  labels: chartLabels,
+  theme: {
+    mode: 'dark'
+  },
+  colors: chartColors,
+  plotOptions: {
+    pie: {
+      donut: {
+        size: '50%',
+        labels: {
+          show: true,
+          name: { fontSize: '14px', color: '#cbd5e1' },
+          value: { fontSize: '24px', fontWeight: 'bold', color: '#fff' },
+          total: { show: true, label: 'Total Accesses', color: '#ef4444', fontSize: '12px' }
+        }
+      }
+    }
+  },
+  stroke: {
+    show: true,
+    colors: ['#020617'],
+    width: 2
+  },
+  dataLabels: {
+    enabled: true,
+    formatter: function (val, opts) {
+        return opts.w.globals.seriesTotals[opts.seriesIndex]
+    },
+    style: {
+      fontSize: '11px',
+      fontWeight: 'bold',
+      colors: ['#fff']
+    },
+    dropShadow: {
+      enabled: true,
+      top: 1,
+      left: 1,
+      blur: 2,
+      opacity: 0.8
+    }
+  },
+  legend: {
+    show: false
+  },
+  tooltip: {
+    theme: 'dark',
+    y: {
+      formatter: function (val) {
+        return val + " accesses"
+      }
+    }
+  }
+};
+
+const barChartSeries = [{
+  name: 'Jumlah Insiden',
+  data: [953, 696, 517, 373, 339]
+}];
+
+const barChartOptions = {
+  chart: {
+    type: 'bar',
+    background: 'transparent',
+    fontFamily: 'inherit',
+    toolbar: { show: false }
+  },
+  plotOptions: {
+    bar: {
+      borderRadius: 6,
+      distributed: true,
+      columnWidth: '40%'
+    }
+  },
+  dataLabels: {
+    enabled: true,
+    style: {
+      fontSize: '14px',
+      fontWeight: 'bold',
+      colors: ['#fff']
+    },
+    dropShadow: {
+      enabled: true,
+      top: 1,
+      left: 1,
+      blur: 2,
+      opacity: 0.8
+    }
+  },
+  xaxis: {
+    categories: ['Qilin', 'Akira', 'CL0P', 'Play', 'INC Ransom'],
+    labels: {
+      style: { colors: '#cbd5e1', fontSize: '14px', fontWeight: 'bold' }
+    },
+    axisBorder: { show: false },
+    axisTicks: { show: false }
+  },
+  yaxis: {
+    labels: {
+      style: { colors: '#94a3b8', fontSize: '13px' }
+    }
+  },
+  colors: ['#3b82f6', '#8b5cf6', '#10b981', '#f97316', '#94a3b8'],
+  theme: { mode: 'dark' },
+  legend: { show: false },
+  grid: {
+    borderColor: 'rgba(255, 255, 255, 0.05)',
+    strokeDashArray: 4
+  },
+  tooltip: {
+    theme: 'dark'
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyDown, { capture: true });
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown, { capture: true });
+});
+
 watch(() => props.active, (val) => {
   if (val) {
+    if (scrollWrapper.value) {
+      scrollWrapper.value.scrollTop = 0;
+    }
+
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     tl.fromTo('.slide-spektrum-ancaman .header-badge',
@@ -149,13 +385,23 @@ watch(() => props.active, (val) => {
 <style scoped>
 .slide-content {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5vw;
+  width: 100%;
   position: relative;
   overflow: hidden;
 }
+
+.scroll-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 8rem 5vw 8rem 5vw;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.scroll-wrapper::-webkit-scrollbar { width: 4px; }
+.scroll-wrapper::-webkit-scrollbar-track { background: transparent; }
+.scroll-wrapper::-webkit-scrollbar-thumb { background: #ef4444; border-radius: 10px; }
 
 /* ─── Ambient ─── */
 .ambient-orb {
@@ -197,6 +443,7 @@ watch(() => props.active, (val) => {
 .slide-inner {
   width: 100%;
   max-width: 1400px;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
@@ -205,6 +452,7 @@ watch(() => props.active, (val) => {
 .header-section {
   text-align: center;
   margin-bottom: 2.5rem;
+  margin-top: 3rem;
 }
 
 .header-badge {
@@ -536,6 +784,146 @@ watch(() => props.active, (val) => {
   color: white;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+/* ─── Chart Section ─── */
+.chart-section {
+  margin-top: 4rem;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chart-header i {
+  font-size: 1.8rem;
+  color: #60a5fa;
+}
+
+.chart-header h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.chart-container {
+  width: 100%;
+}
+
+.chart-layout {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.chart-wrapper {
+  flex: 1;
+  min-height: 450px;
+}
+
+/* ─── Custom HTML Legend ─── */
+.custom-legend-container {
+  width: 320px;
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.custom-legend {
+  height: 350px;
+  overflow-y: auto;
+  padding-right: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #fbbf24 transparent;
+}
+
+.custom-legend::-webkit-scrollbar { width: 8px; }
+.custom-legend::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); border-radius: 10px; }
+.custom-legend::-webkit-scrollbar-thumb { background: #fbbf24; border-radius: 10px; }
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.9rem;
+}
+
+.legend-marker {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #ffffff;
+  flex-shrink: 0;
+}
+
+.legend-text {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.chart-source {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: right;
+  margin-top: 1rem;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Actor Descriptions ─── */
+.actor-descriptions {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.5rem 1rem 0.5rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.actor-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.actor-name {
+  font-weight: 800;
+  font-size: 1.15rem;
+  min-width: 110px;
+  flex-shrink: 0;
+}
+
+.actor-name.qilin { color: #3b82f6; }
+.actor-name.akira { color: #8b5cf6; }
+.actor-name.clop { color: #10b981; }
+.actor-name.play { color: #f97316; }
+.actor-name.inc { color: #94a3b8; }
+
+.actor-desc {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  letter-spacing: 0.02em;
 }
 
 /* ─── Responsive ─── */

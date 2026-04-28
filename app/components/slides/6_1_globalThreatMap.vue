@@ -160,20 +160,46 @@ const generateFeedEntry = () => {
   };
 };
 
+let feedTimeout = null;
+let arcTimeout = null;
+
+const addRandomFeed = () => {
+  if (!props.active) return;
+  visibleFeed.value.unshift(generateFeedEntry());
+  if (visibleFeed.value.length > 8) visibleFeed.value.pop();
+  
+  // Random tempo between 200ms and 2500ms
+  const randomDelay = Math.random() * 2300 + 200;
+  feedTimeout = setTimeout(addRandomFeed, randomDelay);
+};
+
+const addRandomArc = () => {
+  if (!myGlobe || !props.active) return;
+  
+  const currentArcs = myGlobe.arcsData();
+  const newArc = generateArcs(1)[0];
+  
+  // Keep maximum 35 arcs on screen to prevent lag
+  if (currentArcs.length > 35) currentArcs.shift();
+  
+  myGlobe.arcsData([...currentArcs, newArc]);
+  
+  // Random tempo between 300ms and 1500ms
+  const randomDelay = Math.random() * 1200 + 300;
+  arcTimeout = setTimeout(addRandomArc, randomDelay);
+};
+
 const startFeed = () => {
   visibleFeed.value = [];
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < 8; i++) {
     visibleFeed.value.push(generateFeedEntry());
   }
-  feedInterval = setInterval(() => {
-    visibleFeed.value.unshift(generateFeedEntry());
-    if (visibleFeed.value.length > 7) visibleFeed.value.pop();
-  }, 1800);
+  addRandomFeed();
 };
 
 const stopFeed = () => {
-  if (feedInterval) { clearInterval(feedInterval); feedInterval = null; }
-  if (arcRefreshInterval) { clearInterval(arcRefreshInterval); arcRefreshInterval = null; }
+  if (feedTimeout) { clearTimeout(feedTimeout); feedTimeout = null; }
+  if (arcTimeout) { clearTimeout(arcTimeout); arcTimeout = null; }
 };
 
 // Generate realistic arcs: all targeting Indonesia
@@ -216,21 +242,22 @@ onMounted(async () => {
       const height = globeRef.value.clientHeight;
 
       myGlobe = Globe()(globeRef.value)
-        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+        .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+        .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
         .backgroundColor('rgba(0,0,0,0)')
         .showAtmosphere(true)
-        .atmosphereColor('#ef4444')
-        .atmosphereAltitude(0.12)
+        .atmosphereColor('lightskyblue')
+        .atmosphereAltitude(0.15)
         .width(width)
         .height(height)
         // Attack arcs
-        .arcsData(generateArcs(25))
+        .arcsData(generateArcs(15))
         .arcColor('color')
-        .arcDashLength(0.5)
-        .arcDashGap(2)
-        .arcDashAnimateTime(2000)
-        .arcStroke(0.4)
-        .arcAltitudeAutoScale(0.3)
+        .arcDashLength(0.8)
+        .arcDashGap(4)
+        .arcDashAnimateTime(() => Math.random() * 1500 + 1000)
+        .arcStroke(0.6)
+        .arcAltitudeAutoScale(0.4)
         // Target rings (pulsing)
         .ringsData(ringsData)
         .ringColor('color')
@@ -239,31 +266,27 @@ onMounted(async () => {
         .ringRepeatPeriod('repeatPeriod')
         // Source/target points
         .pointsData([
-          ...attackSources.map(s => ({ lat: s.lat, lng: s.lng, size: 0.02, color: '#f97316' })),
-          ...indonesiaTargets.map(t => ({ lat: t.lat, lng: t.lng, size: 0.06, color: '#ef4444' }))
+          ...attackSources.map(s => ({ lat: s.lat, lng: s.lng, size: 0.03, color: '#f97316' })),
+          ...indonesiaTargets.map(t => ({ lat: t.lat, lng: t.lng, size: 0.08, color: '#ef4444' }))
         ])
         .pointAltitude('size')
         .pointColor('color')
-        .pointRadius(0.2)
+        .pointRadius(0.3)
         .pointsMerge(true);
 
       myGlobe.controls().autoRotate = props.active;
-      myGlobe.controls().autoRotateSpeed = 0.35;
+      myGlobe.controls().autoRotateSpeed = 0.4;
       myGlobe.controls().enableZoom = false;
       myGlobe.controls().enablePan = false;
 
       // Start focused on Indonesia
-      myGlobe.pointOfView({ lat: -2, lng: 118, altitude: 2.2 });
+      myGlobe.pointOfView({ lat: -2, lng: 118, altitude: 2.1 });
 
       window.addEventListener('resize', handleResize);
       setTimeout(handleResize, 100);
 
-      // Refresh arcs every 6s for continuous new attacks
-      arcRefreshInterval = setInterval(() => {
-        if (myGlobe && props.active) {
-          myGlobe.arcsData(generateArcs(25));
-        }
-      }, 6000);
+      // Start random arc generation
+      addRandomArc();
     } catch (e) {
       console.error('Globe init failed', e);
     }
@@ -433,34 +456,41 @@ onUnmounted(() => {
   bottom: 12%;
   left: 6vw;
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   z-index: 10;
 }
 
 .stat-card {
-  padding: 0.8rem 1.3rem;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(239, 68, 68, 0.12);
-  min-width: 120px;
+  padding: 1rem 1.6rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(2, 6, 23, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .stat-value {
   font-family: var(--font-mono, monospace);
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: #ef4444;
-  text-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
-  line-height: 1.2;
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .stat-label {
-  font-size: 0.45rem;
+  font-size: 0.55rem;
   font-weight: 800;
   letter-spacing: 0.25em;
-  color: rgba(255, 255, 255, 0.3);
-  margin-top: 0.25rem;
+  color: #ef4444;
+  margin-top: 0.4rem;
+  text-transform: uppercase;
 }
 
 /* ─── Live Feed ─── */
@@ -468,12 +498,14 @@ onUnmounted(() => {
   position: absolute;
   bottom: 12%;
   right: 6vw;
-  width: 420px;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(239, 68, 68, 0.08);
-  border-radius: 14px;
-  padding: 1rem 1.2rem;
+  width: 440px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(2, 6, 23, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
   z-index: 10;
 }
 

@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-04-01',
   devtools: { enabled: true },
   css: ['~/assets/css/index.css'],
+  routeRules: {
+    '/dashboard': { redirect: '/' }
+  },
   app: {
     head: {
       title: 'Enterprise Presentation Management System',

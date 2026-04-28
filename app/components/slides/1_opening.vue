@@ -10,8 +10,8 @@
         </div>
       </div>
       <h1 class="slide-title">Transformasi <br/><span class="italic-serif text-accent">Strategis</span></h1>
-      <h3 class="slide-subtitle">Paradigma Digital dan Resiliensi Keamanan Siber Nasional</h3>
-      <p class="slide-author">Iwan Budi</p>
+      <h3 class="slide-subtitle">Paradigma Digital dan Keamanan Siber Dalam Kepolisian</h3>
+      <!-- <p class="slide-author">Iwan Budi</p> -->
       <p class="slide-tagline">Cyber Security sebagai isu komando, tata kelola risiko, <br/>pembuktian hukum, dan kepercayaan publik.</p>
     </div>
   </div>

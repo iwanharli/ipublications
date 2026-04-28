@@ -11,7 +11,13 @@ router.afterEach((to) => {
   currentPath.value = to.path;
 });
 
-const showNavbar = computed(() => !currentPath.value.includes('/publications') && !currentPath.value.startsWith('/notes/'));
+const showNavbar = computed(() => {
+  const path = currentPath.value;
+  return !path.includes('/publications') && 
+         !path.startsWith('/notes/') && 
+         !path.startsWith('/qna/') && 
+         !path.startsWith('/raw/');
+});
 const isHomePage = computed(() => currentPath.value === '/');
 
 const searchQuery = useState('searchQuery', () => '');

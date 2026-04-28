@@ -107,11 +107,12 @@ const defaultEdgeOptions = {
 };
 
 const flowElements = ref([
-  // Nodes — spread wide to fill the canvas
+  // Row 1 (Left to Right)
   {
     id: 'n1',
     type: 'attack',
-    position: { x: 0, y: 180 },
+    position: { x: 0, y: 0 },
+    sourcePosition: 'right',
     data: {
       time: '09:00',
       label: 'Initial Access',
@@ -124,7 +125,9 @@ const flowElements = ref([
   {
     id: 'n2',
     type: 'attack',
-    position: { x: 500, y: 0 },
+    position: { x: 480, y: 0 },
+    targetPosition: 'left',
+    sourcePosition: 'right',
     data: {
       time: '09:05',
       label: 'Human Error',
@@ -137,7 +140,9 @@ const flowElements = ref([
   {
     id: 'n3',
     type: 'attack',
-    position: { x: 1000, y: 180 },
+    position: { x: 960, y: 0 },
+    targetPosition: 'left',
+    sourcePosition: 'bottom',
     data: {
       time: '09:30',
       label: 'Lateral Movement',
@@ -147,10 +152,14 @@ const flowElements = ref([
       critical: false
     }
   },
+  
+  // Row 2 (Right to Left)
   {
     id: 'n4',
     type: 'attack',
-    position: { x: 500, y: 400 },
+    position: { x: 960, y: 280 },
+    targetPosition: 'top',
+    sourcePosition: 'left',
     data: {
       time: '10:00',
       label: 'Data Encryption',
@@ -163,7 +172,8 @@ const flowElements = ref([
   {
     id: 'n5',
     type: 'attack',
-    position: { x: 1000, y: 560 },
+    position: { x: 480, y: 280 },
+    targetPosition: 'right',
     data: {
       time: '10:01',
       label: 'Ransom Demand',
@@ -240,7 +250,7 @@ watch(() => props.active, async (val) => {
 
     await nextTick();
     setTimeout(() => {
-      fitView({ padding: 0.15 });
+      fitView({ padding: 0.1 });
     }, 600);
   }
 }, { immediate: true });
@@ -412,7 +422,7 @@ watch(() => props.active, async (val) => {
 
 /* ─── Attack Node ─── */
 .attack-node {
-  min-width: 380px;
+  width: 380px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -445,7 +455,7 @@ watch(() => props.active, async (val) => {
   inset: 0;
   border-radius: 20px;
   padding: 1.5px;
-  background: linear-gradient(180deg, rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0.12) 40%, rgba(59, 130, 246, 0.25) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 40%, rgba(255, 255, 255, 0.15) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -459,14 +469,14 @@ watch(() => props.active, async (val) => {
 }
 
 .attack-node-inner {
-  background: rgba(8, 15, 35, 0.95);
+  background: rgba(2, 6, 23, 0.95);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-radius: 20px;
   padding: 1.6rem 1.8rem;
   position: relative;
   z-index: 1;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .attack-node-header {

@@ -2,7 +2,7 @@
   <div class="presentation-viewer">
     
     <!-- Top Toolbar -->
-    <header class="viewer-toolbar" :class="{ 'viewer-hidden': currentSlide === 6 }">
+    <header class="viewer-toolbar" :class="{ 'viewer-hidden': [0, 1, 7].includes(currentSlide) }">
       <div class="viewer-left">
         <NuxtLink to="/" class="btn-exit">
           <i class="fa-solid fa-xmark"></i>
@@ -58,6 +58,11 @@
           <ParadigmaSlide :active="isActive" />
         </SwiperSlide>
 
+        <!-- Slide 4.1: Paradigma Question -->
+        <SwiperSlide class="slide-item" v-slot="{ isActive }">
+          <ParadigmaQuestionSlide :active="isActive" />
+        </SwiperSlide>
+
         <!-- Slide 5: Data Strategis (Utility vs Risk) -->
         <SwiperSlide class="slide-item" v-slot="{ isActive }">
           <DataSlide :active="isActive" />
@@ -78,9 +83,19 @@
           <TimelineSimSlide :active="isActive" />
         </SwiperSlide>
 
-        <!-- Slide 8: Dilema Ransomware (Strategic Choice) -->
+        <!-- Slide 8.1: Timeline Question -->
+        <SwiperSlide class="slide-item" v-slot="{ isActive }">
+          <TimelineQuestionSlide :active="isActive" />
+        </SwiperSlide>
+
+        <!-- Slide 9: Dilema Ransomware (Strategic Choice) -->
         <SwiperSlide class="slide-item" v-slot="{ isActive }">
           <DilemmaSlide :active="isActive" />
+        </SwiperSlide>
+
+        <!-- Slide 8.1: Pertanyaan Interaktif (Interactive Question) -->
+        <SwiperSlide class="slide-item" v-slot="{ isActive }">
+          <DilemmaQuestionSlide :active="isActive" />
         </SwiperSlide>
 
         <!-- Slide 9: Pelajaran Utama (Core Lessons) -->
@@ -126,7 +141,7 @@
     </div>
  
     <!-- Bottom Controls -->
-    <footer class="viewer-controls" :class="{ 'viewer-hidden': currentSlide === 6 }">
+    <footer class="viewer-controls" :class="{ 'viewer-hidden': [0, 1, 7].includes(currentSlide) }">
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
@@ -135,7 +150,7 @@
           <template v-if="!showJumpInput">
             <span class="current">{{ currentSlide + 1 }}</span>
             <span class="divider">/</span>
-            <span class="total">17</span>
+            <span class="total">20</span>
             <span class="jump-hint"><i class="fa-solid fa-arrow-right-to-bracket ms-2"></i></span>
           </template>
           <div v-else class="jump-input-wrapper">
@@ -143,7 +158,7 @@
               v-model.number="jumpSlideInput" 
               type="number" 
               min="1" 
-              max="17"
+              max="20"
               class="jump-input"
               @blur="handleJumpBlur"
               @keyup.enter="jumpToSlide"
@@ -228,11 +243,14 @@ import OpeningSlide from '~/components/slides/1_opening.vue';
 import HookSlide from '~/components/slides/2_theHook.vue';
 import CyberSpaceSlide from '~/components/slides/3_ruangCyber.vue';
 import ParadigmaSlide from '~/components/slides/4_paradigma.vue';
+import ParadigmaQuestionSlide from '~/components/slides/4_1_paradigmaQuestion.vue';
 import DataSlide from '~/components/slides/5_data.vue';
 import ThreatSpectrumSlide from '~/components/slides/6_spektrumAncaman.vue';
 import GlobalThreatMapSlide from '~/components/slides/6_1_globalThreatMap.vue';
 import TimelineSimSlide from '~/components/slides/7_timelineSimulasi.vue';
+import TimelineQuestionSlide from '~/components/slides/7_1_timelineQuestion.vue';
 import DilemmaSlide from '~/components/slides/8_dilemaRansomware.vue';
+import DilemmaQuestionSlide from '~/components/slides/8_1_dilemaQuestion.vue';
 import LessonsSlide from '~/components/slides/9_pelajaranUtama.vue';
 import EvidenceParadigmSlide from '~/components/slides/10_buktiDigital.vue';
 import ForensicsSlide from '~/components/slides/11_metadataChain.vue';
@@ -240,25 +258,7 @@ import InitialActionsSlide from '~/components/slides/12_tindakanAwal.vue';
 import StrategicSolutionsSlide from '~/components/slides/13_solusiStrategis.vue';
 import GovernanceSlide from '~/components/slides/14_komunikasiAI.vue';
 import CommandersCallSlide from '~/components/slides/15_commandersCall.vue';
-import SlideCover from '~/components/slides/SlideCover.vue';
-import SlideSplit from '~/components/slides/SlideSplit.vue';
-import SlideQuote from '~/components/slides/SlideQuote.vue';
-import SlideMetrics from '~/components/slides/SlideMetrics.vue';
-import SlideTimeline from '~/components/slides/SlideTimeline.vue';
-import SlideCyberGlobe from '~/components/slides/SlideCyberGlobe.vue';
-import SlideImageText from '~/components/slides/SlideImageText.vue';
-import SlideComparison from '~/components/slides/SlideComparison.vue';
-import SlideScrollable from '~/components/slides/SlideScrollable.vue';
-import SlideProcess from '~/components/slides/SlideProcess.vue';
-import SlideGallery from '~/components/slides/SlideGallery.vue';
 import ClosingSlide from '~/components/slides/16_closing.vue';
-import SlideOrgChart from '~/components/slides/SlideOrgChart.vue';
-import SlideDataTable from '~/components/slides/SlideDataTable.vue';
-import SlideQA from '~/components/slides/SlideQA.vue';
-import SlideHighlights from '~/components/slides/SlideHighlights.vue';
-import SlideInfographic from '~/components/slides/SlideInfographic.vue';
-import SlideMap from '~/components/slides/SlideMap.vue';
-import SlidePDFPreview from '~/components/slides/SlidePDFPreview.vue';
 
 const route = useRoute();
 const presentationId = route.params.uuid;
@@ -281,7 +281,7 @@ const jumpSlideInput = ref(null);
 const jumpInputRef = ref(null);
 
 const jumpToSlide = () => {
-  if (jumpSlideInput.value && jumpSlideInput.value >= 1 && jumpSlideInput.value <= 17) {
+  if (jumpSlideInput.value && jumpSlideInput.value >= 1 && jumpSlideInput.value <= 20) {
     const targetIndex = jumpSlideInput.value - 1;
     swiperInstance.value?.slideTo(targetIndex);
   }
@@ -314,21 +314,24 @@ const formattedTime = computed(() => {
 const slideFootnotes = {
   0: "",
   1: "SUMBER: BSSN 2025",
-  2: "Sumber: INTERPOL Cybercrime; INTERPOL Cybercrime Global Strategy 2022–2025.",
+  2: "Sumber: INTERPOL Cybercrime Global Strategy 2022–2025.",
   3: "Sumber: INTERPOL Cybercrime Global Strategy 2022–2025; NIST CSF 2.0.",
-  4: "Sumber: UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi; NIST CSF 2.0.",
-  5: "Sumber: INTERPOL Cybercrime; INTERPOL Asia and South Pacific Cyber Threat Assessment 2025/2026; ENISA Threat Landscape.",
-  6: "Sumber: AbuseIPDB; Kaspersky Cybermap; INTERPOL Threat Intelligence.",
-  7: "Sumber: NIST SP 800-61r3; Reuters PDNS ransomware 2024.",
-  8: "Sumber: NIST SP 800-61r3; Reuters PDNS 2024; NIST CSF 2.0.",
-  9: "Sumber: NIST SP 800-61r3; CISA Incident Response Playbooks.",
-  10: "Sumber: Council of Europe Electronic Evidence Guide; NIST SP 800-86; UNESCO AI Ethics.",
-  11: "Sumber: Council of Europe Electronic Evidence Guide; ISO/IEC 27037; NIST SP 800-86.",
-  12: "Sumber: Council of Europe Electronic Evidence Guide; NIST SP 800-86; ISO/IEC 27037.",
-  13: "Sumber: NIST SP 800-207; NIST SP 800-61r3; FIRST CSIRT Services Framework; CISA Zero Trust Maturity Model.",
-  14: "Sumber: NIST SP 800-61r3; CISA Incident Response Playbooks; UNESCO Recommendation on the Ethics of AI; OECD AI Principles; UU PDP 2022.",
-  15: "Sumber: NIST CSF 2.0; INTERPOL Cybercrime Global Strategy; UU PDP 2022.",
-  16: "",
+  4: "", // Paradigma Question
+  5: "Sumber: UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi; NIST CSF 2.0.",
+  6: "Sumber: INTERPOL Asia and South Pacific Cyber Threat Assessment 2025/2026; ENISA Threat Landscape.",
+  7: "Sumber: AbuseIPDB; Kaspersky Cybermap; INTERPOL Threat Intelligence.",
+  8: "Sumber: NIST SP 800-61r3; Reuters PDNS ransomware 2024.",
+  9: "", // Timeline Question
+  10: "Sumber: NIST SP 800-61r3; Reuters PDNS 2024; NIST CSF 2.0.",
+  11: "", // Dilemma Question
+  12: "Sumber: NIST SP 800-61r3; CISA Incident Response Playbooks.",
+  13: "Sumber: Council of Europe Electronic Evidence Guide; NIST SP 800-86; UNESCO AI Ethics.",
+  14: "Sumber: Council of Europe Electronic Evidence Guide; ISO/IEC 27037; NIST SP 800-86.",
+  15: "Sumber: Council of Europe Electronic Evidence Guide; NIST SP 800-86; ISO/IEC 27037.",
+  16: "Sumber: NIST SP 800-207; NIST SP 800-61r3; FIRST CSIRT Services Framework; CISA Zero Trust Maturity Model.",
+  17: "Sumber: NIST SP 800-61r3; CISA Incident Response Playbooks; UNESCO Recommendation on the Ethics of AI; OECD AI Principles; UU PDP 2022.",
+  18: "Sumber: NIST CSF 2.0; INTERPOL Cybercrime Global Strategy; UU PDP 2022.",
+  19: "",
 };
 
 const currentFootnote = computed(() => {
