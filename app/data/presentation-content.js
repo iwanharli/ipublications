@@ -36,7 +36,6 @@ export const presentationContent = [
       "Maka pertanyaannya bukan lagi: apakah serangan akan terjadi? Tapi: jika itu terjadi dalam satu menit ke depan, apakah institusi kita sudah siap merespons secara taktis?",
       "Kita tentu tidak ingin tim IT kita hanya menjadi pemadam kebakaran digital yang baru dipanggil saat sistem sudah lumpuh gara-gara hal sepele, seperti klik ‘undangan pernikahan.apk’ di WhatsApp.”"
     ],
-    },
     supplements: {
       transition: "“Dari angka ini kita bisa melihat bahwa ruang siber bukan lagi ruang teknis yang jauh dari tugas kepolisian. Ruang siber sudah menjadi bagian dari ruang kamtibmas.”"
     }
