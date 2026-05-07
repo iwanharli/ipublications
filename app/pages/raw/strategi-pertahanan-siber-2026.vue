@@ -195,6 +195,9 @@ const stripHtml = (html) => {
 
 const getSlideText = (slide) => {
   let parts = [];
+  if (slide.indicator) {
+    parts.push(slide.indicator.replace('—', 'yaitu')); // Menyebutkan nomor slide di awal
+  }
   if (slide.narrative) {
     parts = parts.concat(slide.narrative.map(p => stripHtml(p)));
   }
