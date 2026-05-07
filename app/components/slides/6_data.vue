@@ -17,7 +17,7 @@
           <h1 class="slide-title">
             Data Polri Bernilai <span class="title-highlight">Strategis</span>
           </h1>
-          <p class="slide-desc">Aset data institusi sebagai tulang punggung operasi — dan target utama ancaman siber</p>
+          <p class="slide-desc">Aset data institusi sebagai tulang punggung operasi dan target utama ancaman siber</p>
         </div>
 
         <!-- Split Container (Benefits & Risks) -->
