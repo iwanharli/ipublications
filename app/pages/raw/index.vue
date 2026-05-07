@@ -207,8 +207,8 @@ const loadVoices = () => {
   availableVoices.value = voices.filter(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
   
   if (availableVoices.value.length > 0) {
-    // Priority: 1. Microsoft Ardi (Laki-laki Natural), 2. Names like Andika/Indra, 3. Any Male voice, 4. First available
-    const maleNames = ['Ardi', 'Andika', 'Indra', 'Male', 'Laki'];
+    // Priority: 1. Microsoft Ardi, 2. Indra/Thomas (Apple Male), 3. Any Male voice
+    const maleNames = ['Ardi', 'Indra', 'Thomas', 'Andika', 'Male', 'Laki'];
     const foundMale = availableVoices.value.find(v => 
       maleNames.some(name => v.name.toLowerCase().includes(name.toLowerCase()))
     );
@@ -379,9 +379,13 @@ const toggleTTS = (slide) => {
     if (idx !== -1) ttsCurrentIdx.value = idx;
   }
 
-  // Tuning for authoritative male tone (lower pitch, slightly slower rate)
-  utterance.rate = 0.9; 
-  utterance.pitch = 0.8; // Deep authoritative pitch
+  // Tuning for authoritative male tone
+  const isMale = selectedVoiceName.value.toLowerCase().includes('ardi') || 
+                 selectedVoiceName.value.toLowerCase().includes('indra') || 
+                 selectedVoiceName.value.toLowerCase().includes('thomas');
+
+  utterance.rate = isMale ? 0.9 : 0.85; 
+  utterance.pitch = isMale ? 0.8 : 0.7; // Even deeper pitch if forced to use female voice
 
   utterance.onend = () => {
     if (ttsPlayingAll.value) {
@@ -448,8 +452,12 @@ const playSlideAt = (idx) => {
     utterance.lang = 'id-ID';
   }
 
-  utterance.rate = 0.9;
-  utterance.pitch = 0.8; // Deep authoritative pitch
+  const isMale = selectedVoiceName.value.toLowerCase().includes('ardi') || 
+                 selectedVoiceName.value.toLowerCase().includes('indra') || 
+                 selectedVoiceName.value.toLowerCase().includes('thomas');
+
+  utterance.rate = isMale ? 0.9 : 0.85;
+  utterance.pitch = isMale ? 0.8 : 0.7; 
 
   // Auto-scroll to current slide
   const el = document.getElementById(slide.id);
