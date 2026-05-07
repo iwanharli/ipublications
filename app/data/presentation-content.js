@@ -29,11 +29,11 @@ export const presentationContent = [
     ],
     narrative: [
       "“Bapak/Ibu sekalian, menurut data BSSN yang dipublikasikan dalam pemberitaan nasional, Indonesia mencatat sekitar 5,5 miliar anomali trafik siber sepanjang tahun 2025.",
-      "Kalau angka itu kita konversi secara sederhana, jumlahnya kira-kira menjadi 15 juta anomali per hari, sekitar 627 ribu per jam, 10.464 per menit, atau sekitar 174 per detik.",
-      "Saya ingin menekankan satu hal penting: angka ini mencakup seluruh anomali trafik—termasuk scanning otomatis, bot, percobaan akses, dan trafik mencurigakan. Tidak semuanya serangan yang berhasil. Tetapi angka di slide ini, 10.464 per menit, menunjukkan intensitas percobaan yang terus-menerus menguji pertahanan kita.",
-      "Namun, bagi pimpinan, pesan strategisnya jelas: <strong>ruang digital kita terus-menerus diuji</strong>. Sistem publik, perbankan, layanan pemerintah, infrastruktur kritis, bahkan akun personal pejabat dan personel, semuanya berada dalam lingkungan ancaman yang bergerak sangat cepat.",
-      "Kalau kita hanya melihat angka ini sebagai statistik, mungkin terasa jauh. Tetapi coba kita lihat dari perspektif komando. Jika sebagian kecil saja dari aktivitas anomali ini berubah menjadi insiden nyata, dampaknya bisa menyentuh pelayanan masyarakat, data penyidikan, reputasi institusi, bahkan kepercayaan publik.",
-      "Maka pertanyaan saya untuk Bapak/Ibu bukan: apakah serangan siber akan terjadi? Pertanyaannya adalah: kalau terjadi hari ini, apakah organisasi kita siap merespons?”"
+      "Kalau angka itu kita konversi secara sederhana, jumlahnya <strong>setara dengan</strong> 15 juta anomali per hari, sekitar 627 ribu per jam, 10.464 per menit, atau sekitar 174 per detik.",
+      "Saya ingin menekankan satu hal penting: angka ini mencakup seluruh anomali trafik—termasuk scanning otomatis, bot, percobaan akses, dan trafik mencurigakan. Tidak semuanya merupakan serangan yang berhasil menembus pertahanan. Tetapi angka di slide ini, 10.464 per menit, menunjukkan intensitas percobaan yang terus-menerus menguji ketahanan kita.",
+      "Namun, bagi pimpinan, pesan strategisnya jelas: <strong>ruang digital kita terus-menerus diuji</strong>. Sistem pelayanan publik, perbankan, layanan pemerintah, infrastruktur kritis, bahkan akun personal pejabat dan personel, semuanya berada dalam lingkungan ancaman yang bergerak sangat cepat.",
+      "Jika kita hanya melihat angka ini sebagai statistik, mungkin terasa jauh. Tetapi coba kita lihat dari perspektif komando. Jika sebagian kecil saja dari aktivitas anomali ini berubah menjadi insiden nyata, dampaknya bisa melumpuhkan pelayanan masyarakat, mengekspos data penyidikan, merusak reputasi institusi, dan meruntuhkan kepercayaan publik.",
+      "Maka pertanyaan saya untuk Bapak/Ibu bukan: apakah serangan siber akan terjadi? Pertanyaannya adalah: jika itu terjadi hari ini, apakah organisasi kita sudah siap untuk merespons secara taktis?”"
     ],
     interactive: {
       type: "standard",
@@ -180,7 +180,7 @@ export const presentationContent = [
     },
     supplements: {
       jokes: [
-        "1. “Data itu seperti sambal. Kalau dikelola dengan tepat, menambah kekuatan. Tapi kalau tumpah sembarangan, semua orang kepanasan.”"
+        "1. “Data itu seperti bahan bakar beroktan tinggi. Jika dikelola dengan mesin yang tepat, ia memberikan daya dorong luar biasa bagi organisasi. Tapi jika bocor sedikit saja dan terkena percikan, ia bisa membakar seluruh kepercayaan yang sudah kita bangun.”"
       ],
       transition: "“Karena data bernilai tinggi, maka ancaman terhadap data dan sistem juga semakin beragam. Ancaman siber hari ini bukan hanya hacking.”"
     }
@@ -519,7 +519,7 @@ export const presentationContent = [
     },
     supplements: {
       jokes: [
-        "1. “Zero Trust bukan berarti semua orang dicurigai. Zero Trust berarti sistemnya disiplin. Sama seperti pemeriksaan di pintu masuk: bukan karena tidak percaya, tetapi karena prosedur menjaga semua orang death.”"
+        "1. “Zero Trust bukan berarti semua orang dicurigai secara personal. Zero Trust berarti sistem kita memiliki disiplin prosedur yang ketat. Sama seperti pemeriksaan di pintu masuk markas: dilakukan bukan karena tidak percaya pada anggota, tetapi karena prosedur itulah yang menjaga kita semua tetap aman.”"
       ],
       transition: "“Selain solusi teknis dan organisasi, ada dua aspek yang sangat menentukan saat krisis digital: komunikasi publik dan etika penggunaan AI.”"
     }
@@ -568,13 +568,13 @@ export const presentationContent = [
       "Aspek yang diuji: Perintah pertama, koordinasi, pengamanan bukti, dan narasi publik."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, sekarang saya ingin membalik pola tanya jawab. Biasanya pembicara menunggu pertanyaan dari audiens. Kali ini saya ingin Bapak/Ibu yang mengambil keputusan.",
-      "Saya berikan empat skenario.",
-      "Pertama, <strong>akun pejabat diretas</strong> dan digunakan untuk menyebarkan pesan palsu.",
-      "Kedua, <strong>data laporan masyarakat bocor</strong> dan viral di media sosial.",
-      "Ketiga, <strong>video deepfake pejabat beredar</strong> dan memicu keresahan.",
-      "Keempat, <strong>ransomware melumpuhkan layanan digital</strong>.",
-      "Pilih salah satu skenario. Bayangkan ini terjadi hari ini. Pertanyaannya: apa perintah pertama Bapak/Ibu? Siapa yang dihubungi? Bukti apa yang diamankan? Apa yang disampaikan kepada publik?”"
+      "“Bapak/Ibu sekalian, sebagai penutup sesi simulasi, saya ingin kita melakukan latihan pengambilan keputusan secara cepat. Bukan teori, tetapi tindakan nyata.",
+      "Saya berikan empat skenario krisis riil.",
+      "Pertama, <strong>akun pejabat diretas</strong> dan digunakan untuk menyebarkan narasi yang menyesatkan.",
+      "Kedua, <strong>data laporan masyarakat bocor</strong> dan mulai viral di media sosial.",
+      "Ketiga, <strong>video deepfake pejabat beredar</strong> yang berpotensi memicu instabilitas sosial.",
+      "Keempat, <strong>serangan ransomware</strong> yang melumpuhkan layanan digital utama.",
+      "Pilih salah satu skenario. Bayangkan ini terjadi di satuan kerja Bapak/Ibu hari ini. Apa perintah pertama Anda? Siapa otoritas yang Anda hubungi? Bagaimana Anda mengamankan integritas bukti? Dan apa narasi tunggal yang Anda sampaikan kepada publik agar situasi tetap terkendali?”"
     ],
     interactive: {
       type: "standard",

@@ -10,6 +10,16 @@
             <p class="subtitle">Strategi Pertahanan Siber Polri 2026</p>
           </div>
           <div class="actions">
+            <!-- Voice Selector -->
+            <div class="voice-selector" v-if="availableVoices.length > 0">
+              <i class="fa-solid fa-volume-high"></i>
+              <select v-model="selectedVoiceName" class="select-voice">
+                <option v-for="voice in availableVoices" :key="voice.name" :value="voice.name">
+                  {{ voice.name }}
+                </option>
+              </select>
+            </div>
+
             <button 
               class="btn-play-all" 
               :class="{ 'is-active': ttsPlayingAll }"
@@ -168,7 +178,7 @@
 </template>
 
 <script setup>
-import { ref, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { presentationContent } from '~/data/presentation-content';
 
 const getSlideNumber = (indicator) => {
@@ -186,6 +196,37 @@ const getOptLabel = (text) => {
 // ─── Text-to-Speech ───
 const ttsPlaying = ref(null);
 const ttsPaused = ref(null);
+const availableVoices = ref([]);
+const selectedVoiceName = ref('');
+
+const loadVoices = () => {
+  const synth = window.speechSynthesis;
+  let voices = synth.getVoices();
+  
+  // Filter for Indonesian or Malay (fallback)
+  availableVoices.value = voices.filter(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
+  
+  if (availableVoices.value.length > 0) {
+    // Priority: 1. Microsoft Ardi (Laki-laki Natural), 2. Any Male voice, 3. First available
+    const ardi = availableVoices.value.find(v => v.name.includes('Ardi'));
+    const male = availableVoices.value.find(v => v.name.toLowerCase().includes('male'));
+    
+    if (ardi) {
+      selectedVoiceName.value = ardi.name;
+    } else if (male) {
+      selectedVoiceName.value = male.name;
+    } else {
+      selectedVoiceName.value = availableVoices.value[0].name;
+    }
+  }
+};
+
+onMounted(() => {
+  loadVoices();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+  }
+});
 
 const stripHtml = (html) => {
   const tmp = document.createElement('div');
@@ -195,15 +236,47 @@ const stripHtml = (html) => {
 
 const getSlideText = (slide) => {
   let parts = [];
+  
+  // 1. Indikator Slide
   if (slide.indicator) {
-    parts.push(slide.indicator.replace('—', 'yaitu')); // Menyebutkan nomor slide di awal
+    parts.push(slide.indicator.replace('—', 'yaitu'));
   }
+
+  // 2. Analogi (jika ada)
+  if (slide.analogy?.text) {
+    parts.push("Analogi pembicara: " + stripHtml(slide.analogy.text));
+  }
+
+  // 3. Narasi Utama
   if (slide.narrative) {
     parts = parts.concat(slide.narrative.map(p => stripHtml(p)));
   }
-  if (slide.supplements?.transition) {
-    parts.push(stripHtml(slide.supplements.transition));
+
+  // 4. Bagian Interaktif (Pertanyaan)
+  if (slide.interactive?.questions) {
+    parts.push("Pertanyaan interaktif kepada audiens: ");
+    parts = parts.concat(slide.interactive.questions.map(q => stripHtml(q)));
   }
+
+  // 5. Bagian Kuis (jika ada)
+  if (slide.interactive?.quiz) {
+    parts.push("Pertanyaan kuis: " + stripHtml(slide.interactive.quiz.question));
+    slide.interactive.quiz.options.forEach(opt => {
+      parts.push("Pilihan " + stripHtml(opt.text));
+    });
+  }
+
+  // 6. Panduan Respons / Lanjutkan (Guidance)
+  if (slide.interactive?.guidance?.text) {
+    parts.push("Panduan respon setelah audiens menjawab: ");
+    parts = parts.concat(slide.interactive.guidance.text.map(t => stripHtml(t)));
+  }
+
+  // 7. Transisi ke slide berikutnya
+  if (slide.supplements?.transition) {
+    parts.push("Transisi: " + stripHtml(slide.supplements.transition));
+  }
+
   return parts.join('\n\n');
 };
 
@@ -234,14 +307,19 @@ const toggleTTS = (slide) => {
 
   const text = getSlideText(slide);
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'id-ID';
-  utterance.rate = 0.95;
-  utterance.pitch = 1;
+  
+  // Set selected voice
+  const voice = availableVoices.value.find(v => v.name === selectedVoiceName.value);
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
+  } else {
+    utterance.lang = 'id-ID';
+  }
 
-  // Try to find Indonesian voice
-  const voices = synth.getVoices();
-  const idVoice = voices.find(v => v.lang.startsWith('id')) || voices.find(v => v.lang.startsWith('ms')) || null;
-  if (idVoice) utterance.voice = idVoice;
+  // Tuning for authoritative tone (lower pitch, slightly slower rate)
+  utterance.rate = 0.9; 
+  utterance.pitch = 0.85; // Lower pitch makes it sound more masculine/deep
 
   utterance.onend = () => {
     ttsPlaying.value = null;
@@ -290,13 +368,18 @@ const playSlideAt = (idx) => {
 
   const text = getSlideText(slide);
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'id-ID';
-  utterance.rate = 0.95;
-  utterance.pitch = 1;
+  
+  // Set voice settings
+  const voice = availableVoices.value.find(v => v.name === selectedVoiceName.value);
+  if (voice) {
+    utterance.voice = voice;
+    utterance.lang = voice.lang;
+  } else {
+    utterance.lang = 'id-ID';
+  }
 
-  const voices = synth.getVoices();
-  const idVoice = voices.find(v => v.lang.startsWith('id')) || voices.find(v => v.lang.startsWith('ms')) || null;
-  if (idVoice) utterance.voice = idVoice;
+  utterance.rate = 0.9;
+  utterance.pitch = 0.85;
 
   // Auto-scroll to current slide
   const el = document.getElementById(slide.id);
@@ -398,7 +481,40 @@ useHead({
 
 .actions {
   display: flex;
+  align-items: center;
   gap: 1rem;
+}
+
+.voice-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #94a3b8;
+}
+
+.voice-selector i {
+  font-size: 0.8rem;
+  color: #3b82f6;
+}
+
+.select-voice {
+  background: transparent;
+  border: none;
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  max-width: 150px;
+}
+
+.select-voice option {
+  background: #0f172a;
+  color: #fff;
 }
 
 .btn-back {
