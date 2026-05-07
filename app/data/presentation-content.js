@@ -92,7 +92,7 @@ export const presentationContent = [
     narrative: [
       "\"Bapak/Ibu sekalian, sebelum kita lanjut, saya ingin mengajak Bapak/Ibu untuk satu refleksi singkat.",
       "Dari tiga paradigma yang baru kita bahas—<strong>Digital-First, Data-Driven, dan Cyber-Aware</strong>—menurut Bapak/Ibu, mana yang paling sulit diterapkan di institusi?",
-      "Silakan klik salah satu pilihan di layar. Kita lihat bersama tingkat kesulitannya.",
+      "Silakan pilih salah satu di layar.",
       "Digital-First sering terkendala kebiasaan lama. Transformasi kadang hanya sebatas mengubah formulir kertas menjadi PDF—bentuknya digital, tapi prosesnya masih manual.",
       "Data-Driven terkendala oleh data yang belum terintegrasi dan belum valid. Budaya kerja masih terlalu bergantung pada intuisi and asumsi.",
       "Tetapi <strong>Cyber-Aware</strong> biasanya yang paling sulit. Karena sistem secanggih apa pun bisa dikalahkan oleh satu keteledoran: klik phishing, buka file APK, atau password yang lemah.",
