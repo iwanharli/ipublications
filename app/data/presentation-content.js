@@ -57,17 +57,6 @@ export const presentationContent = [
       "Dan kalau Bapak/Ibu lihat di bagian bawah slide ini, spektrum ancaman baru sudah sangat beragam: <strong>penipuan online, judi online, APK scam, hoaks, deepfake, data leak, hingga ransomware</strong>. Semua ini bukan ancaman masa depan—ini sudah terjadi hari ini, di Indonesia, setiap hari.",
       "Dulu, saksi kunci biasanya manusia. Sekarang saksi kunci bisa CCTV, BTS, GPS, atau metadata. Bedanya Bapak/Ibu, saksi digital ini tidak pernah minta kopi atau uang makan, tapi kalau kita salah prosedur saat mengambil datanya, dia bisa hilang selamanya.”"
     ],
-    interactive: {
-      type: "alternate",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Dalam pengalaman Bapak/Ibu, perkara apa yang dulu dianggap konvensional, tetapi sekarang hampir selalu punya jejak digital?”"
-      ],
-      guidance: {
-        label: "ARAHKAN JAWABAN:",
-        text: ["“Penipuan, narkoba, pemerasan, kekerasan, judi, tindak pidana ekonomi, ujaran kebencian, pencurian kendaraan, bahkan konflik rumah tangga pun sering punya chat, rekaman, transfer, lokasi, atau unggahan media sosial.”"]
-      }
-    },
     supplements: {
       transition: "“Kalau ruang tugas berubah, maka paradigma kepolisian juga harus berubah. Saya merangkumnya dalam tiga kata.”"
     }
@@ -88,17 +77,6 @@ export const presentationContent = [
       "Ketiga, <strong>Cyber-Aware</strong>. Ini yang paling krusial: keamanan siber harus menjadi budaya kerja. Satu password yang bocor atau satu klik ceroboh pada link palsu adalah risiko bagi seluruh marwah institusi.",
       "Paradigma baru ini adalah tentang cara kita memimpin di era di mana teknologi dan hukum terus bertransformasi. Karena kadang, Bapak/Ibu, kita sudah punya sistem yang sangat canggih, tapi password-nya masih ‘admin123’. Ini sama saja seperti membeli brankas antipeluru yang sangat mahal, tapi kuncinya kita taruh di bawah keset pintu depan.”"
     ],
-    interactive: {
-      type: "alternate",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Dari tiga paradigma ini, mana yang paling sulit diterapkan di institusi: Digital-First, Data-Driven, atau Cyber-Aware?”"
-      ],
-      guidance: {
-        label: "JIKA ADA JAWABAN, TANGGAPI:",
-        text: ["“Biasanya yang paling sulit bukan membeli teknologinya, tetapi mengubah kebiasaan manusianya. Karena sistem bisa di-upgrade, tetapi budaya kerja membutuhkan kepemimpinan.”"]
-      }
-    },
     supplements: {
       transition: "“Dari tiga paradigma ini, inti yang paling penting adalah data. Karena di era digital, data bisa menjadi kekuatan, tetapi juga bisa menjadi sumber kerentanan.”"
     }
@@ -176,17 +154,6 @@ export const presentationContent = [
       "Pertama, <strong>dampak ekonomi</strong>: penipuan online, judi online, dan kerugian masyarakat. Kedua, <strong>dampak operasional</strong>: sistem layanan lumpuh total. Ketiga, <strong>dampak sosial</strong>: hoaks dan menurunnya kepercayaan masyarakat.",
       "Mungkin di layar lebar, penyusup digital itu terlihat keren dengan hoodie hitam dan layar penuh kode hijau. Tapi di dunia nyata, sering kali serangan dimulai dari pesan yang sangat sederhana: ‘Izin Komandan, ini undangan rapat, mohon dibuka.’ Dan lampirannya kembali lagi: file APK.”"
     ],
-    interactive: {
-      type: "alternate",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Menurut Bapak/Ibu, ancaman mana yang paling dekat dengan tugas sehari-hari: cyber fraud, judi online, ransomware, hoaks, atau deepfake?”"
-      ],
-      guidance: {
-        label: "TANGGAPI:",
-        text: ["“Jawaban bisa berbeda tergantung fungsi dan wilayah. Tetapi yang jelas, semuanya membutuhkan kesiapan institusi.”"]
-      }
-    },
     supplements: {
       transition: "“Sekarang kita masuk ke kasus pertama. Saya ingin Bapak/Ibu membayangkan bukan sebagai penonton, tetapi sebagai pimpinan yang harus mengambil keputusan.”"
     }
@@ -229,23 +196,6 @@ export const presentationContent = [
       "<strong>Pukul 10.01</strong>, muncul pesan tebusan: <em>data Anda telah dienkripsi.</em>",
       "Pada titik ini, situasinya berubah. Ini bukan lagi masalah komputer. Ini krisis komando. Sering kali saat sistem melambat, yang pertama disalahkan adalah Wi-Fi kantor. Padahal masalahnya bukan Wi-Fi, tapi ada malware yang sedang bekerja lembur di dalam jaringan kita.”"
     ],
-    interactive: {
-      type: "quiz",
-      label: "INTERAKSI AUDIENS",
-      quiz: {
-        question: "“APA PERINTAH PERTAMA ANDA?”",
-        options: [
-          { text: "<strong>A.</strong> Matikan semua komputer.", active: false },
-          { text: "<strong>B.</strong> Hubungi tim teknis saja.", active: false },
-          { text: "<strong>C.</strong> Aktifkan tim respons insiden dan amankan bukti.", active: true },
-          { text: "<strong>D.</strong> Umumkan kepada publik bahwa semua aman.", active: false }
-        ]
-      },
-      guidance: {
-        label: "LANJUTKAN SETELAH RESPONS:",
-        text: ["“Pilihan yang paling tepat adalah <strong>C: aktifkan tim respons insiden dan amankan bukti.</strong>", "Mengapa bukan langsung matikan semua komputer? Karena tindakan gegabah bisa menghilangkan log penting.", "Mengapa bukan hanya panggil tim teknis? Karena dampaknya tidak hanya teknis. Ada aspek layanan, hukum, komunikasi publik, dan pembuktian.", "Mengapa bukan langsung umumkan semua aman? Karena tanpa verifikasi, pernyataan seperti itu bisa menjadi bumerang.", "Dalam insiden siber, pimpinan harus memastikan empat hal: <strong>dampak dibatasi, bukti diamankan, layanan dipulihkan, dan komunikasi dikendalikan.</strong>”"]
-      }
-    },
     supplements: {
       transition: "“Ransomware menjadi berbahaya karena yang disandera bukan hanya file. Yang disandera adalah pelayanan, reputasi, dan kepercayaan publik.”"
     }
@@ -289,17 +239,6 @@ export const presentationContent = [
       "Dalam kasus layanan publik, dampaknya bisa lebih luas. Masyarakat tidak peduli apakah penyebabnya server, jaringan, malware, atau vendor. Yang mereka lihat adalah layanan tidak berjalan.",
       "Karena itu, ransomware harus dipahami sebagai krisis institusi, bukan krisis teknis. Dan Bapak/Ibu, backup itu ibarat payung. Saat cuaca cerah, sering dianggap beban atau tidak penting. Begitu badai ransomware datang, semua baru sibuk bertanya: payungnya di mana?”"
     ],
-    interactive: {
-      type: "alternate",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Apa yang lebih berbahaya menurut Bapak/Ibu: data terkunci, data bocor, atau publik kehilangan kepercayaan?”"
-      ],
-      guidance: {
-        label: "SETELAH RESPONS:",
-        text: ["“Ketiganya berbahaya. Tetapi kehilangan kepercayaan publik sering kali menjadi dampak yang paling panjang. Sistem bisa dipulihkan, file bisa direstorasi, tetapi kepercayaan publik membutuhkan waktu lebih lama untuk dibangun kembali.”"]
-      }
-    },
     supplements: {
       transition: "“Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, air-gapping, dan manusia sebagai benteng pertama.”"
     }
@@ -489,27 +428,6 @@ export const presentationContent = [
       "Saya tidak meminta Bapak/Ibu menjawabnya sekarang. Namun, saya ingin Bapak/Ibu merenungkan sejenak: Jika salah satu dari hal ini terjadi di Satker Bapak/Ibu hari ini, apakah kita sudah punya SOP-nya? Apakah personel kita tahu harus melapor ke mana dalam 10 menit pertama? Dan apakah kita sudah siap dengan narasi tunggal agar publik tetap tenang?",
       "Kesiapan kita tidak ditentukan oleh seberapa canggih alat yang kita beli, tetapi oleh seberapa jernih instruksi yang Bapak/Ibu berikan saat badai siber itu datang.”"
     ],
-    interactive: {
-      type: "standard",
-      label: "REFLEKSI KOMANDO",
-      questions: [
-        "“Renungkan sejenak skenario di layar: Akun Diretas, Data Bocor, Deepfake, atau Ransomware.”",
-        "“Apakah sistem pelaporan di Satker Bapak/Ibu sudah siap? Apakah koordinasi antar unit sudah terlatih?”"
-      ],
-      guidance: {
-        label: "PANDUAN RESPONS STRATEGIS (UNTUK REFERENSI):",
-        text: [
-          "<strong>1) Akun Pejabat Diretas:</strong><br/>• Fokus: Amankan akun segera, cegah penyebaran narasi palsu, dan amankan jejak akses digital.",
-          "<strong>2) Data Laporan Masyarakat Bocor:</strong><br/>• Fokus: Hentikan kebocoran, isolasi server, dan siapkan komunikasi publik yang transparan namun terkendali.",
-          "<strong>3) Video Deepfake Pejabat Viral:</strong><br/>• Fokus: Verifikasi forensik cepat dan klarifikasi resmi melalui saluran komunikasi satu pintu.",
-          "<strong>4) Ransomware Melumpuhkan Layanan:</strong><br/>• Fokus: Putus koneksi jaringan, aktifkan backup data yang teruji, dan jangan gegabah membayar tebusan."
-        ]
-      }
-    },
-    supplements: {
-      transition: "“Sebelum kita akhiri, izinkan saya menyampaikan satu catatan penutup.”",
-      transitionLabel: "TRANSISI KE PENUTUP"
-    }
   },
   {
     id: "closing-note",
