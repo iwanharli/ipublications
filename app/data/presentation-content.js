@@ -8,7 +8,7 @@ export const presentationContent = [
       "Tujuan utama: Membekali pimpinan agar organisasi tidak mudah menjadi korban."
     ],
     narrative: [
-      "“Assalamu’alaikum warahmatullahi wabarakatuh, selamat pagi/siang, salam sejahtera untuk kita semua.",
+      "“Assalamu’alaikum warahmatullahi wabarakatuh, selamat siang, salam sejahtera untuk kita semua.",
       "Yang saya hormati Bapak/Ibu sekalian. Terima kasih atas kesempatan yang diberikan kepada saya untuk berbagi materi mengenai paradigma digital dan keamanan siber dalam Polri.",
       "Pada kesempatan ini, saya tidak akan membawa Bapak/Ibu masuk terlalu jauh ke wilayah teknis seperti coding, konfigurasi firewall, atau cara kerja malware secara detail. Karena audiens di ruangan ini bukan sedang disiapkan menjadi operator teknis, tetapi sebagai pengambil keputusan, pengarah kebijakan, dan pemegang komando.",
       "Karena itu, sudut pandang kita hari ini adalah: <strong>cyber security bukan hanya urusan orang IT</strong>. Cyber security adalah isu komando, isu tata kelola risiko, isu pelayanan publik, isu pembuktian hukum, dan isu kepercayaan masyarakat.",
@@ -63,7 +63,7 @@ export const presentationContent = [
       "Spektrum ancaman meluas: dari judi online, scam APK, hingga ransomware."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, selama ini kita memahami kamtibmas dalam ruang fisik: jalan raya, permukiman, pasar, kantor, tempat ibadah, pusat keramaian, dan lokasi kejadian perkara.",
+      "“Mari kita lihat realita di lapangan. Selama ini kita memahami kamtibmas dalam ruang fisik: jalan raya, permukiman, pasar, kantor, tempat ibadah, pusat keramaian, dan lokasi kejadian perkara.",
       "Namun hari ini, gangguan kamtibmas juga lahir di ruang digital. Keresahan masyarakat bisa dimulai dari unggahan palsu. Konflik sosial bisa dipicu oleh potongan video yang dimanipulasi. Korban bisa kehilangan uang karena link palsu. Reputasi seseorang bisa dihancurkan melalui doxing. Kepercayaan publik bisa terganggu oleh kebocoran data.",
       "Artinya, ruang siber bukan ruang tambahan. <strong>Ruang siber adalah domain baru kamtibmas.</strong>",
       "Dulu, TKP biasanya kita datangi secara fisik. Sekarang, sebagian TKP ada di perangkat, akun, server, cloud, metadata, log akses, dan aliran transaksi digital.",
@@ -194,7 +194,7 @@ export const presentationContent = [
       "Dampak krisis: Ekonomi (Fraud), Operasional (Layanan Lumpuh), dan Sosial (Hoaks)."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, ketika mendengar istilah cyber security, banyak orang langsung membayangkan seorang hacker dengan hoodie hitam sedang mengetik di ruangan gelap. Padahal ancaman siber modern jauh lebih luas.",
+      "“Mungkin di antara kita, ketika mendengar istilah cyber security, banyak orang langsung membayangkan seorang hacker dengan hoodie hitam sedang mengetik di ruangan gelap. Padahal ancaman siber modern jauh lebih luas.",
       "Ada <strong>cyber fraud</strong>, yaitu penipuan yang memanfaatkan media digital. Ada <strong>ransomware</strong>, yaitu serangan yang mengunci data dan meminta tebusan. Ada <strong>data breach</strong>, yaitu kebocoran data. Ada <strong>judi online</strong> yang terhubung dengan rekening penampung, promosi digital, dan aliran dana lintas negara.",
       "Ada <strong>supply chain attack</strong>, ketika pelaku tidak menyerang institusi utama secara langsung, tetapi masuk lewat vendor atau pihak ketiga. Ada <strong>deepfake dan AI-powered fraud</strong>, ketika suara atau video bisa dipalsukan. Ada <strong>cognitive warfare</strong>, ketika informasi dimanipulasi untuk memengaruhi persepsi publik. Ada <strong>cyber espionage</strong>, ketika data strategis dicuri untuk kepentingan tertentu.",
       "Dari sisi pimpinan, kita bisa melihat dampaknya dalam tiga kelompok:",
@@ -315,7 +315,7 @@ export const presentationContent = [
       "Dampak terberat adalah kehilangan kepercayaan masyarakat pada institusi."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, dalam ransomware, pelaku tidak hanya mengunci file. Mereka menekan organisasi dari berbagai sisi.",
+      "“Melanjutkan pembahasan sebelumnya, dalam ransomware, pelaku tidak hanya mengunci file. Mereka menekan organisasi dari berbagai sisi.",
       "Sebagai contoh nyata, SOCRadar belum lama ini mendeteksi unggahan di dark web yang menjual 41GB dokumen rahasia dari berbagai instansi pemerintah Indonesia. Serangan ini diklaim bermotif politik dengan ancaman spesifik meluncurkan serangan pada tanggal tertentu dan menyebarkan data via Telegram.",
       "Jika organisasi membayar tebusan, ada risiko mendanai kriminalitas. Tidak ada jaminan data benar-benar kembali, dan tidak ada jaminan pelaku tidak menyerang lagi.",
       "Jika organisasi tidak membayar, layanan bisa terganggu lebih lama. Data bisa bocor. Publik bisa menekan institusi. Media akan bertanya. Masyarakat ingin kepastian.",
@@ -421,8 +421,7 @@ export const presentationContent = [
     },
     supplements: {
       jokes: [
-        "1. “Dulu ada ungkapan ‘kamera tidak pernah bohong’. Sekarang mungkin perlu ditambah: kamera tidak bohong, tapi file bisa diedit, dikompres, dipotong, bahkan diganti wajahnya.”",
-        "2. “Kalau dulu alibi orang adalah ‘saya sedang di rumah’. Sekarang alibinya bisa lebih canggih: ‘itu bukan saya, itu deepfake’. Maka penyidik juga harus naik kelas.”"
+        "1. “Dulu ada ungkapan ‘kamera tidak pernah bohong’. Sekarang mungkin perlu ditambah: kamera tidak bohong, tapi file bisa diedit, dikompres, dipotong, bahkan diganti wajahnya.”"
       ],
       transition: "“Untuk menjawab tantangan ini, kita perlu memahami dua hal: metadata dan chain of custody.”"
     }
@@ -436,7 +435,7 @@ export const presentationContent = [
       "Chain of Custody menjamin integritas bukti: siapa, kapan, dan bagaimana dikelola."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, metadata sering disebut sebagai saksi diam. Ia tidak terlihat saat kita membuka foto atau video, tetapi menyimpan informasi penting.",
+      "“Selanjutnya, kita perlu memahami saksi diam dalam bukti digital, yaitu metadata. Ia tidak terlihat saat kita membuka foto atau video, tetapi menyimpan informasi penting.",
       "Metadata dapat menunjukkan kapan file dibuat, perangkat apa yang digunakan, lokasi GPS, ukuran file, format file, dan perubahan terakhir.",
       "Namun metadata bisa hilang jika file diperlakukan sembarangan. Misalnya, file foto dikirim melalui aplikasi pesan yang mengompres file. File video dipindahkan tanpa prosedur. Rekaman CCTV hanya diambil cuplikannya tanpa menyimpan sumber asli.",
       "Di persidangan, hal seperti ini bisa menjadi celah. Pengacara bisa bertanya: mana file aslinya? Mana log dari DVR? Siapa yang mengambil? Kapan diambil? Apakah pernah dipindahkan? Apakah pernah diedit? Apakah hash-nya sama?",
