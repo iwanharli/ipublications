@@ -235,10 +235,7 @@ export const presentationContent = [
       "Inilah dilema pimpinan. Yang harus dipikirkan bukan hanya bagaimana membuka file yang terkunci, tetapi bagaimana melindungi layanan, data, bukti digital, reputasi, dan kepercayaan publik.",
       "Dalam kasus layanan publik, dampaknya bisa lebih luas. Masyarakat tidak peduli apakah penyebabnya server, jaringan, malware, atau vendor. Yang mereka lihat adalah layanan tidak berjalan.",
       "Karena itu, ransomware harus dipahami sebagai krisis institusi, bukan krisis teknis. Dan Bapak/Ibu, backup itu ibarat payung. Saat cuaca cerah, sering dianggap beban atau tidak penting. Begitu badai ransomware datang, semua baru sibuk bertanya: payungnya di mana?”"
-    ],
-    supplements: {
-      transition: "“Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, air-gapping, dan manusia sebagai benteng pertama.”"
-    }
+    ]
   },
   {
     id: "slide-8b",
@@ -386,9 +383,13 @@ export const presentationContent = [
       "Integrasi Zero Trust (Proteksi) dan CSIRT (Deteksi & Respons)."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, strategi pertahanan siber yang kita susun ini selaras dengan kerangka kerja standar global NIST Cybersecurity Framework 2.0.",
-      "Diagram di layar menunjukkan enam fungsi utama yang menjadi tolok ukur ketahanan siber kita. Di tengahnya adalah GOVERN—ini menegaskan bahwa keamanan siber bukan hanya masalah teknis, tetapi masalah tata kelola dan keputusan komando pimpinan.",
-      "Prinsip Zero Trust di sini bukan berarti kita mencurigai semua anggota secara personal, melainkan kita menerapkan disiplin prosedur yang ketat. Sama seperti pemeriksaan di pintu masuk markas: dilakukan bukan karena tidak percaya pada rekan sejawat, tetapi karena prosedur itulah yang menjaga kita semua tetap aman.”"
+      "“Bapak/Ibu sekalian, sebagai solusi strategis, kita mengadopsi kerangka kerja standar global NIST Cybersecurity Framework 2.0. Diagram roda di layar ini menunjukkan enam fungsi utama pertahanan kita.",
+      "Pertama, di jantung diagram adalah <strong>GOVERN</strong>. Ini adalah fungsi komando: kebijakan, arah strategis, dan tata kelola yang memastikan keamanan siber adalah prioritas pimpinan, bukan sekadar urusan teknis.",
+      "Kedua, <strong>IDENTIFY</strong>. Kita harus tahu apa yang kita jaga. Memetakan aset digital, data sensitif, dan titik kerentanan di satuan kerja masing-masing.",
+      "Ketiga, <strong>PROTECT</strong>. Membangun benteng pertahanan. Di sinilah kita menerapkan prinsip <em>Zero Trust</em>—disiplin prosedur yang ketat untuk memastikan hanya orang yang berwenang yang bisa mengakses data.",
+      "Keempat, <strong>DETECT</strong>. Kita butuh radar. Kemampuan untuk mendeteksi kehadiran penyusup digital secara real-time sebelum mereka berhasil melakukan kerusakan masif.",
+      "Kelima, <strong>RESPOND</strong>. Jika terjadi insiden, tim teknis harus memiliki langkah taktis yang jelas: batasi dampak, amankan bukti, dan lumpuhkan serangan.",
+      "Dan terakhir, <strong>RECOVER</strong>. Kemampuan untuk memulihkan layanan masyarakat secepat mungkin dan menjaga kepercayaan publik tetap terjaga.”"
     ],
     supplements: {
       transition: "“Selain solusi teknis dan institusi, ada dua aspek yang sangat menentukan saat krisis digital: komunikasi publik dan etika penggunaan AI.”"
