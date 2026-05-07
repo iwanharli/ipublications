@@ -423,7 +423,11 @@ const toggleTTS = (slide) => {
                  selectedVoiceName.value.toLowerCase().includes('thomas');
 
   utterance.rate = isMale ? 0.9 : 0.85; 
-  utterance.pitch = isMale ? 0.8 : 0.7; // Even deeper pitch if forced to use female voice
+  utterance.pitch = isMale ? 0.8 : 0.7; 
+
+  // Auto-scroll to current slide
+  const el = document.getElementById(slide.id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   utterance.onend = () => {
     currentUtterance.value = null;
@@ -464,60 +468,11 @@ const stopTTS = () => {
 
 const playSlideAt = (idx) => {
   if (idx >= presentationContent.length) {
-    ttsPlayingAll.value = false;
-    ttsPlaying.value = null;
-    ttsCurrentIdx.value = 0;
+    stopTTS();
     return;
   }
-
-  const synth = window.speechSynthesis;
-  synth.cancel();
-
   const slide = presentationContent[idx];
-  ttsCurrentIdx.value = idx;
-  ttsPlaying.value = slide.id;
-  ttsPaused.value = null;
-
-  const text = getSlideText(slide);
-  const utterance = new SpeechSynthesisUtterance(text);
-  
-  // Set voice settings
-  const voice = availableVoices.value.find(v => v.name === selectedVoiceName.value);
-  if (voice) {
-    utterance.voice = voice;
-    utterance.lang = voice.lang;
-  } else {
-    utterance.lang = 'id-ID';
-  }
-
-  const isMale = selectedVoiceName.value.toLowerCase().includes('ardi') || 
-                 selectedVoiceName.value.toLowerCase().includes('indra') || 
-                 selectedVoiceName.value.toLowerCase().includes('thomas');
-
-  utterance.rate = isMale ? 0.9 : 0.85;
-  utterance.pitch = isMale ? 0.8 : 0.7; 
-
-  // Auto-scroll to current slide
-  const el = document.getElementById(slide.id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  utterance.onend = () => {
-    if (ttsPlayingAll.value) {
-      playSlideAt(idx + 1);
-    } else {
-      ttsPlaying.value = null;
-    }
-  };
-
-  utterance.onerror = () => {
-    if (ttsPlayingAll.value) {
-      playSlideAt(idx + 1);
-    } else {
-      ttsPlaying.value = null;
-    }
-  };
-
-  synth.speak(utterance);
+  toggleTTS(slide);
 };
 
 const playAll = () => {
