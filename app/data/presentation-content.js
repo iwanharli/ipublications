@@ -36,17 +36,6 @@ export const presentationContent = [
       "Maka pertanyaannya bukan lagi: apakah serangan akan terjadi? Tapi: jika itu terjadi dalam satu menit ke depan, apakah institusi kita sudah siap merespons secara taktis?",
       "Kita tentu tidak ingin tim IT kita hanya menjadi pemadam kebakaran digital yang baru dipanggil saat sistem sudah lumpuh gara-gara hal sepele, seperti klik ‘undangan pernikahan.apk’ di WhatsApp.”"
     ],
-    interactive: {
-      type: "standard",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Jika seluruh sistem layanan digital di satuan kerja Bapak/Ibu tiba-tiba tidak bisa diakses, apa perintah pertama yang akan Bapak/Ibu keluarkan?",
-        "Apakah langsung mematikan semua perangkat? Apakah langsung memanggil IT? Apakah langsung membuat pernyataan publik? Atau mengaktifkan komando insiden?”"
-      ],
-      guidance: {
-        label: "LANJUTKAN SETELAH RESPONS:",
-        text: ["“Jawaban yang kita cari hari ini bukan sekadar ‘panggil IT’. Tentu tim IT penting, tetapi pimpinan harus berpikir lebih luas: amankan bukti, batasi dampak, pulihkan layanan, jaga komunikasi publik, dan pastikan proses hukum tidak terganggu.”"]
-      }
     },
     supplements: {
       transition: "“Dari angka ini kita bisa melihat bahwa ruang siber bukan lagi ruang teknis yang jauh dari tugas kepolisian. Ruang siber sudah menjadi bagian dari ruang kamtibmas.”"
