@@ -28,13 +28,13 @@ export const presentationContent = [
       "Kesiapan respons institusi saat terjadi insiden adalah pertanyaan kunci pimpinan."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, menurut data BSSN yang dipublikasikan dalam pemberitaan nasional, Indonesia mencatat sekitar 5,5 miliar anomali trafik siber sepanjang tahun 2025.",
-      "Kalau angka itu kita konversi secara sederhana, jumlahnya <strong>setara dengan</strong> 15 juta anomali per hari, sekitar 627 ribu per jam, 10.464 per menit, atau sekitar 174 per detik.",
-      "Saya ingin menekankan satu hal penting: angka ini mencakup seluruh anomali trafik—termasuk scanning otomatis, bot, percobaan akses, dan trafik mencurigakan. Tidak semuanya merupakan serangan yang berhasil menembus pertahanan. Tetapi angka di slide ini, 10.464 per menit, menunjukkan intensitas percobaan yang terus-menerus menguji ketahanan kita.",
-      "Namun, bagi pimpinan, pesan strategisnya jelas: <strong>ruang digital kita terus-menerus diuji</strong>. Sistem pelayanan publik, perbankan, layanan pemerintah, infrastruktur kritis, bahkan akun personal pejabat dan personel, semuanya berada dalam lingkungan ancaman yang bergerak sangat cepat.",
-      "Jika kita hanya melihat angka ini sebagai statistik, mungkin terasa jauh. Tetapi coba kita lihat dari perspektif komando. Jika sebagian kecil saja dari aktivitas anomali ini berubah menjadi insiden nyata, dampaknya bisa melumpuhkan pelayanan masyarakat, mengekspos data penyidikan, merusak reputasi institusi, dan meruntuhkan kepercayaan publik.",
-      "Maka pertanyaan saya untuk Bapak/Ibu bukan: apakah serangan siber akan terjadi? Pertanyaannya adalah: jika itu terjadi hari ini, apakah institusi kita sudah siap untuk merespons secara taktis?",
-      "Kita tahu, tim IT kita sering kali seperti pemadam kebakaran digital. Kalau kondisi normal, jarang terlihat. Begitu ada masalah, semua orang langsung bertanya, ‘Mas, ini kenapa?’ Padahal, kadang masalahnya dimulai dari hal sepele, seperti kita yang tidak sengaja klik ‘undangan pernikahan.apk’ di WhatsApp.”"
+      "“Bapak/Ibu sekalian, menurut data BSSN, institusi kita menghadapi miliaran anomali trafik siber setiap tahunnya. Namun, ada satu angka yang paling krusial untuk kita pahami bersama.",
+      "Di layar ini terlihat angka <strong>10.464</strong>. Ini adalah jumlah percobaan serangan siber yang terjadi dalam satu menit—waktu yang sama seperti saat saya mulai berdiri di depan Bapak/Ibu sekarang.",
+      "Angka ini mencakup segala hal: mulai dari pemindaian sistem otomatis, percobaan akses ilegal, hingga trafik mencurigakan lainnya. Meskipun tidak semua percobaan ini berhasil menembus pertahanan, angka 10.464 per menit menunjukkan betapa agresifnya lingkungan digital tempat kita bekerja saat ini.",
+      "Bagi pimpinan, pesan strategisnya jelas: <strong>ruang digital kita terus-menerus diuji tanpa henti</strong>. Akun personal pimpinan, sistem pelayanan publik, hingga data penyidikan, semuanya berada dalam target ancaman yang bergerak sangat cepat.",
+      "Jika sebagian kecil saja dari aktivitas ini berubah menjadi insiden nyata, dampaknya bisa melumpuhkan pelayanan masyarakat dan merusak marwah institusi.",
+      "Maka pertanyaannya bukan lagi: apakah serangan akan terjadi? Tapi: jika itu terjadi dalam satu menit ke depan, apakah institusi kita sudah siap merespons secara taktis?",
+      "Kita tentu tidak ingin tim IT kita hanya menjadi pemadam kebakaran digital yang baru dipanggil saat sistem sudah lumpuh gara-gara hal sepele, seperti klik ‘undangan pernikahan.apk’ di WhatsApp.”"
     ],
     interactive: {
       type: "standard",
