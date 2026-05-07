@@ -196,8 +196,11 @@ const getOptLabel = (text) => {
 // ─── Text-to-Speech ───
 const ttsPlaying = ref(null);
 const ttsPaused = ref(null);
+const ttsPlayingAll = ref(false);
+const ttsCurrentIdx = ref(0);
 const availableVoices = ref([]);
 const selectedVoiceName = ref('');
+const currentUtterance = ref(null); // Track the active utterance
 
 const loadVoices = () => {
   const synth = window.speechSynthesis;
@@ -373,25 +376,31 @@ const toggleTTS = (slide) => {
 
   const synth = window.speechSynthesis;
 
-  // If currently playing this slide → pause
-  if (ttsPlaying.value === slide.id && ttsPaused.value !== slide.id) {
+  // 1. If currently playing THIS slide -> Pause
+  if (ttsPlaying.value === slide.id && !ttsPaused.value) {
     synth.pause();
     ttsPaused.value = slide.id;
     return;
   }
 
-  // If paused on this slide → resume
+  // 2. If currently paused on THIS slide -> Resume
   if (ttsPaused.value === slide.id) {
     synth.resume();
     ttsPaused.value = null;
     return;
   }
 
-  // Stop any current speech first
+  // 3. New slide or Play All transition -> Cancel previous and start new
+  if (currentUtterance.value) {
+    currentUtterance.value.onend = null;
+    currentUtterance.value.onerror = null;
+  }
+
   synth.cancel();
 
   const text = getSlideText(slide);
   const utterance = new SpeechSynthesisUtterance(text);
+  currentUtterance.value = utterance;
   
   // Set selected voice
   const voice = availableVoices.value.find(v => v.name === selectedVoiceName.value);
@@ -417,6 +426,7 @@ const toggleTTS = (slide) => {
   utterance.pitch = isMale ? 0.8 : 0.7; // Even deeper pitch if forced to use female voice
 
   utterance.onend = () => {
+    currentUtterance.value = null;
     if (ttsPlayingAll.value) {
       playSlideAt(ttsCurrentIdx.value + 1);
     } else {
@@ -426,6 +436,7 @@ const toggleTTS = (slide) => {
   };
 
   utterance.onerror = () => {
+    currentUtterance.value = null;
     if (ttsPlayingAll.value) {
       playSlideAt(ttsCurrentIdx.value + 1);
     } else {
