@@ -4,14 +4,14 @@ export const presentationContent = [
     indicator: "SLIDE 1 — OPENING",
     title: "Transformasi Strategis: <br/> <span class=\"highlight\">Paradigma Digital dan Keamanan Siber dalam Polri</span>",
     keypoints: [
-      "Cyber security bukan hanya urusan IT, melainkan isu komando dan tata kelola risiko.",
+      "Cyber security bukan hanya urusan tim teknis, melainkan isu komando dan tata kelola risiko.",
       "Tujuan utama: Membekali pimpinan agar institusi tidak mudah menjadi korban."
     ],
     narrative: [
       "“Assalamu’alaikum warahmatullahi wabarakatuh, selamat siang, salam sejahtera untuk kita semua.",
       "Yang saya hormati Bapak/Ibu sekalian. Terima kasih atas waktu dan kesempatan yang diberikan kepada saya untuk menyampaikan materi mengenai paradigma digital dan keamanan siber di institusi Polri.",
       "Izin Bapak/Ibu, pada sesi ini saya tidak akan berbicara terlalu teknis tentang baris kode atau konfigurasi firewall yang rumit. Mengapa? Karena kapasitas Bapak/Ibu di ruangan ini bukan sebagai operator teknis, melainkan sebagai pemegang komando, pengambil keputusan, dan pengarah kebijakan strategis.",
-      "Oleh karena itu, sudut pandang yang ingin saya bangun hari ini adalah: <strong>keamanan siber bukan sekadar urusan bagian IT</strong>. Keamanan siber adalah isu komando, isu manajemen risiko, isu marwah institusi, dan yang terpenting: isu kepercayaan publik.",
+      "Oleh karena itu, sudut pandang yang ingin saya bangun hari ini adalah: <strong>keamanan siber bukan sekadar urusan bagian teknis</strong>. Keamanan siber adalah isu komando, isu manajemen risiko, isu marwah institusi, dan yang terpenting: isu kepercayaan publik.",
       "Di era sekarang, serangan siber tidak lagi hanya merusak komputer, tapi bisa melumpuhkan pelayanan, mengganggu penyidikan, hingga memicu krisis kepercayaan masyarakat yang masif.",
       "Tujuan kita hari ini bukan untuk menjadi pakar teknis, justru sebaliknya: agar kita sebagai pimpinan mampu memastikan institusi kita tidak menjadi korban kejahatan siber.”"
     ],
@@ -34,7 +34,7 @@ export const presentationContent = [
       "Bagi pimpinan, pesan strategisnya jelas: <strong>ruang digital kita terus-menerus diuji tanpa henti</strong>. Akun personal pimpinan, sistem pelayanan publik, hingga data penyidikan, semuanya berada dalam target ancaman yang bergerak sangat cepat.",
       "Jika sebagian kecil saja dari aktivitas ini berubah menjadi insiden nyata, dampaknya bisa melumpuhkan pelayanan masyarakat dan merusak marwah institusi.",
       "Maka pertanyaannya bukan lagi: apakah serangan akan terjadi? Tapi: jika itu terjadi dalam satu menit ke depan, apakah institusi kita sudah siap merespons secara taktis?",
-      "Kita tentu tidak ingin tim IT kita hanya menjadi pemadam kebakaran digital yang baru dipanggil saat sistem sudah lumpuh gara-gara hal sepele, seperti klik ‘undangan pernikahan.apk’ di WhatsApp.”"
+      "Kita tentu tidak ingin tim teknis kita hanya menjadi pemadam kebakaran digital yang baru dipanggil saat sistem sudah lumpuh gara-gara hal sepele, seperti klik ‘undangan pernikahan.apk’ di WhatsApp.”"
     ],
     supplements: {
       transition: "“Dari angka ini kita bisa melihat bahwa ruang siber bukan lagi ruang teknis yang jauh dari tugas kepolisian. Ruang siber sudah menjadi bagian dari ruang kamtibmas.”"
@@ -236,14 +236,14 @@ export const presentationContent = [
         question: "“APA PERINTAH PERTAMA ANDA?”",
         options: [
           { text: "<strong>A.</strong> Matikan semua komputer.", active: false },
-          { text: "<strong>B.</strong> Hubungi tim IT saja.", active: false },
+          { text: "<strong>B.</strong> Hubungi tim teknis saja.", active: false },
           { text: "<strong>C.</strong> Aktifkan tim respons insiden dan amankan bukti.", active: true },
           { text: "<strong>D.</strong> Umumkan kepada publik bahwa semua aman.", active: false }
         ]
       },
       guidance: {
         label: "LANJUTKAN SETELAH RESPONS:",
-        text: ["“Pilihan yang paling tepat adalah <strong>C: aktifkan tim respons insiden dan amankan bukti.</strong>", "Mengapa bukan langsung matikan semua komputer? Karena tindakan gegabah bisa menghilangkan log penting.", "Mengapa bukan hanya panggil IT? Karena dampaknya tidak hanya teknis. Ada aspek layanan, hukum, komunikasi publik, dan pembuktian.", "Mengapa bukan langsung umumkan semua aman? Karena tanpa verifikasi, pernyataan seperti itu bisa menjadi bumerang.", "Dalam insiden siber, pimpinan harus memastikan empat hal: <strong>dampak dibatasi, bukti diamankan, layanan dipulihkan, dan komunikasi dikendalikan.</strong>”"]
+        text: ["“Pilihan yang paling tepat adalah <strong>C: aktifkan tim respons insiden dan amankan bukti.</strong>", "Mengapa bukan langsung matikan semua komputer? Karena tindakan gegabah bisa menghilangkan log penting.", "Mengapa bukan hanya panggil tim teknis? Karena dampaknya tidak hanya teknis. Ada aspek layanan, hukum, komunikasi publik, dan pembuktian.", "Mengapa bukan langsung umumkan semua aman? Karena tanpa verifikasi, pernyataan seperti itu bisa menjadi bumerang.", "Dalam insiden siber, pimpinan harus memastikan empat hal: <strong>dampak dibatasi, bukti diamankan, layanan dipulihkan, dan komunikasi dikendalikan.</strong>”"]
       }
     },
     supplements: {
@@ -263,7 +263,7 @@ export const presentationContent = [
       "Bayangkan skenario tadi benar-benar terjadi. Sistem sudah terkunci. Layar menampilkan pesan tebusan. Layanan mulai terganggu. Sebagai pimpinan, apa perintah pertama Bapak/Ibu?",
       "Ada empat pilihan di layar. Silakan pilih yang menurut Bapak/Ibu paling tepat.",
       "<strong>A. Matikan semua komputer.</strong> Ini terasa logis, tapi mematikan komputer secara gegabah bisa menghilangkan bukti log penting yang masih ada di RAM.",
-      "<strong>B. Hubungi tim IT saja.</strong> Tim IT memang penting, tetapi dampak ransomware tidak hanya teknis. Ada aspek layanan, hukum, komunikasi publik, dan pembuktian.",
+      "<strong>B. Hubungi tim teknis saja.</strong> Tim teknis memang penting, tetapi dampak ransomware tidak hanya teknis. Ada aspek layanan, hukum, komunikasi publik, dan pembuktian.",
       "<strong>C. Aktifkan tim respons insiden dan amankan bukti.</strong> Ini jawaban yang paling tepat.",
       "<strong>D. Umumkan kepada publik bahwa semua aman.</strong> Tanpa verifikasi, pernyataan seperti ini bisa menjadi bumerang bagi institusi.",
       "Dalam insiden siber, pimpinan harus memastikan empat hal: <strong>dampak dibatasi, bukti diamankan, layanan dipulihkan, dan komunikasi dikendalikan.</strong>\""
