@@ -23,15 +23,15 @@
       <!-- Bottom-left: Stats -->
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-value" ref="statAttacks">0</div>
+          <div class="stat-value">{{ formatNumber(attacksCount) }}</div>
           <div class="stat-label">ATTACKS / MIN</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" ref="statCountries">0</div>
+          <div class="stat-value">{{ formatNumber(countriesCount) }}</div>
           <div class="stat-label">SOURCE COUNTRIES</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value" ref="statBlocked">0</div>
+          <div class="stat-value">{{ formatNumber(blockedCount) }}</div>
           <div class="stat-label">IP BLOCKED TODAY</div>
         </div>
       </div>
@@ -75,13 +75,14 @@ const props = defineProps({
 });
 
 const globeRef = ref(null);
-const statAttacks = ref(null);
-const statCountries = ref(null);
-const statBlocked = ref(null);
+const attacksCount = ref(0);
+const countriesCount = ref(0);
+const blockedCount = ref(0);
 
 let myGlobe = null;
 let feedInterval = null;
 let arcRefreshInterval = null;
+let counterInterval = null;
 let feedIdCounter = 0;
 
 const messagePills = [
@@ -203,6 +204,23 @@ const startFeed = () => {
 const stopFeed = () => {
   if (feedTimeout) { clearTimeout(feedTimeout); feedTimeout = null; }
   if (arcTimeout) { clearTimeout(arcTimeout); arcTimeout = null; }
+  if (counterInterval) { clearTimeout(counterInterval); counterInterval = null; }
+};
+
+const formatNumber = (num) => {
+  return Math.floor(num).toLocaleString('id-ID');
+};
+
+const updateLiveCounters = () => {
+  if (!props.active) return;
+  
+  // Random small increments
+  attacksCount.value += Math.floor(Math.random() * 3); // 0-2
+  if (Math.random() > 0.9) countriesCount.value = Math.min(196, countriesCount.value + 1);
+  blockedCount.value += Math.floor(Math.random() * 12) + 5; // 5-16
+  
+  const nextDelay = Math.random() * 2000 + 500;
+  counterInterval = setTimeout(updateLiveCounters, nextDelay);
 };
 
 // Generate realistic arcs: all targeting Indonesia
@@ -310,34 +328,26 @@ watch(() => props.active, (isActive) => {
 
   if (isActive) {
     startFeed();
+    updateLiveCounters();
 
-    // Animate stats with realistic numbers
-    if (statAttacks.value) {
-      gsap.fromTo(statAttacks.value, { innerText: 0 }, {
-        innerText: 12847,
-        duration: 2.5,
-        ease: 'power2.out',
-        snap: { innerText: 1 },
-        onUpdate() { statAttacks.value.textContent = Math.round(parseFloat(statAttacks.value.innerText)).toLocaleString(); }
-      });
-    }
-    if (statCountries.value) {
-      gsap.fromTo(statCountries.value, { innerText: 0 }, {
-        innerText: 194,
-        duration: 2,
-        ease: 'power2.out',
-        snap: { innerText: 1 }
-      });
-    }
-    if (statBlocked.value) {
-      gsap.fromTo(statBlocked.value, { innerText: 0 }, {
-        innerText: 84291,
-        duration: 3,
-        ease: 'power2.out',
-        snap: { innerText: 1 },
-        onUpdate() { statBlocked.value.textContent = Math.round(parseFloat(statBlocked.value.innerText)).toLocaleString(); }
-      });
-    }
+    // Animate stats with realistic base numbers
+    gsap.to(attacksCount, {
+      value: 12847,
+      duration: 2.5,
+      ease: 'power2.out',
+    });
+    
+    gsap.to(countriesCount, {
+      value: 194,
+      duration: 2,
+      ease: 'power2.out',
+    });
+
+    gsap.to(blockedCount, {
+      value: 84291,
+      duration: 3,
+      ease: 'power2.out',
+    });
 
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     tl.fromTo('.overlay-header', { x: -40, opacity: 0 }, { x: 0, opacity: 1, duration: 1 });
