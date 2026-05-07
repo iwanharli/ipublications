@@ -10,7 +10,7 @@
             <p class="subtitle">Strategi Pertahanan Siber Polri 2026</p>
           </div>
           <div class="actions">
-            <NuxtLink to="/raw/strategi-pertahanan-siber-2026" class="btn-back">
+            <NuxtLink to="/raw" class="btn-back">
               Raw
             </NuxtLink>
           </div>

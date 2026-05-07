@@ -14,9 +14,9 @@ router.afterEach((to) => {
 const showNavbar = computed(() => {
   const path = currentPath.value;
   return !path.includes('/publications') && 
-         !path.startsWith('/notes/') && 
-         !path.startsWith('/qna/') && 
-         !path.startsWith('/raw/');
+         !path.startsWith('/notes') && 
+         !path.startsWith('/qna') && 
+         !path.startsWith('/raw');
 });
 const isHomePage = computed(() => currentPath.value === '/');
 

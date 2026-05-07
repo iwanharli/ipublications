@@ -5,15 +5,15 @@ export const presentationContent = [
     title: "Transformasi Strategis: <br/> <span class=\"highlight\">Paradigma Digital dan Keamanan Siber dalam Polri</span>",
     keypoints: [
       "Cyber security bukan hanya urusan IT, melainkan isu komando dan tata kelola risiko.",
-      "Tujuan utama: Membekali pimpinan agar organisasi tidak mudah menjadi korban."
+      "Tujuan utama: Membekali pimpinan agar institusi tidak mudah menjadi korban."
     ],
     narrative: [
       "“Assalamu’alaikum warahmatullahi wabarakatuh, selamat siang, salam sejahtera untuk kita semua.",
-      "Yang saya hormati Bapak/Ibu sekalian. Terima kasih atas kesempatan yang diberikan kepada saya untuk berbagi materi mengenai paradigma digital dan keamanan siber dalam Polri.",
-      "Pada kesempatan ini, saya tidak akan membawa Bapak/Ibu masuk terlalu jauh ke wilayah teknis seperti coding, konfigurasi firewall, atau cara kerja malware secara detail. Karena audiens di ruangan ini bukan sedang disiapkan menjadi operator teknis, tetapi sebagai pengambil keputusan, pengarah kebijakan, dan pemegang komando.",
-      "Karena itu, sudut pandang kita hari ini adalah: <strong>cyber security bukan hanya urusan orang IT</strong>. Cyber security adalah isu komando, isu tata kelola risiko, isu pelayanan publik, isu pembuktian hukum, dan isu kepercayaan masyarakat.",
-      "Di era digital, serangan terhadap sistem tidak hanya berdampak pada komputer. Ia bisa melumpuhkan pelayanan, mengganggu penyidikan, membuka data sensitif, memicu keresahan publik, dan pada akhirnya menurunkan kepercayaan masyarakat terhadap institusi.",
-      "Jadi, tujuan utama materi ini bukan membuat kita semua menjadi hacker. Justru sebaliknya: membuat kita mampu memimpin organisasi agar tidak mudah menjadi korban hacker.”"
+      "Yang saya hormati Bapak/Ibu sekalian. Terima kasih atas waktu dan kesempatan yang diberikan kepada saya untuk menyampaikan materi mengenai paradigma digital dan keamanan siber di institusi Polri.",
+      "Izin Bapak/Ibu, pada sesi ini saya tidak akan berbicara terlalu teknis tentang baris kode atau konfigurasi firewall yang rumit. Mengapa? Karena kapasitas Bapak/Ibu di ruangan ini bukan sebagai operator teknis, melainkan sebagai pemegang komando, pengambil keputusan, dan pengarah kebijakan strategis.",
+      "Oleh karena itu, sudut pandang yang ingin saya bangun hari ini adalah: <strong>keamanan siber bukan sekadar urusan bagian IT</strong>. Keamanan siber adalah isu komando, isu manajemen risiko, isu marwah institusi, dan yang terpenting: isu kepercayaan publik.",
+      "Di era sekarang, serangan siber tidak lagi hanya merusak komputer, tapi bisa melumpuhkan pelayanan, mengganggu penyidikan, hingga memicu krisis kepercayaan masyarakat yang masif.",
+      "Tujuan kita hari ini bukan untuk menjadi hacker, justru sebaliknya: agar kita sebagai pimpinan mampu memastikan institusi kita tidak menjadi korban kejahatan siber.”"
     ],
     supplements: {
       transition: "“Untuk membuka materi ini, saya ingin mulai dengan satu angka. Angka ini bukan untuk menakut-nakuti, tetapi untuk menunjukkan kecepatan ancaman digital hari ini.”"
@@ -25,7 +25,7 @@ export const presentationContent = [
     title: "10.464 Serangan per Menit <br/> <span class=\"highlight\">Serangan Siber Global</span>",
     keypoints: [
       "Intensitas percobaan serangan sangat tinggi (10.464 per menit).",
-      "Kesiapan respons organisasi saat terjadi insiden adalah pertanyaan kunci pimpinan."
+      "Kesiapan respons institusi saat terjadi insiden adalah pertanyaan kunci pimpinan."
     ],
     narrative: [
       "“Bapak/Ibu sekalian, menurut data BSSN yang dipublikasikan dalam pemberitaan nasional, Indonesia mencatat sekitar 5,5 miliar anomali trafik siber sepanjang tahun 2025.",
@@ -33,7 +33,8 @@ export const presentationContent = [
       "Saya ingin menekankan satu hal penting: angka ini mencakup seluruh anomali trafik—termasuk scanning otomatis, bot, percobaan akses, dan trafik mencurigakan. Tidak semuanya merupakan serangan yang berhasil menembus pertahanan. Tetapi angka di slide ini, 10.464 per menit, menunjukkan intensitas percobaan yang terus-menerus menguji ketahanan kita.",
       "Namun, bagi pimpinan, pesan strategisnya jelas: <strong>ruang digital kita terus-menerus diuji</strong>. Sistem pelayanan publik, perbankan, layanan pemerintah, infrastruktur kritis, bahkan akun personal pejabat dan personel, semuanya berada dalam lingkungan ancaman yang bergerak sangat cepat.",
       "Jika kita hanya melihat angka ini sebagai statistik, mungkin terasa jauh. Tetapi coba kita lihat dari perspektif komando. Jika sebagian kecil saja dari aktivitas anomali ini berubah menjadi insiden nyata, dampaknya bisa melumpuhkan pelayanan masyarakat, mengekspos data penyidikan, merusak reputasi institusi, dan meruntuhkan kepercayaan publik.",
-      "Maka pertanyaan saya untuk Bapak/Ibu bukan: apakah serangan siber akan terjadi? Pertanyaannya adalah: jika itu terjadi hari ini, apakah organisasi kita sudah siap untuk merespons secara taktis?”"
+      "Maka pertanyaan saya untuk Bapak/Ibu bukan: apakah serangan siber akan terjadi? Pertanyaannya adalah: jika itu terjadi hari ini, apakah institusi kita sudah siap untuk merespons secara taktis?",
+      "Kita tahu, tim IT kita sering kali seperti pemadam kebakaran digital. Kalau kondisi normal, jarang terlihat. Begitu ada masalah, semua orang langsung bertanya, ‘Mas, ini kenapa?’ Padahal, kadang masalahnya dimulai dari hal sepele, seperti kita yang tidak sengaja klik ‘undangan pernikahan.apk’ di WhatsApp.”"
     ],
     interactive: {
       type: "standard",
@@ -48,9 +49,6 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Dalam beberapa kantor, orang IT itu seperti pemadam kebakaran digital. Kalau semua normal, jarang terlihat. Begitu ada masalah, semua orang langsung bertanya, ‘Mas, ini kenapa?’ Padahal masalahnya kadang dimulai dari kita yang klik ‘undangan pernikahan.apk’.”"
-      ],
       transition: "“Dari angka ini kita bisa melihat bahwa ruang siber bukan lagi ruang teknis yang jauh dari tugas kepolisian. Ruang siber sudah menjadi bagian dari ruang kamtibmas.”"
     }
   },
@@ -69,7 +67,7 @@ export const presentationContent = [
       "Dulu, TKP biasanya kita datangi secara fisik. Sekarang, sebagian TKP ada di perangkat, akun, server, cloud, metadata, log akses, dan aliran transaksi digital.",
       "Dulu, patroli dilakukan di jalan. Sekarang, kewaspadaan juga harus ada di ruang digital: media sosial, aplikasi pesan, marketplace, situs ilegal, forum gelap, dan sistem layanan publik.",
       "Dan kalau Bapak/Ibu lihat di bagian bawah slide ini, spektrum ancaman baru sudah sangat beragam: <strong>penipuan online, judi online, APK scam, hoaks, deepfake, data leak, hingga ransomware</strong>. Semua ini bukan ancaman masa depan—ini sudah terjadi hari ini, di Indonesia, setiap hari.",
-      "Ini tidak berarti tugas kepolisian berubah total. Nilai dasarnya tetap sama: melindungi, mengayomi, melayani, dan menegakkan hukum. Yang berubah adalah ruangnya, kecepatannya, alatnya, dan bentuk buktinya.”"
+      "Dulu, saksi kunci biasanya manusia. Sekarang saksi kunci bisa CCTV, BTS, GPS, atau metadata. Bedanya Bapak/Ibu, saksi digital ini tidak pernah minta kopi atau uang makan, tapi kalau kita salah prosedur saat mengambil datanya, dia bisa hilang selamanya.”"
     ],
     interactive: {
       type: "alternate",
@@ -83,9 +81,6 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Dulu saksi kunci bisa manusia. Sekarang saksi kunci bisa CCTV, BTS, GPS, atau metadata. Bedanya, saksi digital tidak minta kopi, tapi kalau salah ambil datanya, dia bisa hilang selamanya.”"
-      ],
       transition: "“Kalau ruang tugas berubah, maka paradigma kepolisian juga harus berubah. Saya merangkumnya dalam tiga kata.”"
     }
   },
@@ -99,18 +94,17 @@ export const presentationContent = [
       "Cyber-Aware: Keamanan siber adalah tanggung jawab setiap personel (budaya kerja)."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, ada tiga paradigma yang menurut saya penting untuk Polri di era digital: Digital-First, Data-Driven, dan Cyber-Aware.",
-      "Pertama, <strong>Digital-First</strong>. Ini bukan berarti semua harus serba aplikasi. Digital-First berarti setiap fungsi kepolisian memahami bahwa dimensi digital bisa hadir dalam hampir semua tugas. Laporan masyarakat, penyidikan, patroli, pelayanan, komunikasi publik, pengamanan kegiatan, semuanya bisa memiliki aspek digital.",
-      "Kedua, <strong>Data-Driven</strong>. Keputusan pimpinan tetap membutuhkan pengalaman dan intuisi, tetapi harus semakin didukung data. Data membantu kita melihat pola, tren, wilayah rawan, modus yang berkembang, dan prioritas respons.",
-      "Namun data yang dipakai harus valid, aman, dan terintegrasi. Data yang salah akan menghasilkan keputusan yang salah. Data yang bocor akan menjadi risiko baru.",
-      "Ketiga, <strong>Cyber-Aware</strong>. Ini berarti setiap personel memahami bahwa keamanan digital bukan hanya urusan bagian IT. Satu password lemah, satu OTP yang dibagikan, satu file yang dikirim lewat kanal tidak aman, satu klik pada link palsu, bisa berdampak pada organisasi.",
-      "Jadi paradigma baru ini bukan semata soal teknologi, tetapi soal cara berpikir, cara bekerja, dan cara memimpin.”"
+      "“Bapak/Ibu sekalian, transformasi digital di Polri bukan sekadar digitalisasi formulir atau memindah berkas ke komputer, melainkan pergeseran cara pikir dalam tiga prinsip: Digital-First, Data-Driven, dan Cyber-Aware.",
+      "Pertama, <strong>Digital-First</strong>. Kita harus menyadari bahwa hampir setiap fungsi kepolisian—mulai dari preemtif hingga represif—kini memiliki dimensi digital yang harus kita kuasai secara taktis.",
+      "Kedua, <strong>Data-Driven</strong>. Di era informasi ini, intuisi pimpinan harus didukung oleh validitas data. Data yang akurat memungkinkan kita memetakan potensi gangguan dengan presisi.",
+      "Ketiga, <strong>Cyber-Aware</strong>. Ini yang paling krusial: keamanan siber harus menjadi budaya kerja. Satu password yang bocor atau satu klik ceroboh pada link palsu adalah risiko bagi seluruh marwah institusi.",
+      "Paradigma baru ini adalah tentang cara kita memimpin di era di mana teknologi dan hukum terus bertransformasi. Karena kadang, Bapak/Ibu, kita sudah punya sistem yang sangat canggih, tapi password-nya masih ‘admin123’. Ini sama saja seperti membeli brankas antipeluru yang sangat mahal, tapi kuncinya kita taruh di bawah keset pintu depan.”"
     ],
     interactive: {
       type: "alternate",
       label: "PERTANYAAN INTERAKTIF",
       questions: [
-        "“Dari tiga paradigma ini, mana yang paling sulit diterapkan di organisasi: Digital-First, Data-Driven, atau Cyber-Aware?”"
+        "“Dari tiga paradigma ini, mana yang paling sulit diterapkan di institusi: Digital-First, Data-Driven, atau Cyber-Aware?”"
       ],
       guidance: {
         label: "JIKA ADA JAWABAN, TANGGAPI:",
@@ -118,10 +112,6 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Kadang kita sudah beli sistem yang canggih, tapi password-nya masih ‘admin123’. Ini seperti membeli brankas mahal, lalu kuncinya ditaruh di bawah keset.”",
-        "2. “Digital transformation itu bukan sekadar mengubah formulir kertas menjadi PDF. Kalau dulu lambat karena map belum ditandatangani, lalu sekarang lambat karena file PDF belum ditemukan, berarti itu bukan transformasi digital. Itu hanya migrasi masalah ke format digital.”"
-      ],
       transition: "“Dari tiga paradigma ini, inti yang paling penting adalah data. Karena di era digital, data bisa menjadi kekuatan, tetapi juga bisa menjadi sumber kerentanan.”"
     }
   },
@@ -135,10 +125,10 @@ export const presentationContent = [
     ],
     narrative: [
       "\"Bapak/Ibu sekalian, sebelum kita lanjut, saya ingin mengajak Bapak/Ibu untuk satu refleksi singkat.",
-      "Dari tiga paradigma yang baru kita bahas—<strong>Digital-First, Data-Driven, dan Cyber-Aware</strong>—menurut Bapak/Ibu, mana yang paling sulit diterapkan di organisasi?",
+      "Dari tiga paradigma yang baru kita bahas—<strong>Digital-First, Data-Driven, dan Cyber-Aware</strong>—menurut Bapak/Ibu, mana yang paling sulit diterapkan di institusi?",
       "Silakan klik salah satu pilihan di layar. Kita lihat bersama tingkat kesulitannya.",
       "Digital-First sering terkendala kebiasaan lama. Transformasi kadang hanya sebatas mengubah formulir kertas menjadi PDF—bentuknya digital, tapi prosesnya masih manual.",
-      "Data-Driven terkendala oleh data yang belum terintegrasi dan belum valid. Budaya kerja masih terlalu bergantung pada intuisi dan asumsi.",
+      "Data-Driven terkendala oleh data yang belum terintegrasi dan belum valid. Budaya kerja masih terlalu bergantung pada intuisi and asumsi.",
       "Tetapi <strong>Cyber-Aware</strong> biasanya yang paling sulit. Karena sistem secanggih apa pun bisa dikalahkan oleh satu keteledoran: klik phishing, buka file APK, atau password yang lemah.",
       "Jadi kesimpulannya: <strong>yang paling sulit bukan membeli teknologinya, tetapi mengubah kebiasaan manusianya.</strong> Karena sistem bisa di-upgrade, tetapi budaya kerja membutuhkan kepemimpinan.\""
     ],
@@ -155,7 +145,7 @@ export const presentationContent = [
       "Pelindungan Data Pribadi (UU PDP) adalah amanah untuk menjaga kepercayaan publik."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, dalam organisasi modern, data adalah aset strategis. Data membantu pimpinan mengambil keputusan, memetakan kejahatan, mempercepat pelayanan, memperkuat penyidikan, dan mengarahkan operasi.",
+      "“Bapak/Ibu sekalian, dalam institusi modern, data adalah aset strategis. Data membantu pimpinan mengambil keputusan, memetakan kejahatan, mempercepat pelayanan, memperkuat penyidikan, dan mengarahkan operasi.",
       "Namun di sisi lain, data juga bisa menjadi senjata lawan. Data yang bocor dapat digunakan untuk penipuan, pemerasan, doxing, manipulasi, profiling korban, atau menyerang reputasi institusi.",
       "Data Polri memiliki nilai yang sangat tinggi. Di dalamnya ada data korban, saksi, pelapor, tersangka, personel, operasi, penyidikan, dan layanan masyarakat.",
       "Kalau data ini bocor, dampaknya bukan hanya teknis. Bisa berdampak pada keselamatan saksi, keberanian masyarakat melapor, kerahasiaan penyidikan, dan kepercayaan publik.",
@@ -179,9 +169,6 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Data itu seperti bahan bakar beroktan tinggi. Jika dikelola dengan mesin yang tepat, ia memberikan daya dorong luar biasa bagi organisasi. Tapi jika bocor sedikit saja dan terkena percikan, ia bisa membakar seluruh kepercayaan yang sudah kita bangun.”"
-      ],
       transition: "“Karena data bernilai tinggi, maka ancaman terhadap data dan sistem juga semakin beragam. Ancaman siber hari ini bukan hanya hacking.”"
     }
   },
@@ -198,10 +185,8 @@ export const presentationContent = [
       "Ada <strong>cyber fraud</strong>, yaitu penipuan yang memanfaatkan media digital. Ada <strong>ransomware</strong>, yaitu serangan yang mengunci data dan meminta tebusan. Ada <strong>data breach</strong>, yaitu kebocoran data. Ada <strong>judi online</strong> yang terhubung dengan rekening penampung, promosi digital, dan aliran dana lintas negara.",
       "Ada <strong>supply chain attack</strong>, ketika pelaku tidak menyerang institusi utama secara langsung, tetapi masuk lewat vendor atau pihak ketiga. Ada <strong>deepfake dan AI-powered fraud</strong>, ketika suara atau video bisa dipalsukan. Ada <strong>cognitive warfare</strong>, ketika informasi dimanipulasi untuk memengaruhi persepsi publik. Ada <strong>cyber espionage</strong>, ketika data strategis dicuri untuk kepentingan tertentu.",
       "Dari sisi pimpinan, kita bisa melihat dampaknya dalam tiga kelompok:",
-      "Pertama, <strong>dampak ekonomi</strong>: penipuan online, judi online, pencucian uang, dan kerugian masyarakat.",
-      "Kedua, <strong>dampak operasional</strong>: sistem layanan terganggu, data terkunci, proses kerja lumpuh.",
-      "Ketiga, <strong>dampak sosial-politik</strong>: hoaks, deepfake, provokasi, dan menurunnya kepercayaan masyarakat.",
-      "Jadi, ancaman siber bukan hanya masalah teknis. Ia adalah masalah ekonomi, sosial, hukum, keamanan, dan reputasi.”"
+      "Pertama, <strong>dampak ekonomi</strong>: penipuan online, judi online, dan kerugian masyarakat. Kedua, <strong>dampak operasional</strong>: sistem layanan lumpuh total. Ketiga, <strong>dampak sosial</strong>: hoaks dan menurunnya kepercayaan masyarakat.",
+      "Mungkin di film-film, hacker itu terlihat keren dengan hoodie hitam dan layar penuh kode hijau. Tapi di dunia nyata, sering kali serangan dimulai dari pesan yang sangat sederhana: ‘Izin Jenderal, ini undangan rapat, mohon dibuka.’ Dan lampirannya kembali lagi: file APK.”"
     ],
     interactive: {
       type: "alternate",
@@ -211,13 +196,10 @@ export const presentationContent = [
       ],
       guidance: {
         label: "TANGGAPI:",
-        text: ["“Jawaban bisa berbeda tergantung fungsi dan wilayah. Tetapi yang jelas, semuanya membutuhkan kesiapan organisasi.”"]
+        text: ["“Jawaban bisa berbeda tergantung fungsi dan wilayah. Tetapi yang jelas, semuanya membutuhkan kesiapan institusi.”"]
       }
     },
     supplements: {
-      jokes: [
-        "1. “Hacker di film biasanya terlihat keren, pakai hoodie, layar penuh kode hijau. Di dunia nyata, kadang serangan dimulai dari pesan yang sangat sederhana: ‘Pak, ini undangan rapat, mohon dibuka.’ Lampirannya APK.”"
-      ],
       transition: "“Sekarang kita masuk ke kasus pertama. Saya ingin Bapak/Ibu membayangkan bukan sebagai penonton, tetapi sebagai pimpinan yang harus mengambil keputusan.”"
     }
   },
@@ -226,7 +208,7 @@ export const presentationContent = [
     indicator: "SLIDE 8 — GLOBAL THREAT MAP",
     title: "Global <br/> <span class=\"highlight\">IP Abuse Monitor</span>",
     keypoints: [
-      "Visualisasi real-time: Serangan siber bersifat masif, global, dan tidak pernah berhenti.",
+      "Visualisasi real-time: Serangan siber bersifat masif, global, and tidak pernah berhenti.",
       "Indonesia adalah salah satu target utama serangan siber di kawasan Asia Pasifik."
     ],
     narrative: [
@@ -236,7 +218,7 @@ export const presentationContent = [
       "Di panel kanan bawah, Bapak/Ibu bisa melihat feed serangan masuk secara real-time: jenis serangan seperti DDoS, brute force, scanning, phishing, SQL injection, dan lainnya.",
       "Angka-angka di bawah menunjukkan intensitasnya: <strong>ribuan serangan per menit, dari ratusan negara, dan puluhan ribu IP yang harus diblokir setiap hari.</strong>",
       "Pesan dari slide ini sederhana: ancaman siber itu <strong>masif, global, non-stop, dan real-time</strong>. Ia tidak mengenal jam kerja, tidak mengenal hari libur, dan tidak peduli apakah kita siap atau tidak.",
-      "Inilah mengapa kesiapan organisasi menjadi sangat penting. Bukan soal apakah kita akan diserang, tetapi kapan, dan apakah kita siap merespons.\""
+      "Inilah mengapa kesiapan institusi menjadi sangat penting. Bukan soal apakah kita akan diserang, tetapi kapan, dan apakah kita siap merespons.\""
     ],
     supplements: {
       transition: "\"Sekarang kita masuk ke kasus pertama. Saya ingin Bapak/Ibu membayangkan bukan sebagai penonton, tetapi sebagai pimpinan yang harus mengambil keputusan.\""
@@ -257,8 +239,7 @@ export const presentationContent = [
       "<strong>Pukul 09.30</strong>, beberapa sistem mulai melambat. Awalnya mungkin dianggap gangguan jaringan biasa.",
       "<strong>Pukul 10.00</strong>, beberapa file tidak bisa dibuka. Folder bersama mulai terkunci. Beberapa layar menampilkan pesan aneh.",
       "<strong>Pukul 10.01</strong>, muncul pesan tebusan: <em>data Anda telah dienkripsi.</em>",
-      "Pada titik ini, situasinya berubah. Ini bukan lagi masalah komputer. Ini krisis komando.",
-      "Pertanyaannya: jika Bapak/Ibu adalah pimpinan pada saat itu, apa perintah pertama?”"
+      "Pada titik ini, situasinya berubah. Ini bukan lagi masalah komputer. Ini krisis komando. Sering kali saat sistem melambat, yang pertama disalahkan adalah Wi-Fi kantor. Padahal masalahnya bukan Wi-Fi, tapi ada malware yang sedang bekerja lembur di dalam jaringan kita.”"
     ],
     interactive: {
       type: "quiz",
@@ -278,15 +259,12 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Kadang begitu sistem lambat, yang pertama disalahkan adalah Wi-Fi. Padahal masalahnya bukan Wi-Fi, tapi ada malware yang sudah masuk dan sedang bekerja lembur.”"
-      ],
       transition: "“Ransomware menjadi berbahaya karena yang disandera bukan hanya file. Yang disandera adalah pelayanan, reputasi, dan kepercayaan publik.”"
     }
   },
   {
     id: "slide-7b",
-    indicator: "SLIDE 10 — KUIS RANSOMWARE",
+    indicator: "SLIDE 10 — EVALUASI RESPONS TAKTIS",
     title: "Jika ini terjadi, apa perintah <br/> <span class=\"highlight\">pertama Anda?</span>",
     keypoints: [
       "Kuis interaktif: Audiens memilih respons pertama saat ransomware menyerang.",
@@ -315,13 +293,13 @@ export const presentationContent = [
       "Dampak terberat adalah kehilangan kepercayaan masyarakat pada institusi."
     ],
     narrative: [
-      "“Melanjutkan pembahasan sebelumnya, dalam ransomware, pelaku tidak hanya mengunci file. Mereka menekan organisasi dari berbagai sisi.",
-      "Sebagai contoh nyata, SOCRadar belum lama ini mendeteksi unggahan di dark web yang menjual 41GB dokumen rahasia dari berbagai instansi pemerintah Indonesia. Serangan ini diklaim bermotif politik dengan ancaman spesifik meluncurkan serangan pada tanggal tertentu dan menyebarkan data via Telegram.",
-      "Jika organisasi membayar tebusan, ada risiko mendanai kriminalitas. Tidak ada jaminan data benar-benar kembali, dan tidak ada jaminan pelaku tidak menyerang lagi.",
-      "Jika organisasi tidak membayar, layanan bisa terganggu lebih lama. Data bisa bocor. Publik bisa menekan institusi. Media akan bertanya. Masyarakat ingin kepastian.",
+      "“Melanjutkan pembahasan sebelumnya, dalam ransomware, pelaku tidak hanya mengunci file. Mereka menekan institusi dari berbagai sisi.",
+      "Dalam catatan intelijen siber, pernah terdeteksi unggahan di dark web yang menjual 41GB dokumen rahasia dari berbagai instansi pemerintah. Serangan ini diklaim bermotif politik dengan ancaman spesifik meluncurkan serangan pada tanggal tertentu dan menyebarkan data via Telegram.",
+      "Jika institusi membayar tebusan, ada risiko mendanai kriminalitas. Tidak ada jaminan data benar-benar kembali, dan tidak ada jaminan pelaku tidak menyerang lagi.",
+      "Jika institusi tidak membayar, layanan bisa terganggu lebih lama. Data bisa bocor. Publik bisa menekan institusi. Media akan bertanya. Masyarakat ingin kepastian.",
       "Inilah dilema pimpinan. Yang harus dipikirkan bukan hanya bagaimana membuka file yang terkunci, tetapi bagaimana melindungi layanan, data, bukti digital, reputasi, dan kepercayaan publik.",
       "Dalam kasus layanan publik, dampaknya bisa lebih luas. Masyarakat tidak peduli apakah penyebabnya server, jaringan, malware, atau vendor. Yang mereka lihat adalah layanan tidak berjalan.",
-      "Karena itu, ransomware harus dipahami sebagai krisis organisasi, bukan hanya krisis teknis.”"
+      "Karena itu, ransomware harus dipahami sebagai krisis institusi, bukan krisis teknis. Dan Bapak/Ibu, backup itu ibarat payung. Saat cuaca cerah, sering dianggap beban atau tidak penting. Begitu badai ransomware datang, semua baru sibuk bertanya: payungnya di mana?”"
     ],
     interactive: {
       type: "alternate",
@@ -335,10 +313,7 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Backup itu seperti payung. Waktu cerah sering dianggap tidak penting. Begitu hujan besar, semua baru bertanya: payungnya di mana?”"
-      ],
-      transition: "“Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, pemisahan sistem, dan manusia sebagai benteng pertama.”"
+      transition: "“Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, air-gapping, dan manusia sebagai benteng pertama.”"
     }
   },
   {
@@ -359,7 +334,7 @@ export const presentationContent = [
       "Inilah mengapa ransomware bukan sekadar masalah teknis. Ia adalah masalah kepercayaan.\""
     ],
     supplements: {
-      transition: "\"Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, pemisahan sistem, dan manusia sebagai benteng pertama.\""
+      transition: "\"Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, air-gapping, dan manusia sebagai benteng pertama.\""
     }
   },
   {
@@ -367,16 +342,16 @@ export const presentationContent = [
     indicator: "SLIDE 13 — LESSONS LEARNED",
     title: "Lessons Learned <br/> <span class=\"highlight\">Ransomware Strategies</span>",
     keypoints: [
-      "Strategi 3-2-1 Backup: Tiga salinan, dua media, satu lokasi terpisah/offline.",
-      "Air-Gapping untuk data sensitif & Human Firewall (kesadaran personel)."
+      "Strategi Backup 3-2-1: Tiga salinan, dua media, satu lokasi terpisah. Uji restore wajib berkala.",
+      "Air-Gapping: Data sangat rahasia dan infrastruktur kritikal harus terisolasi dari jaringan umum.",
+      "Human Firewall: Pelatihan berkala & simulasi phishing untuk seluruh personel."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, ada tiga pelajaran utama dari ransomware.",
-      "Pertama, <strong>3-2-1 Backup</strong>. Artinya, idealnya kita memiliki tiga salinan data, disimpan pada dua media berbeda, dan satu salinan berada di lokasi terpisah atau offline. Prinsipnya sederhana: jangan menaruh seluruh keselamatan data pada satu tempat.",
-      "Backup bukan hanya dibuat, tetapi harus diuji. Banyak organisasi merasa punya backup, tetapi ketika dibutuhkan, ternyata backup tidak lengkap, tidak bisa dibaca, ikut terenkripsi, atau tidak pernah diuji.",
-      "Kedua, <strong>Air-Gapping</strong>. Data yang sangat sensitif tidak selalu harus terhubung ke jaringan umum. Ada data yang harus dipisahkan agar jika satu sistem terkena serangan, data paling penting tidak ikut terdampak.",
-      "Ketiga, <strong>Human Firewall</strong>. Banyak serangan siber tidak dimulai dari teknologi canggih. Ia dimulai dari manusia: klik link, membuka lampiran, membagikan OTP, memakai password lemah, atau mengabaikan peringatan keamanan.",
-      "Jadi, keamanan siber bukan hanya membeli alat. Keamanan siber adalah kombinasi <strong>people, process, and technology.</strong>”"
+      "“Bapak/Ibu sekalian, strategi menghadapi ransomware bukan tentang seberapa canggih teknologi kita, tetapi seberapa disiplin protokol kita.",
+      "Pertama, <strong>Strategi Backup 3-2-1</strong>. Seperti yang Bapak/Ibu lihat di layar: tiga salinan data, pada dua media berbeda, dengan satu salinan di lokasi terpisah atau offline.",
+      "Yang penting bukan hanya ada backup, tetapi apakah backup pernah diuji restore. Backup yang belum pernah diuji oleh personel di lapangan sama dengan tidak punya backup sama sekali.",
+      "Kedua, <strong>Air-Gapping</strong>. Data yang sangat rahasia dan infrastruktur kritikal tidak boleh selalu terhubung ke jaringan umum. Jika satu titik terserang, sistem kritikal lainnya harus tetap berdiri tegak karena sudah terisolasi.",
+      "Ancaman siber sering kali masuk melalui celah keteledoran manusia. Secanggih apa pun teknologinya, pertahanan institusi bisa kalah hanya karena rasa ingin tahu personel yang klik link mencurigakan. Satu klik ceroboh bisa membuka pintu bagi seluruh serangan siber.”"
     ],
     interactive: {
       type: "alternate",
@@ -390,9 +365,6 @@ export const presentationContent = [
       }
     },
     supplements: {
-      jokes: [
-        "1. “Human firewall itu penting. Karena secanggih apa pun sistemnya, kalau manusianya klik semua link karena penasaran, sistemnya bisa kalah oleh rasa ingin tahu.”"
-      ],
       transition: "“Sekarang kita masuk ke kasus kedua. Kalau ransomware menguji kesiapan layanan dan komando, kasus berikutnya menguji integritas pembuktian: manipulasi bukti digital.”"
     }
   },
@@ -405,12 +377,11 @@ export const presentationContent = [
       "Penyidik wajib membuktikan keaslian, keutuhan, dan validitas bukti digital."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, bagian ini sangat penting terutama untuk fungsi reserse dan penegakan hukum. Dalam paradigma lama, video sering dianggap bukti kuat. Ada rekaman CCTV, ada video, ada audio, maka seolah-olah perkara menjadi jelas.",
-      "Tetapi dalam paradigma digital, video adalah data. Audio adalah data. Foto adalah data. Chat adalah data. Dan data bisa disalin, dikompresi, diedit, dipotong, atau dimanipulasi.",
-      "Dengan perkembangan AI, deepfake, voice cloning, dan editing digital, tantangan pembuktian menjadi semakin kompleks.",
-      "Maka pertanyaan pentingnya bukan hanya: apakah kita punya video? Pertanyaannya adalah: apakah kita bisa membuktikan bahwa video itu asli, utuh, tidak dimanipulasi, dan diperoleh secara sah?",
-      "Bayangkan di persidangan, pengacara tersangka mengatakan: rekaman CCTV ini hasil editan AI. Rekaman suara ini hasil voice cloning. Foto ini sudah dimanipulasi. Chat ini sudah dipotong konteksnya.",
-      "Jika penyidik tidak bisa menunjukkan <strong>chain of custody, metadata, file asli, hash, log sistem,</strong> dan bukti pendukung lain, maka bukti digital yang seharusnya kuat bisa menjadi lemah.”"
+      "“Bapak/Ibu sekalian, bagian ini sangat krusial terutama bagi fungsi reserse dan penegakan hukum. Dulu, video rekaman sering dianggap sebagai bukti yang tidak terbantahkan. Ada visualnya, ada suaranya, maka perkara seolah sudah terang.",
+      "Namun hari ini, kita harus sadar bahwa video, audio, dan chat adalah data digital yang bisa disalin, dimanipulasi, bahkan direkayasa total menggunakan teknologi AI seperti Deepfake.",
+      "Tantangan kita di persidangan akan semakin berat. Pengacara lawan bisa saja menggugat: 'Izin Yang Mulia, rekaman ini hasil editan AI' atau 'Voice cloning'.",
+      "Jika penyidik kita tidak dibekali pemahaman tentang <strong>metadata, hash, dan chain of custody</strong> yang kuat, bukti digital yang seharusnya menjadi kartu as kita bisa dimentahkan begitu saja.",
+      "Pimpinan harus memastikan bahwa setiap alat bukti digital yang kita ajukan memiliki integritas yang tidak terbantahkan secara forensik.”"
     ],
     interactive: {
       type: "provocative",
@@ -420,9 +391,6 @@ export const presentationContent = [
       ]
     },
     supplements: {
-      jokes: [
-        "1. “Dulu ada ungkapan ‘kamera tidak pernah bohong’. Sekarang mungkin perlu ditambah: kamera tidak bohong, tapi file bisa diedit, dikompres, dipotong, bahkan diganti wajahnya.”"
-      ],
       transition: "“Untuk menjawab tantangan ini, kita perlu memahami dua hal: metadata dan chain of custody.”"
     }
   },
@@ -432,7 +400,7 @@ export const presentationContent = [
     title: "Metadata dan <br/> <span class=\"highlight\">Chain of Custody</span>",
     keypoints: [
       "Metadata adalah 'saksi diam' yang menyimpan riwayat dan validitas file digital.",
-      "Chain of Custody menjamin integritas bukti: siapa, kapan, dan bagaimana dikelola."
+      "Chain of Custody menjamin integritas bukti: siapa, kapan, and bagaimana dikelola."
     ],
     narrative: [
       "“Selanjutnya, kita perlu memahami saksi diam dalam bukti digital, yaitu metadata. Ia tidak terlihat saat kita membuka foto atau video, tetapi menyimpan informasi penting.",
@@ -441,7 +409,7 @@ export const presentationContent = [
       "Di persidangan, hal seperti ini bisa menjadi celah. Pengacara bisa bertanya: mana file aslinya? Mana log dari DVR? Siapa yang mengambil? Kapan diambil? Apakah pernah dipindahkan? Apakah pernah diedit? Apakah hash-nya sama?",
       "Di sinilah <strong>chain of custody</strong> menjadi penting. Chain of custody menjawab siapa yang mengambil bukti, kapan, bagaimana diamankan, siapa yang mengakses, bagaimana disimpan, dan apakah bukti berubah.",
       "Untuk bukti digital, integritas harus bisa dibuktikan. <strong>Hash value</strong> dapat digunakan sebagai sidik jari digital. Jika isi file berubah, hash berubah.",
-      "Jadi, kesalahan prosedur di menit pertama bisa membuat kita kehilangan nilai pembuktian enam bulan kemudian.”"
+      "Jadi, kesalahan prosedur di menit pertama bisa membuat kita kehilangan nilai pembuktian enam bulan kemudian. Karena metadata itu ibarat riwayat perjalanan sebuah file; ia sering kali jauh lebih jujur daripada orang yang membawa filenya.”"
     ],
     analogy: {
       icon: "fa-solid fa-hand-dots",
@@ -449,9 +417,6 @@ export const presentationContent = [
       text: "“Menyentuh bukti digital tanpa prosedur itu seperti memegang senjata api di TKP tanpa sarung tangan. Kita mungkin tidak bermaksud merusak bukti, tetapi jejaknya berubah.”"
     },
     supplements: {
-      jokes: [
-        "1. “Metadata itu seperti riwayat perjalanan file. Kadang lebih jujur daripada orang yang membawa filenya.”",
-      ],
       transition: "“Lalu apa yang harus dipastikan pimpinan? Tidak harus melakukan proses teknis sendiri, tetapi harus memastikan SOP penyitaan digital berjalan.”"
     }
   },
@@ -490,37 +455,19 @@ export const presentationContent = [
   {
     id: "slide-13",
     indicator: "SLIDE 17 — SOLUSI STRATEGIS",
-    title: "Solusi Strategis Pimpinan: <br/> <span class=\"highlight\">Zero Trust, CSIRT, Cyber Drill</span>",
+    title: "Solusi Strategis: <br/> <span class=\"highlight\">Kerangka Kerja NIST 2.0</span>",
     keypoints: [
-      "Zero Trust: Prinsip 'never trust, always verify' dalam akses sistem.",
-      "CSIRT: Tim respons insiden siber yang terintegrasi dengan struktur komando.",
-      "Cyber Drill: Latihan simulasi krisis digital agar tidak gagap saat insiden nyata."
+      "NIST CSF 2.0: Kerangka kerja standar global untuk ketahanan siber terpadu.",
+      "Govern (Tata Kelola): Keamanan siber sebagai inti dari Keputusan Komando.",
+      "Integrasi Zero Trust (Proteksi) dan CSIRT (Deteksi & Respons)."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, solusi keamanan siber tidak cukup dengan membeli alat. Alat penting, tetapi tanpa tata kelola, alat hanya menjadi perangkat yang mahal.",
-      "Ada tiga solusi strategis yang perlu didorong pimpinan.",
-      "Pertama, <strong>Zero Trust</strong>. Prinsipnya adalah <em>never trust, always verify</em>. Bukan berarti kita tidak percaya kepada anggota. Tetapi sistem tidak boleh bergantung pada asumsi. Setiap akses harus diverifikasi. Hak akses harus sesuai kebutuhan tugas. Vendor tidak boleh punya akses terlalu luas. Perangkat tidak otomatis dipercaya.",
-      "Di markas, tidak semua orang boleh masuk ruang senjata. Di sistem digital juga sama: tidak semua orang boleh mengakses semua data.",
-      "Kedua, <strong>CSIRT</strong> atau Computer Security Incident Response Team. Tim ini harus punya mandat yang jelas, SOP, SDM, jalur eskalasi, dan dukungan pimpinan. CSIRT tidak boleh dibiarkan sebagai tim teknis yang bekerja sendirian tanpa komando.",
-      "Ketiga, <strong>Cyber Drill</strong>. Kita terbiasa latihan menembak, latihan fisik, latihan pengamanan. Di era digital, kita juga perlu latihan menghadapi ransomware, kebocoran data, akun pejabat diretas, atau deepfake viral.",
-      "Cyber drill menguji siapa melapor ke siapa, siapa memutuskan apa, siapa memulihkan layanan, siapa menjaga bukti, dan siapa bicara kepada publik.”"
+      "“Bapak/Ibu sekalian, strategi pertahanan siber yang kita susun ini selaras dengan kerangka kerja standar global NIST Cybersecurity Framework 2.0.",
+      "Diagram di layar menunjukkan enam fungsi utama yang menjadi tolok ukur ketahanan siber kita. Di tengahnya adalah GOVERN—ini menegaskan bahwa keamanan siber bukan hanya masalah teknis, tetapi masalah tata kelola dan keputusan komando pimpinan.",
+      "Prinsip Zero Trust di sini bukan berarti kita mencurigai semua anggota secara personal, melainkan kita menerapkan disiplin prosedur yang ketat. Sama seperti pemeriksaan di pintu masuk markas: dilakukan bukan karena tidak percaya pada rekan sejawat, tetapi karena prosedur itulah yang menjaga kita semua tetap aman.”"
     ],
-    interactive: {
-      type: "alternate",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Apakah satuan kerja kita pernah mensimulasikan ransomware, kebocoran data, atau akun pejabat diretas?”"
-      ],
-      guidance: {
-        label: "LANJUTKAN:",
-        text: ["“Kalau belum pernah disimulasikan, maka ketika terjadi sungguhan, kita akan belajar dalam kondisi panik. Dan belajar saat panik biasanya mahal biayanya.”"]
-      }
-    },
     supplements: {
-      jokes: [
-        "1. “Zero Trust bukan berarti semua orang dicurigai secara personal. Zero Trust berarti sistem kita memiliki disiplin prosedur yang ketat. Sama seperti pemeriksaan di pintu masuk markas: dilakukan bukan karena tidak percaya pada anggota, tetapi karena prosedur itulah yang menjaga kita semua tetap aman.”"
-      ],
-      transition: "“Selain solusi teknis dan organisasi, ada dua aspek yang sangat menentukan saat krisis digital: komunikasi publik dan etika penggunaan AI.”"
+      transition: "“Selain solusi teknis dan institusi, ada dua aspek yang sangat menentukan saat krisis digital: komunikasi publik dan etika penggunaan AI.”"
     }
   },
   {
@@ -532,29 +479,11 @@ export const presentationContent = [
       "Etika AI: AI membantu analisis, tetapi tanggung jawab keputusan tetap pada manusia."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, dalam krisis digital, kekosongan informasi akan diisi oleh rumor. Jika institusi terlambat bicara, publik akan percaya pada versi yang paling cepat beredar, bukan selalu versi yang paling benar.",
-      "Karena itu, komunikasi krisis digital harus <strong>cepat, akurat, satu pintu, tidak spekulatif, dan tidak membuka data sensitif.</strong>",
-      "Cepat bukan berarti gegabah. Akurat bukan berarti menunggu semuanya sempurna. Yang penting adalah memberi kepastian bahwa institusi hadir, sedang menangani, dan akan memberikan pembaruan melalui kanal resmi.",
-      "Contoh kalimat aman: <em>‘Kami sedang melakukan investigasi dan pemulihan layanan. Data teknis sedang diverifikasi. Informasi resmi akan disampaikan melalui kanal resmi.’</em>",
-      "Selain komunikasi, kita juga perlu bicara tentang AI.",
-      "AI bisa membantu membaca pola, mendeteksi anomali, menganalisis data, atau mempercepat proses kerja. Namun AI tidak boleh menjadi dasar tunggal tindakan kepolisian.",
-      "Keputusan tetap harus sah, proporsional, berbasis bukti, dapat dijelaskan, dan dapat dipertanggungjawabkan. AI membantu analisis, tetapi <strong>manusia tetap bertanggung jawab.</strong>”"
+      "“Bapak/Ibu sekalian, dalam krisis digital, kekosongan informasi akan segera diisi oleh spekulasi dan rumor. Jika institusi terlambat merespons secara publik, masyarakat akan percaya pada versi yang paling cepat beredar di media sosial, bukan versi yang benar.",
+      "Di sinilah pentingnya kendali narasi: komunikasi krisis harus cepat, akurat, dan satu pintu.",
+      "Keputusan kepolisian tetap harus berbasis pada pertimbangan hukum, moral, dan akuntabilitas manusia. AI adalah asisten hebat untuk analisis, tetapi tanggung jawab akhir tetap ada di tangan komando Bapak/Ibu. Sampai hari ini, belum ada robot yang bisa menandatangani pertanggungjawaban komando.”"
     ],
-    interactive: {
-      type: "alternate",
-      label: "PERTANYAAN INTERAKTIF",
-      questions: [
-        "“Jika sistem AI menunjukkan satu wilayah sebagai rawan kejahatan, apakah itu cukup untuk tindakan kepolisian? Atau masih perlu validasi manusia dan dasar hukum?”"
-      ],
-      guidance: {
-        label: "ARAHKAN:",
-        text: ["“AI membantu, tetapi keputusan tetap memerlukan validasi, konteks, dasar hukum, dan akuntabilitas.”"]
-      }
-    },
     supplements: {
-      jokes: [
-        "1. “AI bisa membantu membuat analisis cepat. Tapi untuk integritas, empati, dan tanggung jawab hukum, tetap manusia yang harus memimpin. Sampai hari ini, belum ada robot yang bisa tanda tangan pertanggungjawaban komando.”"
-      ],
       transition: "“Sebelum kita menutup, saya ingin mengajak Bapak/Ibu untuk satu latihan terakhir. Bukan teori, bukan statistik, tetapi keputusan. Bayangkan skenario berikut terjadi hari ini.”"
     }
   },
@@ -567,28 +496,25 @@ export const presentationContent = [
       "Aspek yang diuji: Perintah pertama, koordinasi, pengamanan bukti, dan narasi publik."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, sebagai penutup sesi simulasi, saya ingin kita melakukan latihan pengambilan keputusan secara cepat. Bukan teori, tetapi tindakan nyata.",
-      "Saya berikan empat skenario krisis riil.",
-      "Pertama, <strong>akun pejabat diretas</strong> dan digunakan untuk menyebarkan narasi yang menyesatkan.",
-      "Kedua, <strong>data laporan masyarakat bocor</strong> dan mulai viral di media sosial.",
-      "Ketiga, <strong>video deepfake pejabat beredar</strong> yang berpotensi memicu instabilitas sosial.",
-      "Keempat, <strong>serangan ransomware</strong> yang melumpuhkan layanan digital utama.",
-      "Pilih salah satu skenario. Bayangkan ini terjadi di satuan kerja Bapak/Ibu hari ini. Apa perintah pertama Anda? Siapa otoritas yang Anda hubungi? Bagaimana Anda mengamankan integritas bukti? Dan apa narasi tunggal yang Anda sampaikan kepada publik agar situasi tetap terkendali?”"
+      "“Bapak/Ibu sekalian, sebagai penutup sesi simulasi ini, saya tidak ingin memberikan tes atau kuis. Saya justru ingin mengajak Bapak/Ibu melakukan refleksi kepemimpinan terhadap empat skenario krisis riil yang ada di layar.",
+      "Pertama, <strong>akun pejabat diretas</strong>. Kedua, <strong>data laporan masyarakat bocor</strong>. Ketiga, <strong>video deepfake pejabat beredar</strong>. Dan keempat, <strong>serangan ransomware</strong> yang melumpuhkan layanan.",
+      "Saya tidak meminta Bapak/Ibu menjawabnya sekarang. Namun, saya ingin Bapak/Ibu merenungkan sejenak: Jika salah satu dari hal ini terjadi di Satker Bapak/Ibu hari ini, apakah kita sudah punya SOP-nya? Apakah personel kita tahu harus melapor ke mana dalam 10 menit pertama? Dan apakah kita sudah siap dengan narasi tunggal agar publik tetap tenang?",
+      "Kesiapan kita tidak ditentukan oleh seberapa canggih alat yang kita beli, tetapi oleh seberapa jernih instruksi yang Bapak/Ibu berikan saat badai siber itu datang.”"
     ],
     interactive: {
       type: "standard",
-      label: "SKENARIO KRISIS SIBER",
+      label: "REFLEKSI KOMANDO",
       questions: [
-        "“Pilih salah satu skenario: Akun Pejabat Diretas, Data Bocor, Deepfake, atau Ransomware.”",
-        "“Apa perintah pertama Bapak/Ibu? Siapa yang dihubungi? Bukti apa yang diamankan? Apa yang disampaikan kepada publik?”"
+        "“Renungkan sejenak skenario di layar: Akun Diretas, Data Bocor, Deepfake, atau Ransomware.”",
+        "“Apakah sistem pelaporan di Satker Bapak/Ibu sudah siap? Apakah koordinasi antar unit sudah terlatih?”"
       ],
       guidance: {
-        label: "PANDUAN RESPONS STRATEGIS:",
+        label: "PANDUAN RESPONS STRATEGIS (UNTUK REFERENSI):",
         text: [
-          "<strong>1) Akun Pejabat Diretas:</strong><br/>• <strong>Perintah pertama:</strong> Aktifkan respons insiden siber, amankan akun, lacak akses ilegal, cegah penyalahgunaan lanjutan.<br/>• <strong>Pihak dihubungi:</strong> Unit siber internal, penyedia platform, pejabat terkait.<br/>• <strong>Bukti diamankan:</strong> IP login, device ID, timestamp, email reset password, postingan pelaku.<br/>• <strong>Narasi publik:</strong> Akun diretas, proses penanganan sedang berlangsung, masyarakat diminta abaikan informasi palsu.",
-          "<strong>2) Data Laporan Masyarakat Bocor:</strong><br/>• <strong>Perintah pertama:</strong> Hentikan kebocoran, isolasi server/sistem, identifikasi data terdampak.<br/>• <strong>Pihak dihubungi:</strong> Divisi TIK, unit siber, pimpinan institusi, regulator jika perlu.<br/>• <strong>Bukti diamankan:</strong> Database log, akses admin, file dump, jejak transfer data.<br/>• <strong>Narasi publik:</strong> Kebocoran sedang diinvestigasi, perlindungan data prioritas utama, perbaikan sistem dilakukan segera.",
-          "<strong>3) Video Deepfake Pejabat Viral:</strong><br/>• <strong>Perintah pertama:</strong> Verifikasi keaslian video dengan digital forensic dan AI detection.<br/>• <strong>Pihak dihubungi:</strong> Humas, laboratorium forensik digital, platform media sosial.<br/>• <strong>Bukti diamankan:</strong> File asli, metadata, akun penyebar awal, pola distribusi.<br/>• <strong>Narasi publik:</strong> Video terindikasi manipulasi/deepfake, proses hukum terhadap penyebar hoaks berjalan.",
-          "<strong>4) Ransomware Melumpuhkan Layanan:</strong><br/>• <strong>Perintah pertama:</strong> Putus koneksi sistem terdampak, aktifkan disaster recovery, amankan backup.<br/>• <strong>Pihak dihubungi:</strong> Tim keamanan siber, forensik digital, vendor sistem, pimpinan.<br/>• <strong>Bukti diamankan:</strong> Malware sample, ransom note, log server, endpoint terdampak.<br/>• <strong>Narasi publik:</strong> Terjadi gangguan layanan sementara, pemulihan berjalan, data masyarakat sedang diverifikasi keamanannya."
+          "<strong>1) Akun Pejabat Diretas:</strong><br/>• Fokus: Amankan akun segera, cegah penyebaran narasi palsu, dan amankan jejak akses digital.",
+          "<strong>2) Data Laporan Masyarakat Bocor:</strong><br/>• Fokus: Hentikan kebocoran, isolasi server, dan siapkan komunikasi publik yang transparan namun terkendali.",
+          "<strong>3) Video Deepfake Pejabat Viral:</strong><br/>• Fokus: Verifikasi forensik cepat dan klarifikasi resmi melalui saluran komunikasi satu pintu.",
+          "<strong>4) Ransomware Melumpuhkan Layanan:</strong><br/>• Fokus: Putus koneksi jaringan, aktifkan backup data yang teruji, dan jangan gegabah membayar tebusan."
         ]
       }
     },
@@ -600,19 +526,19 @@ export const presentationContent = [
   {
     id: "closing-note",
     indicator: "SLIDE 20 — CLOSING",
-    title: "Catatan Penutup <br/> <span class=\"highlight\" style=\"color: #34d399;\">Format dan Etika</span>",
+    title: "Catatan Penutup <br/> <span class=\"highlight\" style=\"color: #34d399;\">Amanat Strategis 2026</span>",
     keypoints: [
-      "Domain baru: Keamanan siber adalah bagian inti keamanan nasional.",
-      "Amanah data: Data masyarakat adalah tanggung jawab moral dan hukum.",
-      "Kesiapan: Kesiapan ditentukan oleh latihan rutin, bukan niat baik semata."
+      "Domain Baru: Keamanan siber sebagai pilar inti Keamanan Nasional.",
+      "Amanah Data: Pelindungan data masyarakat adalah tanggung jawab moral.",
+      "Keputusan Komando: Kesiapan lahir dari tata kelola dan latihan rutin."
     ],
     narrative: [
-      "“Bapak/Ibu sekalian, sebelum kita akhiri, izinkan saya merangkum tiga pesan utama dari materi hari ini.",
-      "Pertama, <strong>ruang siber adalah domain baru kamtibmas</strong>. Ancaman tidak lagi hanya datang dari jalanan, tetapi juga dari jaringan. Pimpinan harus memahami bahwa keamanan digital adalah bagian dari keamanan nasional.",
-      "Kedua, <strong>data adalah aset sekaligus tanggung jawab</strong>. Melindungi data masyarakat bukan hanya kewajiban hukum, tetapi amanah. Kebocoran data bisa merusak kepercayaan yang dibangun bertahun-tahun.",
-      "Ketiga, <strong>kesiapan ditentukan oleh latihan, bukan oleh niat baik</strong>. Organisasi yang tidak pernah mensimulasikan krisis siber akan belajar saat panik. Dan belajar saat panik selalu mahal biayanya.",
-      "Terakhir, saya ingin menyampaikan bahwa materi ini bukan untuk menakut-nakuti. Justru sebaliknya: untuk membekali Bapak/Ibu dengan kesadaran dan perspektif agar bisa memimpin di era yang berubah cepat.",
-      "Terima kasih atas perhatian dan kesempatan yang diberikan. Semoga materi ini bermanfaat dan bisa menjadi bekal bagi kita semua dalam menjalankan tugas melindungi, mengayomi, dan melayani masyarakat—baik di ruang fisik maupun di ruang digital.",
+      "“Bapak/Ibu sekalian, izinkan saya merangkum tiga amanat strategis sebagai penutup sesi hari ini.",
+      "Pertama, <strong>Ruang siber adalah domain baru kamtibmas</strong>. Tugas kita meluas ke dimensi digital, namun nilai dasar Polri tetap abadi: melayani dan melindungi masyarakat.",
+      "Kedua, <strong>Data masyarakat adalah amanah</strong>. Kebocoran data bukan sekadar kegagalan teknis, melainkan pertaruhan marwah institusi dan keselamatan publik.",
+      "Terakhir, saya tekankan: <strong>Kesiapan siber tidak lahir dari niat baik semata, tetapi dari tata kelola yang kuat, latihan yang disiplin, dan keputusan komando yang jernih.</strong>",
+      "Bapak/Ibu bisa melihat di layar, empat kata kunci kita hari ini: <strong>Data Aman. Bukti Utuh. Komando Cepat. Publik Percaya.</strong> Inilah visi yang harus kita wujudkan di Satker masing-masing.",
+      "Mari kita bangun Polri yang lebih cerdas, modern, dan tangguh di era digital. Terima kasih atas perhatian Bapak/Ibu. Selamat bertugas.",
       "Wassalamu’alaikum warahmatullahi wabarakatuh.”"
     ]
   }

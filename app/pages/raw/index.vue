@@ -28,9 +28,9 @@
               <i :class="ttsPlayingAll ? 'fa-solid fa-stop' : 'fa-solid fa-headphones'"></i>
               {{ ttsPlayingAll ? `STOP (${ttsCurrentIdx + 1}/${presentationContent.length})` : 'PLAY ALL' }}
             </button>
-            <NuxtLink to="/qna/strategi-pertahanan-siber-2026" class="btn-back">
+            <!-- <NuxtLink to="/qna/strategi-pertahanan-siber-2026" class="btn-back">
               Q&A
-            </NuxtLink>
+            </NuxtLink> -->
           </div>
         </div>
       </div>
@@ -207,14 +207,14 @@ const loadVoices = () => {
   availableVoices.value = voices.filter(v => v.lang.startsWith('id') || v.lang.startsWith('ms'));
   
   if (availableVoices.value.length > 0) {
-    // Priority: 1. Microsoft Ardi (Laki-laki Natural), 2. Any Male voice, 3. First available
-    const ardi = availableVoices.value.find(v => v.name.includes('Ardi'));
-    const male = availableVoices.value.find(v => v.name.toLowerCase().includes('male'));
+    // Priority: 1. Microsoft Ardi (Laki-laki Natural), 2. Names like Andika/Indra, 3. Any Male voice, 4. First available
+    const maleNames = ['Ardi', 'Andika', 'Indra', 'Male', 'Laki'];
+    const foundMale = availableVoices.value.find(v => 
+      maleNames.some(name => v.name.toLowerCase().includes(name.toLowerCase()))
+    );
     
-    if (ardi) {
-      selectedVoiceName.value = ardi.name;
-    } else if (male) {
-      selectedVoiceName.value = male.name;
+    if (foundMale) {
+      selectedVoiceName.value = foundMale.name;
     } else {
       selectedVoiceName.value = availableVoices.value[0].name;
     }
@@ -234,6 +234,61 @@ const stripHtml = (html) => {
   return tmp.textContent || tmp.innerText || '';
 };
 
+const phoneticFix = (text) => {
+  if (!text) return '';
+  
+  // Map of English terms to Indonesian-phonetic spelling
+  const map = {
+    'Cyber security': 'Saiber sekuriti',
+    'Cybersecurity': 'Saiber sekuriti',
+    'cyber security': 'saiber sekuriti',
+    'cybersecurity': 'saiber sekuriti',
+    'Zero Trust': 'Ziro Trast',
+    'zero trust': 'ziro trast',
+    'Chain of Custody': 'Cén of Kastodi',
+    'chain of custody': 'cén of kastodi',
+    'Ransomware': 'Ransom-wér',
+    'ransomware': 'ransom-wér',
+    'Phishing': 'Pising',
+    'phishing': 'pising',
+    'Deepfake': 'Dip-fék',
+    'deepfake': 'dip-fék',
+    'Supply Chain': 'Saplai Cén',
+    'supply chain': 'saplai cén',
+    'Dark Web': 'Dark Wéb',
+    'dark web': 'dark wéb',
+    'Framework': 'Frém-work',
+    'framework': 'frém-work',
+    'Cloud': 'Klaud',
+    'cloud': 'klaud',
+    'Hashing': 'Hésing',
+    'hashing': 'hésing',
+    'NIST': 'En-Ai-Es-Ti',
+    'CSIRT': 'Cé-Sirt',
+    'Digital-First': 'Dijital Ferst',
+    'Data-Driven': 'Data Driven',
+    'Cyber-Aware': 'Saiber Awér',
+    'Cyber fraud': 'Saiber frod',
+    'cyber fraud': 'saiber frod',
+    'Cognitive Warfare': 'Kognitif Wor-fér',
+    'cognitive warfare': 'kognitif wor-fér',
+    'Cyber espionage': 'Saiber espionas',
+    'cyber espionage': 'saiber espionas',
+    'Incident Response': 'Insiden Respons',
+    'incident response': 'insiden respons',
+    'Air-Gapping': 'Er-Gépping',
+    'air-gapping': 'er-gépping'
+  };
+
+  let fixedText = text;
+  for (const [english, phonetic] of Object.entries(map)) {
+    const regex = new RegExp(`\\b${english}\\b`, 'g');
+    fixedText = fixedText.replace(regex, phonetic);
+  }
+  
+  return fixedText;
+};
+
 const getSlideText = (slide) => {
   let parts = [];
   
@@ -247,7 +302,7 @@ const getSlideText = (slide) => {
     parts.push("Analogi pembicara: " + stripHtml(slide.analogy.text));
   }
 
-  // 3. Narasi Utama
+  // 3. Narasi Utama (Jokes sudah terintegrasi di sini)
   if (slide.narrative) {
     parts = parts.concat(slide.narrative.map(p => stripHtml(p)));
   }
@@ -277,7 +332,8 @@ const getSlideText = (slide) => {
     parts.push("Transisi: " + stripHtml(slide.supplements.transition));
   }
 
-  return parts.join('\n\n');
+  // Apply Phonetic Fix for Indonesian Voice
+  return phoneticFix(parts.join('\n\n'));
 };
 
 const toggleTTS = (slide) => {
@@ -317,18 +373,32 @@ const toggleTTS = (slide) => {
     utterance.lang = 'id-ID';
   }
 
-  // Tuning for authoritative tone (lower pitch, slightly slower rate)
+  // If we are in "Play All" mode, we want to update the current index
+  if (ttsPlayingAll.value) {
+    const idx = presentationContent.findIndex(s => s.id === slide.id);
+    if (idx !== -1) ttsCurrentIdx.value = idx;
+  }
+
+  // Tuning for authoritative male tone (lower pitch, slightly slower rate)
   utterance.rate = 0.9; 
-  utterance.pitch = 0.85; // Lower pitch makes it sound more masculine/deep
+  utterance.pitch = 0.8; // Deep authoritative pitch
 
   utterance.onend = () => {
-    ttsPlaying.value = null;
-    ttsPaused.value = null;
+    if (ttsPlayingAll.value) {
+      playSlideAt(ttsCurrentIdx.value + 1);
+    } else {
+      ttsPlaying.value = null;
+      ttsPaused.value = null;
+    }
   };
 
   utterance.onerror = () => {
-    ttsPlaying.value = null;
-    ttsPaused.value = null;
+    if (ttsPlayingAll.value) {
+      playSlideAt(ttsCurrentIdx.value + 1);
+    } else {
+      ttsPlaying.value = null;
+      ttsPaused.value = null;
+    }
   };
 
   ttsPlaying.value = slide.id;
@@ -379,7 +449,7 @@ const playSlideAt = (idx) => {
   }
 
   utterance.rate = 0.9;
-  utterance.pitch = 0.85;
+  utterance.pitch = 0.8; // Deep authoritative pitch
 
   // Auto-scroll to current slide
   const el = document.getElementById(slide.id);

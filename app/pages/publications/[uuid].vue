@@ -357,12 +357,24 @@ const onSwiper = (swiper) => {
     const slideIndex = parseInt(savedSlide, 10);
     currentSlide.value = slideIndex;
     swiper.slideTo(slideIndex, 0); // Jump to saved slide instantly
+    
+    // Force reset timer if starting on slide 0
+    if (slideIndex === 0) {
+      time.value = 0;
+      sessionStorage.setItem(`time_${presentationId}`, 0);
+    }
   }
 };
 
 const onSlideChange = (swiper) => {
   currentSlide.value = swiper.activeIndex;
   sessionStorage.setItem(`slide_${presentationId}`, swiper.activeIndex);
+  
+  // Reset timer to 0 if we return to the opening slide (Slide 1)
+  if (swiper.activeIndex === 0) {
+    time.value = 0;
+    sessionStorage.setItem(`time_${presentationId}`, 0);
+  }
 };
 
 const saveQuickNote = async () => {
@@ -393,10 +405,13 @@ const saveQuickNote = async () => {
 };
 
 onMounted(() => {
-  // Restore timer from session storage
+  // Restore timer from session storage (unless we are on slide 0)
   const savedTime = sessionStorage.getItem(`time_${presentationId}`);
-  if (savedTime !== null) {
+  const savedSlide = sessionStorage.getItem(`slide_${presentationId}`);
+  if (savedTime !== null && savedSlide !== "0") {
     time.value = parseInt(savedTime, 10);
+  } else {
+    time.value = 0;
   }
 
   document.body.style.overflow = 'hidden';
