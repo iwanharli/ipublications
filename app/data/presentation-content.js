@@ -13,7 +13,7 @@ export const presentationContent = [
       "Izin Bapak/Ibu, pada sesi ini saya tidak akan berbicara terlalu teknis tentang baris kode atau konfigurasi firewall yang rumit. Mengapa? Karena kapasitas Bapak/Ibu di ruangan ini bukan sebagai operator teknis, melainkan sebagai pemegang komando, pengambil keputusan, dan pengarah kebijakan strategis.",
       "Oleh karena itu, sudut pandang yang ingin saya bangun hari ini adalah: <strong>keamanan siber bukan sekadar urusan bagian IT</strong>. Keamanan siber adalah isu komando, isu manajemen risiko, isu marwah institusi, dan yang terpenting: isu kepercayaan publik.",
       "Di era sekarang, serangan siber tidak lagi hanya merusak komputer, tapi bisa melumpuhkan pelayanan, mengganggu penyidikan, hingga memicu krisis kepercayaan masyarakat yang masif.",
-      "Tujuan kita hari ini bukan untuk menjadi hacker, justru sebaliknya: agar kita sebagai pimpinan mampu memastikan institusi kita tidak menjadi korban kejahatan siber.”"
+      "Tujuan kita hari ini bukan untuk menjadi pakar teknis, justru sebaliknya: agar kita sebagai pimpinan mampu memastikan institusi kita tidak menjadi korban kejahatan siber.”"
     ],
     supplements: {
       transition: "“Untuk membuka materi ini, saya ingin mulai dengan satu angka. Angka ini bukan untuk menakut-nakuti, tetapi untuk menunjukkan kecepatan ancaman digital hari ini.”"
@@ -181,12 +181,12 @@ export const presentationContent = [
       "Dampak krisis: Ekonomi (Fraud), Operasional (Layanan Lumpuh), dan Sosial (Hoaks)."
     ],
     narrative: [
-      "“Mungkin di antara kita, ketika mendengar istilah cyber security, banyak orang langsung membayangkan seorang hacker dengan hoodie hitam sedang mengetik di ruangan gelap. Padahal ancaman siber modern jauh lebih luas.",
+      "“Mungkin di antara kita, ketika mendengar istilah cyber security, banyak orang langsung membayangkan pelaku kejahatan siber dengan hoodie hitam sedang mengetik di ruangan gelap. Padahal ancaman siber modern jauh lebih luas.",
       "Ada <strong>cyber fraud</strong>, yaitu penipuan yang memanfaatkan media digital. Ada <strong>ransomware</strong>, yaitu serangan yang mengunci data dan meminta tebusan. Ada <strong>data breach</strong>, yaitu kebocoran data. Ada <strong>judi online</strong> yang terhubung dengan rekening penampung, promosi digital, dan aliran dana lintas negara.",
       "Ada <strong>supply chain attack</strong>, ketika pelaku tidak menyerang institusi utama secara langsung, tetapi masuk lewat vendor atau pihak ketiga. Ada <strong>deepfake dan AI-powered fraud</strong>, ketika suara atau video bisa dipalsukan. Ada <strong>cognitive warfare</strong>, ketika informasi dimanipulasi untuk memengaruhi persepsi publik. Ada <strong>cyber espionage</strong>, ketika data strategis dicuri untuk kepentingan tertentu.",
       "Dari sisi pimpinan, kita bisa melihat dampaknya dalam tiga kelompok:",
       "Pertama, <strong>dampak ekonomi</strong>: penipuan online, judi online, dan kerugian masyarakat. Kedua, <strong>dampak operasional</strong>: sistem layanan lumpuh total. Ketiga, <strong>dampak sosial</strong>: hoaks dan menurunnya kepercayaan masyarakat.",
-      "Mungkin di film-film, hacker itu terlihat keren dengan hoodie hitam dan layar penuh kode hijau. Tapi di dunia nyata, sering kali serangan dimulai dari pesan yang sangat sederhana: ‘Izin Jenderal, ini undangan rapat, mohon dibuka.’ Dan lampirannya kembali lagi: file APK.”"
+      "Mungkin di layar lebar, penyusup digital itu terlihat keren dengan hoodie hitam dan layar penuh kode hijau. Tapi di dunia nyata, sering kali serangan dimulai dari pesan yang sangat sederhana: ‘Izin Komandan, ini undangan rapat, mohon dibuka.’ Dan lampirannya kembali lagi: file APK.”"
     ],
     interactive: {
       type: "alternate",
