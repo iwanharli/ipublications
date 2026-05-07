@@ -16,37 +16,43 @@
         </h1>
       </div>
 
-      <div class="options-container">
+      <div class="options-container swiper-no-swiping">
         <!-- Option 1 -->
-        <div class="option-card option-1" @click="reveal(1)" :class="{ 'revealed': revealedState[1] }">
-          <div class="option-icon"><i class="fa-solid fa-lock"></i></div>
-          <h3 class="option-title">Data Terkunci</h3>
-          <p class="option-subtitle" v-if="!revealedState[1]">Klik untuk melihat dampak</p>
-          <div class="option-reveal">
-            <p>Layanan operasional lumpuh total. Pelayanan publik terhenti seketika.</p>
-            <div class="reveal-bar"><div class="bar-fill" style="width: 30%; background: #f59e0b; box-shadow: 0 0 15px #f59e0b;"></div></div>
+        <div class="option-wrapper" :class="{ 'revealed-wrapper': revealedState[1] }">
+          <div class="option-card option-1" @click="reveal(1)" :class="{ 'revealed': revealedState[1] }">
+            <div class="option-icon" @click.stop="reveal(1)"><i class="fa-solid fa-lock"></i></div>
+            <h3 class="option-title">Data Terkunci</h3>
+            <span class="click-hint" v-if="!revealedState[1]">Klik untuk detail</span>
+            <div class="option-reveal">
+              <p>Layanan operasional lumpuh total. Pelayanan publik terhenti seketika.</p>
+              <div class="reveal-bar"><div class="bar-fill" style="width: 30%; background: #f59e0b; box-shadow: 0 0 15px #f59e0b;"></div></div>
+            </div>
           </div>
         </div>
 
         <!-- Option 2 -->
-        <div class="option-card option-2" @click="reveal(2)" :class="{ 'revealed': revealedState[2] }">
-          <div class="option-icon"><i class="fa-solid fa-file-shield"></i></div>
-          <h3 class="option-title">Data Bocor</h3>
-          <p class="option-subtitle" v-if="!revealedState[2]">Klik untuk melihat dampak</p>
-          <div class="option-reveal">
-            <p>Informasi sensitif, identitas, dan rahasia operasional terekspos ke publik.</p>
-            <div class="reveal-bar"><div class="bar-fill" style="width: 50%; background: #3b82f6; box-shadow: 0 0 15px #3b82f6;"></div></div>
+        <div class="option-wrapper" :class="{ 'revealed-wrapper': revealedState[2] }">
+          <div class="option-card option-2" @click="reveal(2)" :class="{ 'revealed': revealedState[2] }">
+            <div class="option-icon" @click.stop="reveal(2)"><i class="fa-solid fa-file-shield"></i></div>
+            <h3 class="option-title">Data Bocor</h3>
+            <span class="click-hint" v-if="!revealedState[2]">Klik untuk detail</span>
+            <div class="option-reveal">
+              <p>Informasi sensitif, identitas, dan rahasia operasional terekspos ke publik.</p>
+              <div class="reveal-bar"><div class="bar-fill" style="width: 50%; background: #3b82f6; box-shadow: 0 0 15px #3b82f6;"></div></div>
+            </div>
           </div>
         </div>
 
         <!-- Option 3 -->
-        <div class="option-card option-3" @click="reveal(3)" :class="{ 'revealed': revealedState[3] }">
-          <div class="option-icon"><i class="fa-solid fa-users-slash"></i></div>
-          <h3 class="option-title">Kepercayaan Hilang</h3>
-          <p class="option-subtitle" v-if="!revealedState[3]">Klik untuk melihat dampak</p>
-          <div class="option-reveal">
-            <p>Dampak jangka panjang terburuk. Sangat sulit untuk dipulihkan kembali.</p>
-            <div class="reveal-bar"><div class="bar-fill" style="width: 100%; background: #ef4444; box-shadow: 0 0 20px #ef4444;"></div></div>
+        <div class="option-wrapper" :class="{ 'revealed-wrapper': revealedState[3] }">
+          <div class="option-card option-3" @click="reveal(3)" :class="{ 'revealed': revealedState[3] }">
+            <div class="option-icon" @click.stop="reveal(3)"><i class="fa-solid fa-users-slash"></i></div>
+            <h3 class="option-title">Kepercayaan Hilang</h3>
+            <span class="click-hint" v-if="!revealedState[3]">Klik untuk detail</span>
+            <div class="option-reveal">
+              <p>Dampak jangka panjang terburuk. Sangat sulit untuk dipulihkan kembali.</p>
+              <div class="reveal-bar"><div class="bar-fill" style="width: 100%; background: #ef4444; box-shadow: 0 0 20px #ef4444;"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -168,6 +174,13 @@ watch(() => props.active, (val) => {
 .header-section {
   text-align: center;
   margin-bottom: 5rem;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.header-badge {
+  pointer-events: auto;
 }
 
 .header-badge {
@@ -217,19 +230,35 @@ watch(() => props.active, (val) => {
   justify-content: center;
   margin-bottom: 5rem;
   margin-top: 3rem; /* Space for floating icons */
+  position: relative;
+  z-index: 50;
+}
+
+.option-wrapper {
+  flex: 1;
+  position: relative;
+  padding-top: 40px;
+  z-index: 10;
+  cursor: pointer !important;
+}
+
+.option-wrapper.revealed-wrapper {
+  cursor: default !important;
 }
 
 .option-card {
-  flex: 1;
+  cursor: pointer !important;
+  z-index: 500; /* Extremely high z-index to force click priority */
+  pointer-events: auto !important;
+  height: 100%;
   background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
-  padding: 4rem 2.5rem 3rem 2.5rem;
+  padding: 3rem 2.5rem 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: visible;
@@ -268,7 +297,8 @@ watch(() => props.active, (val) => {
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 2px 20px rgba(255,255,255,0.05);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
+  z-index: 100;
+  pointer-events: auto;
 }
 
 .option-card:hover .option-icon {
@@ -305,6 +335,23 @@ watch(() => props.active, (val) => {
 @keyframes pulse-opacity {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
+}
+
+.click-hint {
+  font-size: 0.75rem;
+  color: #f59e0b;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+  opacity: 0.6;
+  animation: pulse-hint 2s infinite;
+  font-weight: 600;
+  z-index: 1;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .option-reveal {
@@ -411,11 +458,13 @@ watch(() => props.active, (val) => {
   display: flex;
   align-items: center;
   gap: 2rem;
+  pointer-events: none;
 }
 
 .conclusion-box.visible {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .conclusion-icon {

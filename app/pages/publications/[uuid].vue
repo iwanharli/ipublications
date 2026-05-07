@@ -3,21 +3,22 @@
     
     <!-- Top Toolbar -->
     <header class="viewer-toolbar" :class="{ 'viewer-hidden': [0, 1, 7].includes(currentSlide) }">
-      <div class="viewer-left">
-        <NuxtLink to="/" class="btn-exit">
-          <i class="fa-solid fa-xmark"></i>
-        </NuxtLink>
-        <div class="viewer-title">
-          <span class="label">PRESENTING</span>
-          <h2 class="title">{{ presentationTitle }}</h2>
+      <div class="viewer-container">
+        <div class="viewer-left">
+          <NuxtLink to="/" class="btn-exit">
+            <i class="fa-solid fa-xmark"></i>
+          </NuxtLink>
+          <div class="viewer-title">
+            <h2 class="title">{{ presentationTitle }}</h2>
+          </div>
         </div>
-      </div>
-      <div class="viewer-right">
-        <button class="btn-quick-note" @click="showNoteModal = true" aria-label="Create Quick Note">
-          <i class="fa-regular fa-pen-to-square"></i>
-        </button>
-        <div class="timer">
-          <i class="fa-regular fa-clock me-2"></i> {{ formattedTime }}
+        <div class="viewer-right">
+          <button class="btn-quick-note" @click="showNoteModal = true" aria-label="Create Quick Note">
+            <i class="fa-solid fa-signature"></i>
+          </button>
+          <div class="timer">
+            <i class="fa-regular fa-clock me-2"></i> {{ formattedTime }}
+          </div>
         </div>
       </div>
     </header>
@@ -145,43 +146,45 @@
       <div class="progress-container">
         <div class="progress-bar"></div>
       </div>
-      <div class="controls-inner">
-        <div class="slide-index" @click="showJumpInput = true">
-          <template v-if="!showJumpInput">
-            <span class="current">{{ currentSlide + 1 }}</span>
-            <span class="divider">/</span>
-            <span class="total">20</span>
-            <span class="jump-hint"><i class="fa-solid fa-arrow-right-to-bracket ms-2"></i></span>
-          </template>
-          <div v-else class="jump-input-wrapper">
-            <input 
-              v-model.number="jumpSlideInput" 
-              type="number" 
-              min="1" 
-              max="20"
-              class="jump-input"
-              @blur="handleJumpBlur"
-              @keyup.enter="jumpToSlide"
-              ref="jumpInputRef"
-              placeholder="GO TO..."
-            />
-          </div>
-        </div>
-        <div class="footer-center">
-          <Transition name="fade-footnote" mode="out-in">
-            <div :key="currentSlide" class="footnote-content" v-if="currentFootnote">
-              {{ currentFootnote }}
+      <div class="viewer-container">
+        <div class="controls-inner">
+          <div class="slide-index" @click="showJumpInput = true">
+            <template v-if="!showJumpInput">
+              <span class="current">{{ currentSlide + 1 }}</span>
+              <span class="divider">/</span>
+              <span class="total">20</span>
+              <span class="jump-hint"><i class="fa-solid fa-arrow-right-to-bracket ms-2"></i></span>
+            </template>
+            <div v-else class="jump-input-wrapper">
+              <input 
+                v-model.number="jumpSlideInput" 
+                type="number" 
+                min="1" 
+                max="20"
+                class="jump-input"
+                @blur="handleJumpBlur"
+                @keyup.enter="jumpToSlide"
+                ref="jumpInputRef"
+                placeholder="GO TO..."
+              />
             </div>
-          </Transition>
-        </div>
+          </div>
+          <div class="footer-center">
+            <Transition name="fade-footnote" mode="out-in">
+              <div :key="currentSlide" class="footnote-content" v-if="currentFootnote">
+                {{ currentFootnote }}
+              </div>
+            </Transition>
+          </div>
 
-        <div class="nav-btns">
-          <button class="btn-nav btn-prev" aria-label="Previous Slide">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-          <button class="btn-nav btn-next" aria-label="Next Slide">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
+          <div class="nav-btns">
+            <button class="btn-nav btn-prev" aria-label="Previous Slide">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="btn-nav btn-next" aria-label="Next Slide">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
       </div>
     </footer>
@@ -243,22 +246,22 @@ import OpeningSlide from '~/components/slides/1_opening.vue';
 import HookSlide from '~/components/slides/2_theHook.vue';
 import CyberSpaceSlide from '~/components/slides/3_ruangCyber.vue';
 import ParadigmaSlide from '~/components/slides/4_paradigma.vue';
-import ParadigmaQuestionSlide from '~/components/slides/4_1_paradigmaQuestion.vue';
-import DataSlide from '~/components/slides/5_data.vue';
-import ThreatSpectrumSlide from '~/components/slides/6_spektrumAncaman.vue';
-import GlobalThreatMapSlide from '~/components/slides/6_1_globalThreatMap.vue';
-import TimelineSimSlide from '~/components/slides/7_timelineSimulasi.vue';
-import TimelineQuestionSlide from '~/components/slides/7_1_timelineQuestion.vue';
-import DilemmaSlide from '~/components/slides/8_dilemaRansomware.vue';
-import DilemmaQuestionSlide from '~/components/slides/8_1_dilemaQuestion.vue';
-import LessonsSlide from '~/components/slides/9_pelajaranUtama.vue';
-import EvidenceParadigmSlide from '~/components/slides/10_buktiDigital.vue';
-import ForensicsSlide from '~/components/slides/11_metadataChain.vue';
-import InitialActionsSlide from '~/components/slides/12_tindakanAwal.vue';
-import StrategicSolutionsSlide from '~/components/slides/13_solusiStrategis.vue';
-import GovernanceSlide from '~/components/slides/14_komunikasiAI.vue';
-import CommandersCallSlide from '~/components/slides/15_commandersCall.vue';
-import ClosingSlide from '~/components/slides/16_closing.vue';
+import ParadigmaQuestionSlide from '~/components/slides/5_Question_paradigma.vue';
+import DataSlide from '~/components/slides/6_data.vue';
+import ThreatSpectrumSlide from '~/components/slides/7_spektrumAncaman.vue';
+import GlobalThreatMapSlide from '~/components/slides/8_globalThreatMap.vue';
+import TimelineSimSlide from '~/components/slides/9_timelineSimulasi.vue';
+import TimelineQuestionSlide from '~/components/slides/10_Question_timeline.vue';
+import DilemmaSlide from '~/components/slides/11_dilemaRansomware.vue';
+import DilemmaQuestionSlide from '~/components/slides/12_Question_dilema.vue';
+import LessonsSlide from '~/components/slides/13_pelajaranUtama.vue';
+import EvidenceParadigmSlide from '~/components/slides/14_buktiDigital.vue';
+import ForensicsSlide from '~/components/slides/15_metadataChain.vue';
+import InitialActionsSlide from '~/components/slides/16_tindakanAwal.vue';
+import StrategicSolutionsSlide from '~/components/slides/17_solusiStrategis.vue';
+import GovernanceSlide from '~/components/slides/18_komunikasiAI.vue';
+import CommandersCallSlide from '~/components/slides/19_commandersCall.vue';
+import ClosingSlide from '~/components/slides/20_closing.vue';
 
 const route = useRoute();
 const presentationId = route.params.uuid;
@@ -335,7 +338,16 @@ const slideFootnotes = {
 };
 
 const currentFootnote = computed(() => {
-  return slideFootnotes[currentSlide.value] || "";
+  const note = slideFootnotes[currentSlide.value] || "";
+  if (!note) return "";
+  
+  // Normalize and split by semicolon
+  const cleanNote = note.replace(/^(Sumber: |SUMBER: )/i, "");
+  const parts = cleanNote.split(';').map(p => p.trim()).filter(p => p);
+  
+  if (parts.length <= 1) return note;
+  
+  return parts.map((p, i) => `${i + 1}. ${p}`).join("  •  ");
 });
 
 const onSwiper = (swiper) => {
@@ -435,14 +447,22 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 4rem;
   z-index: 100;
   background: var(--bg-toolbar);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
+  will-change: transform, opacity;
+}
+
+.viewer-container {
+  max-width: 2400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2.5rem;
+  width: 100%;
+  position: relative;
 }
 
 .viewer-left, .viewer-right {
@@ -473,10 +493,11 @@ onUnmounted(() => {
 
 .viewer-title .title {
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  opacity: 0.8;
 }
 
 .timer {
@@ -515,7 +536,12 @@ onUnmounted(() => {
   background: #0F172A;
   width: 100%;
   height: 100%;
-  /* Let Swiper handle opacity, but ensure visibility for interaction */
+  pointer-events: none;
+}
+
+:deep(.swiper-slide-active).slide-item,
+:deep(.swiper-slide-active) .slide-item {
+  pointer-events: auto;
 }
 
 :deep(.swiper-slide) {
@@ -546,11 +572,15 @@ onUnmounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem 4rem;
   background: var(--bg-toolbar);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   z-index: 100;
+  will-change: transform, opacity;
+}
+
+.viewer-controls .viewer-container {
+  padding: 0.6rem 2.5rem;
 }
 
 .progress-container {
@@ -588,10 +618,11 @@ onUnmounted(() => {
 }
 
 .footnote-content {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--text-muted);
+  color: var(--accent);
+  opacity: 0.6;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -610,9 +641,9 @@ onUnmounted(() => {
 }
 
 .slide-index {
-  font-size: 1rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
   padding: 0.5rem 1rem;
   border-radius: 6px;
@@ -681,15 +712,15 @@ onUnmounted(() => {
 
 .btn-nav {
   background: transparent;
-  border: 1px solid var(--accent);
+  border: 1px solid rgba(251, 191, 36, 0.4);
   color: var(--accent);
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 0 10px rgba(251, 191, 36, 0.1);
@@ -723,7 +754,7 @@ onUnmounted(() => {
   right: 0;
   bottom: 0;
   background: rgba(11, 17, 33, 0.8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -874,22 +905,25 @@ onUnmounted(() => {
 }
 
 .btn-quick-note {
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.2rem;
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.15);
+  color: var(--accent);
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .btn-quick-note:hover {
-  color: var(--accent);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  box-shadow: 0 0 15px var(--accent-glow);
+  transform: translateY(-2px);
 }
 </style>

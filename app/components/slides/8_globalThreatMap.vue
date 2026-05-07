@@ -6,58 +6,61 @@
     <!-- Scanline overlay -->
     <div class="scanline-overlay"></div>
 
-    <!-- Top-left: Header -->
-    <div class="overlay-header">
-      <div class="header-badge live-badge">
-        <span class="live-dot"></span>
-        <span class="live-label">LIVE THREAT INTELLIGENCE</span>
+    <!-- UI Overlays -->
+    <div class="ui-overlay-wrapper">
+      <!-- Top-left: Header -->
+      <div class="overlay-header">
+        <div class="header-badge live-badge">
+          <span class="live-dot"></span>
+          <span class="live-label">LIVE THREAT INTELLIGENCE</span>
+        </div>
+        <h1 class="globe-title">
+          Global <span class="title-accent">IP Abuse</span> Monitor
+        </h1>
+        <p class="globe-subtitle">Ancaman siber bersifat masif, terus berjalan, dan tidak pernah berhenti</p>
       </div>
-      <h1 class="globe-title">
-        Global <span class="title-accent">IP Abuse</span> Monitor
-      </h1>
-      <p class="globe-subtitle">Ancaman siber bersifat masif, terus berjalan, dan tidak pernah berhenti</p>
-    </div>
 
-    <!-- Bottom-left: Stats -->
-    <div class="stats-row">
-      <div class="stat-card">
-        <div class="stat-value" ref="statAttacks">0</div>
-        <div class="stat-label">ATTACKS / MIN</div>
+      <!-- Bottom-left: Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value" ref="statAttacks">0</div>
+          <div class="stat-label">ATTACKS / MIN</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" ref="statCountries">0</div>
+          <div class="stat-label">SOURCE COUNTRIES</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" ref="statBlocked">0</div>
+          <div class="stat-label">IP BLOCKED TODAY</div>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-value" ref="statCountries">0</div>
-        <div class="stat-label">SOURCE COUNTRIES</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value" ref="statBlocked">0</div>
-        <div class="stat-label">IP BLOCKED TODAY</div>
-      </div>
-    </div>
 
-    <!-- Bottom-right: Live Feed -->
-    <div class="live-feed">
-      <div class="feed-header">
-        <i class="fa-solid fa-terminal"></i>
-        <span>INCOMING ATTACKS → INDONESIA</span>
+      <!-- Bottom-right: Live Feed -->
+      <div class="live-feed">
+        <div class="feed-header">
+          <i class="fa-solid fa-terminal"></i>
+          <span>INCOMING ATTACKS → INDONESIA</span>
+        </div>
+        <div class="feed-entries">
+          <TransitionGroup name="feed-item" tag="div">
+            <div v-for="entry in visibleFeed" :key="entry.id" class="feed-row">
+              <span class="feed-time">{{ entry.time }}</span>
+              <span class="feed-type" :class="entry.typeClass">{{ entry.type }}</span>
+              <span class="feed-ip">{{ entry.srcIP }}</span>
+              <span class="feed-arrow">→</span>
+              <span class="feed-target">{{ entry.targetIP }}</span>
+            </div>
+          </TransitionGroup>
+        </div>
       </div>
-      <div class="feed-entries">
-        <TransitionGroup name="feed-item" tag="div">
-          <div v-for="entry in visibleFeed" :key="entry.id" class="feed-row">
-            <span class="feed-time">{{ entry.time }}</span>
-            <span class="feed-type" :class="entry.typeClass">{{ entry.type }}</span>
-            <span class="feed-ip">{{ entry.srcIP }}</span>
-            <span class="feed-arrow">→</span>
-            <span class="feed-target">{{ entry.targetIP }}</span>
-          </div>
-        </TransitionGroup>
-      </div>
-    </div>
 
-    <!-- Right: Message pills -->
-    <div class="center-pills">
-      <div v-for="(pill, i) in messagePills" :key="i" class="msg-pill">
-        <i :class="pill.icon"></i>
-        <span>{{ pill.text }}</span>
+      <!-- Right: Message pills -->
+      <div class="center-pills">
+        <div v-for="(pill, i) in messagePills" :key="i" class="msg-pill">
+          <i :class="pill.icon"></i>
+          <span>{{ pill.text }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -385,13 +388,27 @@ onUnmounted(() => {
   );
 }
 
+/* ─── UI Overlay Wrapper ─── */
+.ui-overlay-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  max-width: 2400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ui-overlay-wrapper > * {
+  pointer-events: auto;
+}
+
 /* ─── Header ─── */
 .overlay-header {
   position: absolute;
   top: 12%;
-  left: 6vw;
+  left: 4rem;
   z-index: 10;
-  pointer-events: none;
 }
 
 .live-badge {
@@ -426,7 +443,7 @@ onUnmounted(() => {
 }
 
 .globe-title {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -454,7 +471,7 @@ onUnmounted(() => {
 .stats-row {
   position: absolute;
   bottom: 12%;
-  left: 6vw;
+  left: 4rem;
   display: flex;
   gap: 1.5rem;
   z-index: 10;
@@ -464,14 +481,15 @@ onUnmounted(() => {
   padding: 1rem 1.6rem;
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(2, 6, 23, 0.85) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   min-width: 140px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  will-change: transform, opacity;
 }
 
 .stat-value {
@@ -497,16 +515,17 @@ onUnmounted(() => {
 .live-feed {
   position: absolute;
   bottom: 12%;
-  right: 6vw;
-  width: 440px;
+  right: 4rem;
+  width: 480px;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(2, 6, 23, 0.9) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   padding: 1.2rem 1.5rem;
   z-index: 10;
+  will-change: transform, opacity;
 }
 
 .feed-header {
@@ -595,7 +614,7 @@ onUnmounted(() => {
 .center-pills {
   position: absolute;
   top: 14%;
-  right: 6vw;
+  right: 4rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

@@ -75,38 +75,39 @@
 
         <!-- Real World Case Alert -->
         <div class="alert-section reveal-alert">
-          <div class="alert-header">
+          <div class="alert-header" style="margin-bottom: 2rem;">
             <i class="fa-solid fa-triangle-exclamation text-danger pulse"></i>
             <h3>Ancaman Siber Bermotif Politik</h3>
           </div>
-          <p class="alert-subtitle">Klaim Kebocoran 41GB Data Institusi Pemerintah Indonesia</p>
 
           <div class="alert-card">
-            <div class="forum-image-wrapper">
-              <img src="/leak2.png" alt="Dark Web Post - 41GB Government Data" class="forum-image" />
+            <div class="alert-card-body">
+              <div class="forum-image-wrapper">
+                <img src="/leak2.png" alt="Dark Web Post - 41GB Government Data" class="forum-image" />
+              </div>
+              
+              <div class="alert-text">
+                <p><strong>SOCRadar</strong> mendeteksi unggahan <em>dark web</em> yang menjual <strong>41GB dokumen rahasia</strong> dari berbagai instansi pemerintah Indonesia.</p>
+                <p>Serangan ini diklaim bermotif politik sebagai bentuk protes, dengan ancaman spesifik:</p>
+                <ul class="alert-list">
+                  <li><i class="fa-solid fa-calendar-xmark"></i> <span>Akan meluncurkan gelombang serangan siber pada <strong>17 Agustus</strong> (Libur Hari Kemerdekaan RI).</span></li>
+                  <li><i class="fa-solid fa-file-shield"></i> <span>Data yang dikompromikan mencakup <strong>"dokumen rahasia"</strong> dari beberapa kementerian pemerintah.</span></li>
+                  <li><i class="fa-solid fa-triangle-exclamation"></i> <span>Menyediakan saluran Telegram sebagai titik kontak dan sarana kebocoran data lebih lanjut.</span></li>
+                </ul>
+              </div>
             </div>
-            
-            <div class="alert-text">
-              <p><strong>SOCRadar</strong> mengidentifikasi unggahan di forum <em>dark web</em> yang mengklaim penjualan <strong>41GB dokumen sensitif</strong> yang diduga dicuri dari berbagai entitas pemerintah Indonesia.</p>
-              <p>Peretas menyatakan bahwa serangan ini bermotif politik, dipicu oleh kemarahan terhadap pemerintah terkait aktivitas media sosial tertentu. Aktor ancaman tersebut secara spesifik mengklaim:</p>
-              <ul class="alert-list">
-                <li><i class="fa-solid fa-calendar-xmark"></i> Akan meluncurkan gelombang serangan siber pada <strong>17 Agustus</strong> (Libur Hari Kemerdekaan RI).</li>
-                <li><i class="fa-solid fa-file-shield"></i> Data yang dikompromikan mencakup <strong>"dokumen rahasia"</strong> dari beberapa kementerian pemerintah.</li>
-                <li><i class="fa-solid fa-triangle-exclamation"></i> Menyediakan saluran Telegram sebagai titik kontak dan sarana kebocoran data lebih lanjut.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <!-- Additional Details Footer -->
-        <div class="process-footer reveal-footer">
-          <div class="footer-stat">
-            <span class="label">Case Ref</span>
-            <span class="value" style="font-size: 1.2rem;">Insiden PDNS (Juni 2024)</span>
-          </div>
-          <div class="footer-stat">
-            <span class="label">Core Focus</span>
-            <span class="value" style="font-size: 1.2rem;">Reputasi & Kepercayaan</span>
+            <!-- Additional Details Footer -->
+            <div class="process-footer reveal-footer">
+              <div class="footer-stat">
+                <span class="label">Case Ref</span>
+                <span class="value" style="font-size: 1.2rem;">Insiden PDNS (Juni 2024)</span>
+              </div>
+              <div class="footer-stat">
+                <span class="label">Core Focus</span>
+                <span class="value" style="font-size: 1.2rem;">Reputasi & Kepercayaan</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -126,15 +127,20 @@ const scrollWrapper = ref(null);
 
 const handleKeyDown = (e) => {
   if (!props.active || !scrollWrapper.value) return;
-  const step = 200;
-  if (e.key === 'ArrowDown') {
+  
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.stopPropagation();
     e.preventDefault();
-    scrollWrapper.value.scrollBy({ top: step, behavior: 'smooth' });
-  } else if (e.key === 'ArrowUp') {
-    e.stopPropagation();
-    e.preventDefault();
-    scrollWrapper.value.scrollBy({ top: -step, behavior: 'smooth' });
+    
+    const direction = e.key === 'ArrowDown' ? 1 : -1;
+    const distance = 400; // Increased distance for 4K
+    
+    gsap.to(scrollWrapper.value, {
+      scrollTop: scrollWrapper.value.scrollTop + (distance * direction),
+      duration: 0.6,
+      ease: 'power2.out',
+      overwrite: 'auto'
+    });
   }
 };
 
@@ -198,22 +204,23 @@ watch(() => props.active, (val) => {
   height: 100%;
   width: 100%;
   overflow-y: auto;
-  padding: 8rem 6vw 8rem 6vw;
+  padding: 4rem 6vw 6rem 6vw; /* Reduced top padding from 8rem */
   scrollbar-width: thin;
   scrollbar-color: var(--accent-light) transparent;
 }
 
-.scroll-wrapper::-webkit-scrollbar { width: 4px; }
+.scroll-wrapper::-webkit-scrollbar { width: 6px; }
 .scroll-wrapper::-webkit-scrollbar-track { background: transparent; }
-.scroll-wrapper::-webkit-scrollbar-thumb { background: #ef4444; border-radius: 10px; }
+.scroll-wrapper::-webkit-scrollbar-thumb { background: rgba(239, 68, 68, 0.5); border-radius: 10px; }
 
 /* ─── Ambient ─── */
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(130px);
+  filter: blur(60px);
   pointer-events: none;
   z-index: 0;
+  will-change: transform, opacity;
 }
 
 .orb-danger {
@@ -254,8 +261,8 @@ watch(() => props.active, (val) => {
 /* ─── Header ─── */
 .header-section {
   text-align: center;
-  margin-bottom: 2.5rem;
-  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  margin-top: 1rem;
 }
 
 .header-badge {
@@ -388,34 +395,34 @@ watch(() => props.active, (val) => {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background: #0f172a;
-  border: 2px solid #334155;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 2px solid rgba(255,255,255,0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  color: #94a3b8;
+  color: #f8fafc;
   font-size: 1.1rem;
   z-index: 5;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4), inset 0 2px 5px rgba(255,255,255,0.05);
 }
 
 /* ─── Tree Node ─── */
 .tree-node {
-  background: rgba(15, 23, 42, 0.6);
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.95));
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 1.5rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 1.8rem 2rem;
   width: 380px;
   display: flex;
   align-items: flex-start;
   gap: 1.2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
 }
 
 .tree-node:hover {
@@ -467,30 +474,31 @@ watch(() => props.active, (val) => {
 }
 
 /* ─── Thematic Colors ─── */
-.node-incident { border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.05); }
+.node-incident { border-color: rgba(239, 68, 68, 0.4); background: linear-gradient(145deg, rgba(239, 68, 68, 0.12), rgba(15, 23, 42, 0.95)); }
 .node-incident .node-icon { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
 .tag-red { color: #ef4444; border-color: rgba(239, 68, 68, 0.4); background: rgba(239, 68, 68, 0.1); }
 
-.node-option-a { border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.05); }
+.node-option-a { border-color: rgba(245, 158, 11, 0.4); background: linear-gradient(145deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.95)); }
 .node-option-a .node-icon { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
 .tag-orange { color: #f59e0b; border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.1); }
 
-.node-option-b { border-color: rgba(59, 130, 246, 0.3); background: rgba(59, 130, 246, 0.05); }
+.node-option-b { border-color: rgba(59, 130, 246, 0.4); background: linear-gradient(145deg, rgba(59, 130, 246, 0.12), rgba(15, 23, 42, 0.95)); }
 .node-option-b .node-icon { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
 .tag-blue { color: #3b82f6; border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.1); }
 
-.node-impact { border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); }
+.node-impact { border-color: rgba(168, 85, 247, 0.4); background: linear-gradient(145deg, rgba(168, 85, 247, 0.12), rgba(15, 23, 42, 0.95)); }
 .node-impact .node-icon { background: rgba(168, 85, 247, 0.15); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.3); }
 .tag-purple { color: #a855f7; border-color: rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.1); }
 
 /* ─── Footer ─── */
 .process-footer {
-  margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 1rem;
+  padding-top: 2rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
   display: flex;
   gap: 4rem;
   justify-content: center;
+  width: 100%;
 }
 
 .footer-stat {
@@ -560,24 +568,31 @@ watch(() => props.active, (val) => {
 }
 
 .alert-card {
-  background: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  border-radius: 20px;
-  padding: 2.5rem;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(2, 6, 23, 0.9));
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 24px;
+  padding: 3rem;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2rem;
+}
+
+.alert-card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rem;
 }
 
 .forum-image-wrapper {
-  background: #1e293b;
-  border-radius: 8px;
+  flex: 0 0 45%;
+  background: #0f172a;
+  border-radius: 12px;
   overflow: hidden;
-  border: 1px solid #334155;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  width: 100%;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
 .forum-image {
@@ -588,8 +603,9 @@ watch(() => props.active, (val) => {
 }
 
 .alert-text {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.6;
   color: rgba(255, 255, 255, 0.85);
 }
 
@@ -621,6 +637,12 @@ watch(() => props.active, (val) => {
   color: #3b82f6;
   width: 20px;
   text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .alert-card-body { flex-direction: column; gap: 2rem; }
+  .alert-card { padding: 2rem; }
+  .forum-image-wrapper { flex: 0 0 100%; width: 100%; }
 }
 
 @media (max-width: 1024px) {

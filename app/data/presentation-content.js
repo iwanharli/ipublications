@@ -2,14 +2,14 @@ export const presentationContent = [
   {
     id: "slide-1",
     indicator: "SLIDE 1 — OPENING",
-    title: "Transformasi Strategis: <br/> <span class=\"highlight\">Paradigma Digital dan Resiliensi Keamanan Siber Polri</span>",
+    title: "Transformasi Strategis: <br/> <span class=\"highlight\">Paradigma Digital dan Keamanan Siber dalam Polri</span>",
     keypoints: [
       "Cyber security bukan hanya urusan IT, melainkan isu komando dan tata kelola risiko.",
       "Tujuan utama: Membekali pimpinan agar organisasi tidak mudah menjadi korban."
     ],
     narrative: [
       "“Assalamu’alaikum warahmatullahi wabarakatuh, selamat pagi/siang, salam sejahtera untuk kita semua.",
-      "Yang saya hormati Bapak/Ibu sekalian. Terima kasih atas kesempatan yang diberikan kepada saya untuk berbagi materi mengenai paradigma digital dan resiliensi keamanan siber Polri.",
+      "Yang saya hormati Bapak/Ibu sekalian. Terima kasih atas kesempatan yang diberikan kepada saya untuk berbagi materi mengenai paradigma digital dan keamanan siber dalam Polri.",
       "Pada kesempatan ini, saya tidak akan membawa Bapak/Ibu masuk terlalu jauh ke wilayah teknis seperti coding, konfigurasi firewall, atau cara kerja malware secara detail. Karena audiens di ruangan ini bukan sedang disiapkan menjadi operator teknis, tetapi sebagai pengambil keputusan, pengarah kebijakan, dan pemegang komando.",
       "Karena itu, sudut pandang kita hari ini adalah: <strong>cyber security bukan hanya urusan orang IT</strong>. Cyber security adalah isu komando, isu tata kelola risiko, isu pelayanan publik, isu pembuktian hukum, dan isu kepercayaan masyarakat.",
       "Di era digital, serangan terhadap sistem tidak hanya berdampak pada komputer. Ia bisa melumpuhkan pelayanan, mengganggu penyidikan, membuka data sensitif, memicu keresahan publik, dan pada akhirnya menurunkan kepercayaan masyarakat terhadap institusi.",
@@ -126,8 +126,29 @@ export const presentationContent = [
     }
   },
   {
+    id: "slide-4b",
+    indicator: "SLIDE 5 — INTERAKTIF PARADIGMA",
+    title: "Mana yang paling sulit diterapkan <br/> <span class=\"highlight\">di institusi?</span>",
+    keypoints: [
+      "Slide interaktif: audiens memilih antara Digital-First, Data-Driven, atau Cyber-Aware.",
+      "Kesimpulan: Yang paling sulit bukan membeli teknologi, tetapi mengubah kebiasaan manusia."
+    ],
+    narrative: [
+      "\"Bapak/Ibu sekalian, sebelum kita lanjut, saya ingin mengajak Bapak/Ibu untuk satu refleksi singkat.",
+      "Dari tiga paradigma yang baru kita bahas—<strong>Digital-First, Data-Driven, dan Cyber-Aware</strong>—menurut Bapak/Ibu, mana yang paling sulit diterapkan di organisasi?",
+      "Silakan klik salah satu pilihan di layar. Kita lihat bersama tingkat kesulitannya.",
+      "Digital-First sering terkendala kebiasaan lama. Transformasi kadang hanya sebatas mengubah formulir kertas menjadi PDF—bentuknya digital, tapi prosesnya masih manual.",
+      "Data-Driven terkendala oleh data yang belum terintegrasi dan belum valid. Budaya kerja masih terlalu bergantung pada intuisi dan asumsi.",
+      "Tetapi <strong>Cyber-Aware</strong> biasanya yang paling sulit. Karena sistem secanggih apa pun bisa dikalahkan oleh satu keteledoran: klik phishing, buka file APK, atau password yang lemah.",
+      "Jadi kesimpulannya: <strong>yang paling sulit bukan membeli teknologinya, tetapi mengubah kebiasaan manusianya.</strong> Karena sistem bisa di-upgrade, tetapi budaya kerja membutuhkan kepemimpinan.\""
+    ],
+    supplements: {
+      transition: "\"Dari tiga paradigma ini, inti yang paling penting adalah data. Karena di era digital, data bisa menjadi kekuatan, tetapi juga bisa menjadi sumber kerentanan.\""
+    }
+  },
+  {
     id: "slide-5",
-    indicator: "SLIDE 5 — DATA STRATEGIS",
+    indicator: "SLIDE 6 — DATA STRATEGIS",
     title: "Data sebagai <br/> <span class=\"highlight\">Aset dan Risiko Strategis</span>",
     keypoints: [
       "Data Polri bernilai tinggi (korban, saksi, operasional) dan harus dikelola sebagai aset.",
@@ -166,7 +187,7 @@ export const presentationContent = [
   },
   {
     id: "slide-6",
-    indicator: "SLIDE 6 — SPEKTRUM ANCAMAN",
+    indicator: "SLIDE 7 — SPEKTRUM ANCAMAN",
     title: "Spektrum <br/> <span class=\"highlight\">Ancaman Siber Modern</span>",
     keypoints: [
       "Ancaman meluas: Ransomware, Supply Chain Attacks, Deepfakes, hingga Cognitive Warfare.",
@@ -201,8 +222,29 @@ export const presentationContent = [
     }
   },
   {
+    id: "slide-6b",
+    indicator: "SLIDE 8 — GLOBAL THREAT MAP",
+    title: "Global <br/> <span class=\"highlight\">IP Abuse Monitor</span>",
+    keypoints: [
+      "Visualisasi real-time: Serangan siber bersifat masif, global, dan tidak pernah berhenti.",
+      "Indonesia adalah salah satu target utama serangan siber di kawasan Asia Pasifik."
+    ],
+    narrative: [
+      "\"Bapak/Ibu sekalian, sebelum kita masuk ke bedah kasus, saya ingin menunjukkan sesuatu yang mungkin jarang kita lihat secara langsung.",
+      "Di layar ini Bapak/Ibu bisa melihat simulasi peta ancaman siber global. Garis-garis merah yang bergerak itu merepresentasikan serangan yang datang dari berbagai negara dan mengarah ke Indonesia.",
+      "Perhatikan bahwa serangan datang dari <strong>seluruh penjuru dunia</strong>—Rusia, Tiongkok, Brasil, Amerika Serikat, Iran, Korea Utara, dan banyak lagi. Targetnya adalah kota-kota besar di Indonesia: Jakarta, Surabaya, Bandung, Medan, Makassar.",
+      "Di panel kanan bawah, Bapak/Ibu bisa melihat feed serangan masuk secara real-time: jenis serangan seperti DDoS, brute force, scanning, phishing, SQL injection, dan lainnya.",
+      "Angka-angka di bawah menunjukkan intensitasnya: <strong>ribuan serangan per menit, dari ratusan negara, dan puluhan ribu IP yang harus diblokir setiap hari.</strong>",
+      "Pesan dari slide ini sederhana: ancaman siber itu <strong>masif, global, non-stop, dan real-time</strong>. Ia tidak mengenal jam kerja, tidak mengenal hari libur, dan tidak peduli apakah kita siap atau tidak.",
+      "Inilah mengapa kesiapan organisasi menjadi sangat penting. Bukan soal apakah kita akan diserang, tetapi kapan, dan apakah kita siap merespons.\""
+    ],
+    supplements: {
+      transition: "\"Sekarang kita masuk ke kasus pertama. Saya ingin Bapak/Ibu membayangkan bukan sebagai penonton, tetapi sebagai pimpinan yang harus mengambil keputusan.\""
+    }
+  },
+  {
     id: "slide-7",
-    indicator: "SLIDE 7 — BEDAH KASUS 1",
+    indicator: "SLIDE 9 — BEDAH KASUS 1",
     title: "Bedah Kasus 1: <br/> <span class=\"highlight\">The Darkside of Ransomware & Database Integrity</span>",
     keypoints: [
       "Ransomware adalah krisis komando, bukan sekadar krisis komputer.",
@@ -243,8 +285,30 @@ export const presentationContent = [
     }
   },
   {
+    id: "slide-7b",
+    indicator: "SLIDE 10 — KUIS RANSOMWARE",
+    title: "Jika ini terjadi, apa perintah <br/> <span class=\"highlight\">pertama Anda?</span>",
+    keypoints: [
+      "Kuis interaktif: Audiens memilih respons pertama saat ransomware menyerang.",
+      "Jawaban benar: Aktifkan tim respons insiden dan amankan bukti (Opsi C)."
+    ],
+    narrative: [
+      "\"Bapak/Ibu sekalian, sekarang saya ingin menguji kesiapan kita dengan satu pertanyaan.",
+      "Bayangkan skenario tadi benar-benar terjadi. Sistem sudah terkunci. Layar menampilkan pesan tebusan. Layanan mulai terganggu. Sebagai pimpinan, apa perintah pertama Bapak/Ibu?",
+      "Ada empat pilihan di layar. Silakan pilih yang menurut Bapak/Ibu paling tepat.",
+      "<strong>A. Matikan semua komputer.</strong> Ini terasa logis, tapi mematikan komputer secara gegabah bisa menghilangkan bukti log penting yang masih ada di RAM.",
+      "<strong>B. Hubungi tim IT saja.</strong> Tim IT memang penting, tetapi dampak ransomware tidak hanya teknis. Ada aspek layanan, hukum, komunikasi publik, dan pembuktian.",
+      "<strong>C. Aktifkan tim respons insiden dan amankan bukti.</strong> Ini jawaban yang paling tepat.",
+      "<strong>D. Umumkan kepada publik bahwa semua aman.</strong> Tanpa verifikasi, pernyataan seperti ini bisa menjadi bumerang bagi institusi.",
+      "Dalam insiden siber, pimpinan harus memastikan empat hal: <strong>dampak dibatasi, bukti diamankan, layanan dipulihkan, dan komunikasi dikendalikan.</strong>\""
+    ],
+    supplements: {
+      transition: "\"Ransomware menjadi berbahaya karena yang disandera bukan hanya file. Yang disandera adalah pelayanan, reputasi, dan kepercayaan publik.\""
+    }
+  },
+  {
     id: "slide-8",
-    indicator: "SLIDE 8 — DATA IS THE NEW RANSOM",
+    indicator: "SLIDE 11 — DATA IS THE NEW RANSOM",
     title: "Data Is the <br/> <span class=\"highlight\">New Ransom</span>",
     keypoints: [
       "Dilema pimpinan: Risiko membayar vs Risiko data bocor & lumpuhnya layanan.",
@@ -252,7 +316,8 @@ export const presentationContent = [
     ],
     narrative: [
       "“Bapak/Ibu sekalian, dalam ransomware, pelaku tidak hanya mengunci file. Mereka menekan organisasi dari berbagai sisi.",
-      "Jika organisasi membayar, ada risiko mendanai kriminalitas. Tidak ada jaminan data benar-benar kembali. Tidak ada jaminan pelaku tidak menyerang lagi.",
+      "Sebagai contoh nyata, SOCRadar belum lama ini mendeteksi unggahan di dark web yang menjual 41GB dokumen rahasia dari berbagai instansi pemerintah Indonesia. Serangan ini diklaim bermotif politik dengan ancaman spesifik meluncurkan serangan pada tanggal tertentu dan menyebarkan data via Telegram.",
+      "Jika organisasi membayar tebusan, ada risiko mendanai kriminalitas. Tidak ada jaminan data benar-benar kembali, dan tidak ada jaminan pelaku tidak menyerang lagi.",
       "Jika organisasi tidak membayar, layanan bisa terganggu lebih lama. Data bisa bocor. Publik bisa menekan institusi. Media akan bertanya. Masyarakat ingin kepastian.",
       "Inilah dilema pimpinan. Yang harus dipikirkan bukan hanya bagaimana membuka file yang terkunci, tetapi bagaimana melindungi layanan, data, bukti digital, reputasi, dan kepercayaan publik.",
       "Dalam kasus layanan publik, dampaknya bisa lebih luas. Masyarakat tidak peduli apakah penyebabnya server, jaringan, malware, atau vendor. Yang mereka lihat adalah layanan tidak berjalan.",
@@ -277,8 +342,29 @@ export const presentationContent = [
     }
   },
   {
+    id: "slide-8b",
+    indicator: "SLIDE 12 — INTERAKTIF DILEMA",
+    title: "Apa yang lebih <br/> <span class=\"highlight\">berbahaya?</span>",
+    keypoints: [
+      "Slide interaktif: Audiens membandingkan dampak data terkunci, data bocor, vs kepercayaan hilang.",
+      "Kesimpulan: Kepercayaan publik adalah dampak jangka panjang terburuk dan paling sulit dipulihkan."
+    ],
+    narrative: [
+      "\"Bapak/Ibu sekalian, dari pembahasan ransomware tadi, saya ingin mengajak Bapak/Ibu untuk satu refleksi penting.",
+      "Di layar ada tiga pilihan. Silakan klik satu per satu untuk melihat dampaknya.",
+      "<strong>Pertama, Data Terkunci.</strong> Ketika data terkunci oleh ransomware, layanan operasional bisa lumpuh total. Pelayanan publik terhenti seketika. Ini dampak yang langsung terasa.",
+      "<strong>Kedua, Data Bocor.</strong> Ketika data bocor, informasi sensitif—identitas korban, saksi, personel, rahasia operasional—terekspos ke publik. Dampaknya bisa digunakan untuk pemerasan, doxing, atau serangan lanjutan.",
+      "<strong>Ketiga, Kepercayaan Hilang.</strong> Ini adalah dampak jangka panjang terburuk. Sangat sulit untuk dipulihkan kembali.",
+      "Ketiganya berbahaya. Tetapi sistem bisa dipulihkan, file bisa direstorasi. Sedangkan <strong>kepercayaan publik membutuhkan waktu sangat lama untuk dibangun kembali.</strong>",
+      "Inilah mengapa ransomware bukan sekadar masalah teknis. Ia adalah masalah kepercayaan.\""
+    ],
+    supplements: {
+      transition: "\"Lalu apa pelajaran yang bisa kita ambil dari ransomware? Saya rangkum menjadi tiga: backup, pemisahan sistem, dan manusia sebagai benteng pertama.\""
+    }
+  },
+  {
     id: "slide-9",
-    indicator: "SLIDE 9 — LESSONS LEARNED",
+    indicator: "SLIDE 13 — LESSONS LEARNED",
     title: "Lessons Learned <br/> <span class=\"highlight\">Ransomware Strategies</span>",
     keypoints: [
       "Strategi 3-2-1 Backup: Tiga salinan, dua media, satu lokasi terpisah/offline.",
@@ -312,7 +398,7 @@ export const presentationContent = [
   },
   {
     id: "slide-10",
-    indicator: "SLIDE 10 — BEDAH KASUS 2",
+    indicator: "SLIDE 14 — BEDAH KASUS 2",
     title: "Bedah Kasus 2: <br/> <span class=\"highlight\">Digital Integrity & Evidence Manipulation</span>",
     keypoints: [
       "Data digital (video, audio, chat) rentan terhadap copy, edit, dan manipulasi (Deepfake).",
@@ -343,7 +429,7 @@ export const presentationContent = [
   },
   {
     id: "slide-11",
-    indicator: "SLIDE 11 — EVIDENCE INTEGRITY",
+    indicator: "SLIDE 15 — EVIDENCE INTEGRITY",
     title: "Metadata dan <br/> <span class=\"highlight\">Chain of Custody</span>",
     keypoints: [
       "Metadata adalah 'saksi diam' yang menyimpan riwayat dan validitas file digital.",
@@ -372,7 +458,7 @@ export const presentationContent = [
   },
   {
     id: "slide-12",
-    indicator: "SLIDE 12 — SOP PENYITAAN",
+    indicator: "SLIDE 16 — SOP PENYITAAN",
     title: "Isolasi Sinyal, <br/> <span class=\"highlight\">Hashing, dan Dokumentasi Visual</span>",
     keypoints: [
       "Isolasi Sinyal: Mencegah penghapusan atau perubahan data dari jarak jauh.",
@@ -404,7 +490,7 @@ export const presentationContent = [
   },
   {
     id: "slide-13",
-    indicator: "SLIDE 13 — SOLUSI STRATEGIS",
+    indicator: "SLIDE 17 — SOLUSI STRATEGIS",
     title: "Solusi Strategis Pimpinan: <br/> <span class=\"highlight\">Zero Trust, CSIRT, Cyber Drill</span>",
     keypoints: [
       "Zero Trust: Prinsip 'never trust, always verify' dalam akses sistem.",
@@ -440,7 +526,7 @@ export const presentationContent = [
   },
   {
     id: "slide-14",
-    indicator: "SLIDE 14 — KOMUNIKASI KRISIS",
+    indicator: "SLIDE 18 — KOMUNIKASI KRISIS",
     title: "Komunikasi Krisis <br/> <span class=\"highlight\">dan Etika AI</span>",
     keypoints: [
       "Komunikasi Krisis: Kecepatan dan akurasi informasi satu pintu untuk cegah rumor.",
@@ -475,7 +561,7 @@ export const presentationContent = [
   },
   {
     id: "slide-15",
-    indicator: "SLIDE 15 — REVERSE Q&A DAN COMMANDER’S CALL",
+    indicator: "SLIDE 19 — REVERSE Q&A DAN COMMANDER’S CALL",
     title: "Jika Ini Terjadi Hari Ini, <br/> <span class=\"highlight\">Apa Keputusan Anda?</span>",
     keypoints: [
       "Commander's Call: Pengambilan keputusan cepat dalam 4 skenario krisis riil.",
@@ -514,7 +600,7 @@ export const presentationContent = [
   },
   {
     id: "closing-note",
-    indicator: "FINAL NOTE",
+    indicator: "SLIDE 20 — CLOSING",
     title: "Catatan Penutup <br/> <span class=\"highlight\" style=\"color: #34d399;\">Format dan Etika</span>",
     keypoints: [
       "Domain baru: Keamanan siber adalah bagian inti keamanan nasional.",

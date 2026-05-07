@@ -78,7 +78,7 @@ watch(() => props.active, (val) => {
   align-items: center;
   justify-content: center;
   background: #020617 !important; /* Pitch black slate */
-  padding: 0 10vw;
+  padding: 4rem;
   position: relative;
   overflow: hidden;
 }

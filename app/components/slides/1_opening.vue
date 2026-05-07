@@ -31,7 +31,6 @@ watch(() => props.active, (val) => {
     gsap.fromTo('.slide-opening .intro-icon', { rotateY: 90, opacity: 0 }, { rotateY: 0, opacity: 1, duration: 1.2, delay: 0.2 });
     gsap.fromTo('.slide-opening .slide-title', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, delay: 0.4 });
     gsap.fromTo('.slide-opening .slide-subtitle', { y: 20, opacity: 0 }, { y: 0, opacity: 0.8, duration: 1, delay: 0.6 });
-    gsap.fromTo('.slide-opening .slide-author', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.7 });
     gsap.fromTo('.slide-opening .slide-tagline', { y: 20, opacity: 0 }, { y: 0, opacity: 0.5, duration: 1, delay: 0.8 });
   }
 }, { immediate: true });
@@ -40,11 +39,13 @@ watch(() => props.active, (val) => {
 <style scoped>
 .slide-content {
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10vw;
+  padding: 4rem;
   text-align: center;
+  position: relative;
 }
 
 .slide-inner {
@@ -68,8 +69,9 @@ watch(() => props.active, (val) => {
   height: 120%;
   background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(20px);
+  filter: blur(15px);
   animation: pulse-aura 4s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes pulse-aura {
@@ -136,10 +138,10 @@ watch(() => props.active, (val) => {
 }
 
 .slide-title {
-  font-size: clamp(3rem, 8vw, 5rem);
+  font-size: clamp(3.5rem, 10vw, 8rem);
   font-weight: 300;
   line-height: 1.1;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   text-transform: uppercase;
   letter-spacing: -0.01em;
 }

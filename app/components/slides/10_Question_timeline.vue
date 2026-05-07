@@ -14,7 +14,7 @@
         <h1 class="slide-title">
           Jika ini terjadi, apa perintah <br/>pertama Anda?
         </h1>
-        <div class="attempts-indicator" :class="{ 'low': attemptsLeft === 1, 'zero': attemptsLeft === 0 }">
+        <div class="attempts-indicator" v-if="false" :class="{ 'low': attemptsLeft === 1, 'zero': attemptsLeft === 0 }">
           <span class="attempts-label">KESEMPATAN:</span>
           <div class="attempts-dots">
             <span v-for="i in 2" :key="i" class="dot" :class="{ 'active': i <= attemptsLeft }"></span>
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="quiz-container">
+      <div class="quiz-container swiper-no-swiping">
         <!-- Option A -->
         <div class="quiz-option" 
              @click="selectOption('A')" 
@@ -31,7 +31,10 @@
                'dimmed': (isFinished && selectedOption !== 'A') || (!isFinished && wrongAttempts.includes('A'))
              }">
           <div class="option-letter">A</div>
-          <div class="option-text">Matikan semua komputer.</div>
+          <div class="option-content">
+            <div class="option-text">Matikan semua komputer.</div>
+            <span class="click-hint" v-if="!isFinished && !wrongAttempts.includes('A')">Klik untuk detail</span>
+          </div>
           <div class="option-icon" v-if="wrongAttempts.includes('A')"><i class="fa-solid fa-xmark"></i></div>
         </div>
 
@@ -43,7 +46,10 @@
                'dimmed': (isFinished && selectedOption !== 'B') || (!isFinished && wrongAttempts.includes('B'))
              }">
           <div class="option-letter">B</div>
-          <div class="option-text">Hubungi tim IT saja.</div>
+          <div class="option-content">
+            <div class="option-text">Hubungi tim IT saja.</div>
+            <span class="click-hint" v-if="!isFinished && !wrongAttempts.includes('B')">Klik untuk detail</span>
+          </div>
           <div class="option-icon" v-if="wrongAttempts.includes('B')"><i class="fa-solid fa-xmark"></i></div>
         </div>
 
@@ -56,7 +62,10 @@
                'force-correct': isFinished && selectedOption !== 'C'
              }">
           <div class="option-letter">C</div>
-          <div class="option-text">Aktifkan tim respons insiden dan amankan bukti.</div>
+          <div class="option-content">
+            <div class="option-text">Aktifkan tim respons insiden dan amankan bukti.</div>
+            <span class="click-hint" v-if="!isFinished">Klik untuk detail</span>
+          </div>
           <div class="option-icon" v-if="selectedOption === 'C'"><i class="fa-solid fa-check"></i></div>
           <div class="option-icon" v-if="isFinished && selectedOption !== 'C'"><i class="fa-solid fa-check"></i></div>
         </div>
@@ -69,7 +78,10 @@
                'dimmed': (isFinished && selectedOption !== 'D') || (!isFinished && wrongAttempts.includes('D'))
              }">
           <div class="option-letter">D</div>
-          <div class="option-text">Umumkan kepada publik bahwa semua aman.</div>
+          <div class="option-content">
+            <div class="option-text">Umumkan kepada publik bahwa semua aman.</div>
+            <span class="click-hint" v-if="!isFinished && !wrongAttempts.includes('D')">Klik untuk detail</span>
+          </div>
           <div class="option-icon" v-if="wrongAttempts.includes('D')"><i class="fa-solid fa-xmark"></i></div>
         </div>
       </div>
@@ -102,7 +114,7 @@ const props = defineProps({
 });
 
 const selectedOption = ref(null);
-const attemptsLeft = ref(2);
+const attemptsLeft = ref(1);
 const wrongAttempts = ref([]);
 const isFinished = ref(false);
 
@@ -149,26 +161,20 @@ watch(() => props.active, (val) => {
   height: 100%;
   width: 100%;
   position: relative;
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  scrollbar-width: none; /* Hide scrollbar for Chrome/Safari */
-  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-}
-
-.slide-content::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 /* ─── Ambient ─── */
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(130px);
+  filter: blur(60px);
   pointer-events: none;
   z-index: 0;
+  will-change: transform, opacity;
 }
 
 .orb-1 {
@@ -205,14 +211,20 @@ watch(() => props.active, (val) => {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding-top: 8rem;
-  padding-bottom: 12rem; /* Significant space from bottom footer */
+  /* Removed excessive padding-top and padding-bottom */
 }
 
 /* ─── Header ─── */
 .header-section {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
+}
+
+.header-badge {
+  pointer-events: auto;
 }
 
 .header-badge {
@@ -248,12 +260,12 @@ watch(() => props.active, (val) => {
 }
 
 .slide-title {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--text);
-  line-height: 1.3;
-  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 2.5rem;
 }
 
 /* ─── Attempts Indicator ─── */
@@ -306,29 +318,32 @@ watch(() => props.active, (val) => {
 /* ─── Quiz Grid ─── */
 .quiz-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 Kolom */
-  gap: 1.2rem;
-  margin-bottom: 3rem;
-  max-width: 1100px; /* Diperlebar agar memanjang */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .quiz-option {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  padding: 1.2rem 1.8rem; /* Padding lebih kecil agar memanjang horizontal */
+  padding: 1.25rem 1.5rem;
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  cursor: pointer;
+  cursor: pointer !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: left;
   position: relative;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.quiz-option.dimmed {
+  cursor: default !important;
 }
 
 .quiz-option:hover {
@@ -351,12 +366,32 @@ watch(() => props.active, (val) => {
   color: white;
 }
 
+.option-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
 .option-text {
   font-size: 1.15rem;
   color: #e2e8f0;
   line-height: 1.4;
-  flex: 1;
   font-weight: 500;
+}
+
+.click-hint {
+  font-size: 0.65rem;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  animation: pulse-hint 2s infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.02); }
 }
 
 .option-icon {
@@ -416,17 +451,17 @@ watch(() => props.active, (val) => {
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  max-width: 900px;
+  max-width: 1050px;
   margin: 0 auto;
   background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: 2rem 2.5rem;
+  padding: 1.5rem 2.5rem;
   box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   backdrop-filter: blur(20px);
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1.5rem;
   pointer-events: none;
 }
 
@@ -451,14 +486,14 @@ watch(() => props.active, (val) => {
   color: #10b981;
   font-size: 1.3rem;
   font-weight: 800;
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.8rem 0;
   letter-spacing: 0.02em;
 }
 
 .explanation-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 Kolom: A B D */
   gap: 1rem;
@@ -467,9 +502,9 @@ watch(() => props.active, (val) => {
 .explanation-list li {
   font-size: 0.9rem;
   color: #cbd5e1;
-  line-height: 1.4;
+  line-height: 1.3;
   background: rgba(15, 23, 42, 0.5);
-  padding: 1.2rem;
+  padding: 1rem;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;

@@ -10,6 +10,14 @@
             <p class="subtitle">Strategi Pertahanan Siber Polri 2026</p>
           </div>
           <div class="actions">
+            <button 
+              class="btn-play-all" 
+              :class="{ 'is-active': ttsPlayingAll }"
+              @click="ttsPlayingAll ? stopTTS() : playAll()"
+            >
+              <i :class="ttsPlayingAll ? 'fa-solid fa-stop' : 'fa-solid fa-headphones'"></i>
+              {{ ttsPlayingAll ? `STOP (${ttsCurrentIdx + 1}/${presentationContent.length})` : 'PLAY ALL' }}
+            </button>
             <NuxtLink to="/qna/strategi-pertahanan-siber-2026" class="btn-back">
               Q&A
             </NuxtLink>
@@ -18,42 +26,7 @@
       </div>
     </header>
 
-    <!-- Mobile Quick Nav (Moved Outside) -->
-    <div class="mobile-quick-nav">
-      <div class="container">
-        <div class="quick-nav-items">
-          <a 
-            v-for="slide in presentationContent" 
-            :key="'mob-' + slide.id" 
-            :href="'#' + slide.id"
-            class="mob-nav-item"
-            :class="{ active: activeSlide === slide.id }"
-          >
-            {{ getSlideNumber(slide.indicator) }}
-          </a>
-        </div>
-      </div>
-    </div>
-
     <div class="container main-layout">
-      <!-- Sidebar Nav -->
-      <aside class="dashboard-sidebar">
-        <nav class="sticky-nav">
-          <div class="nav-label">JUMP TO SLIDE</div>
-          <div class="nav-items">
-              <a 
-                v-for="slide in presentationContent" 
-                :key="slide.id" 
-                :href="'#' + slide.id"
-                class="nav-item"
-                :class="{ active: activeSlide === slide.id }"
-              >
-                <span class="slide-num">{{ getSlideNumber(slide.indicator) }}</span>
-                <span class="slide-name">{{ getSlideName(slide.indicator) }}</span>
-              </a>
-          </div>
-        </nav>
-      </aside>
 
       <!-- Content -->
       <main class="dashboard-content">
@@ -91,9 +64,33 @@
                 <i class="fa-solid fa-microphone-lines"></i>
               </div>
               <div class="section-content">
-                <h3 class="label">NARASI PEMBICARA</h3>
+                <div class="label-row">
+                  <h3 class="label">NARASI PEMBICARA</h3>
+                  <div class="tts-controls">
+                    <button 
+                      class="btn-tts" 
+                      :class="{ 'is-playing': ttsPlaying === slide.id, 'is-paused': ttsPaused === slide.id }"
+                      @click="toggleTTS(slide)"
+                      :aria-label="ttsPlaying === slide.id ? 'Pause' : 'Play'"
+                    >
+                      <i :class="ttsPlaying === slide.id && ttsPaused !== slide.id ? 'fa-solid fa-pause' : 'fa-solid fa-play'"></i>
+                      <span>{{ ttsPlaying === slide.id && ttsPaused !== slide.id ? 'PAUSE' : (ttsPaused === slide.id ? 'RESUME' : 'DENGARKAN') }}</span>
+                    </button>
+                    <button 
+                      v-if="ttsPlaying === slide.id" 
+                      class="btn-tts btn-tts-stop" 
+                      @click="stopTTS()"
+                      aria-label="Stop"
+                    >
+                      <i class="fa-solid fa-stop"></i>
+                    </button>
+                  </div>
+                </div>
                 <div class="narrative-text">
                   <p v-for="(p, pIdx) in slide.narrative" :key="pIdx" v-html="p"></p>
+                  
+                  <!-- Transition appended as paragraph -->
+                  <p v-if="slide.supplements?.transition" v-html="slide.supplements.transition" class="transition-p"></p>
                 </div>
               </div>
             </div>
@@ -154,20 +151,12 @@
             </div>
 
             <!-- Supplements Grid -->
-            <div v-if="slide.supplements" class="supplements-grid">
+            <div v-if="slide.supplements && slide.supplements.jokes && slide.supplements.jokes.length" class="supplements-grid">
               <!-- Jokes -->
-              <div v-if="slide.supplements.jokes && slide.supplements.jokes.length" class="supp-card jokes">
+              <div class="supp-card jokes">
                 <h3 class="label">JOKES IMBUHAN RINGAN</h3>
                 <div class="supp-text">
                   <p v-for="(joke, jIdx) in slide.supplements.jokes" :key="jIdx" v-html="joke"></p>
-                </div>
-              </div>
-
-              <!-- Transition -->
-              <div v-if="slide.supplements.transition" class="supp-card transition">
-                <h3 class="label">{{ slide.supplements.transitionLabel || 'TRANSISI' }}</h3>
-                <div class="supp-text">
-                  <p v-html="slide.supplements.transition"></p>
                 </div>
               </div>
             </div>
@@ -179,9 +168,8 @@
 </template>
 
 <script setup>
+import { ref, onUnmounted } from 'vue';
 import { presentationContent } from '~/data/presentation-content';
-
-const activeSlide = ref('slide-1');
 
 const getSlideNumber = (indicator) => {
   return indicator.split(' ')[1] || '';
@@ -195,27 +183,152 @@ const getOptLabel = (text) => {
   return text.split('.')[0] || '';
 };
 
-onMounted(() => {
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -70% 0px',
-    threshold: 0
+// ─── Text-to-Speech ───
+const ttsPlaying = ref(null);
+const ttsPaused = ref(null);
+
+const stripHtml = (html) => {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+};
+
+const getSlideText = (slide) => {
+  let parts = [];
+  if (slide.narrative) {
+    parts = parts.concat(slide.narrative.map(p => stripHtml(p)));
+  }
+  if (slide.supplements?.transition) {
+    parts.push(stripHtml(slide.supplements.transition));
+  }
+  return parts.join('\n\n');
+};
+
+const toggleTTS = (slide) => {
+  if (!window.speechSynthesis) {
+    alert('Browser Anda tidak mendukung Text-to-Speech.');
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+
+  // If currently playing this slide → pause
+  if (ttsPlaying.value === slide.id && ttsPaused.value !== slide.id) {
+    synth.pause();
+    ttsPaused.value = slide.id;
+    return;
+  }
+
+  // If paused on this slide → resume
+  if (ttsPaused.value === slide.id) {
+    synth.resume();
+    ttsPaused.value = null;
+    return;
+  }
+
+  // Stop any current speech first
+  synth.cancel();
+
+  const text = getSlideText(slide);
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'id-ID';
+  utterance.rate = 0.95;
+  utterance.pitch = 1;
+
+  // Try to find Indonesian voice
+  const voices = synth.getVoices();
+  const idVoice = voices.find(v => v.lang.startsWith('id')) || voices.find(v => v.lang.startsWith('ms')) || null;
+  if (idVoice) utterance.voice = idVoice;
+
+  utterance.onend = () => {
+    ttsPlaying.value = null;
+    ttsPaused.value = null;
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        activeSlide.value = entry.target.id;
-      }
-    });
-  }, observerOptions);
+  utterance.onerror = () => {
+    ttsPlaying.value = null;
+    ttsPaused.value = null;
+  };
 
-  const targets = document.querySelectorAll('.qna-card');
-  targets.forEach(target => observer.observe(target));
+  ttsPlaying.value = slide.id;
+  ttsPaused.value = null;
+  synth.speak(utterance);
+};
 
-  onUnmounted(() => {
-    observer.disconnect();
-  });
+const stopTTS = () => {
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+  }
+  ttsPlaying.value = null;
+  ttsPaused.value = null;
+  ttsPlayingAll.value = false;
+  ttsCurrentIdx.value = 0;
+};
+
+// ─── Play All Slides ───
+const ttsPlayingAll = ref(false);
+const ttsCurrentIdx = ref(0);
+
+const playSlideAt = (idx) => {
+  if (idx >= presentationContent.length) {
+    ttsPlayingAll.value = false;
+    ttsPlaying.value = null;
+    ttsCurrentIdx.value = 0;
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  synth.cancel();
+
+  const slide = presentationContent[idx];
+  ttsCurrentIdx.value = idx;
+  ttsPlaying.value = slide.id;
+  ttsPaused.value = null;
+
+  const text = getSlideText(slide);
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'id-ID';
+  utterance.rate = 0.95;
+  utterance.pitch = 1;
+
+  const voices = synth.getVoices();
+  const idVoice = voices.find(v => v.lang.startsWith('id')) || voices.find(v => v.lang.startsWith('ms')) || null;
+  if (idVoice) utterance.voice = idVoice;
+
+  // Auto-scroll to current slide
+  const el = document.getElementById(slide.id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  utterance.onend = () => {
+    if (ttsPlayingAll.value) {
+      playSlideAt(idx + 1);
+    } else {
+      ttsPlaying.value = null;
+    }
+  };
+
+  utterance.onerror = () => {
+    if (ttsPlayingAll.value) {
+      playSlideAt(idx + 1);
+    } else {
+      ttsPlaying.value = null;
+    }
+  };
+
+  synth.speak(utterance);
+};
+
+const playAll = () => {
+  if (!window.speechSynthesis) {
+    alert('Browser Anda tidak mendukung Text-to-Speech.');
+    return;
+  }
+  ttsPlayingAll.value = true;
+  playSlideAt(0);
+};
+
+onUnmounted(() => {
+  stopTTS();
 });
 
 useHead({
@@ -309,84 +422,48 @@ useHead({
   color: #f8fafc;
 }
 
-/* Layout */
-.main-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 3rem;
-  margin-top: 3rem;
-}
-
-/* Sidebar */
-.dashboard-sidebar {
-  position: relative;
-}
-
-.sticky-nav {
-  position: sticky;
-  top: 160px;
-  height: calc(100vh - 200px);
-  overflow-y: auto;
-  padding-right: 1rem;
-}
-
-/* Custom Scrollbar for Sidebar */
-.sticky-nav::-webkit-scrollbar { width: 4px; }
-.sticky-nav::-webkit-scrollbar-track { background: transparent; }
-.sticky-nav::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-
-.nav-label {
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #475569;
-  margin-bottom: 1rem;
-  letter-spacing: 0.1em;
-}
-
-.nav-items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.nav-item {
+.btn-play-all {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.65rem 0.75rem;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
   border-radius: 10px;
-  color: #64748b;
-  text-decoration: none;
-  transition: all 0.3s;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid transparent;
-}
-
-.nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: #f8fafc;
-}
-
-.nav-item.active {
-  background: rgba(59, 130, 246, 0.15);
-  color: #3b82f6;
-  border-color: rgba(59, 130, 246, 0.3);
-}
-
-.slide-num {
   font-size: 0.75rem;
-  font-weight: 800;
-  min-width: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.active .slide-num { color: #60a5fa; }
+.btn-play-all:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
 
-.slide-name {
-  font-size: 0.8rem;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.btn-play-all.is-active {
+  background: #ef4444;
+  color: white;
+  border-color: #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Layout */
+.main-layout {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  display: block;
 }
 
 /* Content Area */
@@ -397,17 +474,15 @@ useHead({
 }
 
 .qna-card {
-  background: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 24px;
-  overflow: hidden;
-  scroll-margin-top: 180px;
-  transition: border-color 0.4s;
+  background: transparent;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
-.qna-card:hover {
-  border-color: rgba(59, 130, 246, 0.2);
+.qna-card:last-child {
+  border-bottom: none;
 }
 
 .qna-card.is-closing {
@@ -415,8 +490,8 @@ useHead({
 }
 
 .card-header {
-  padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.01);
+  padding: 0 0 2.5rem 0;
+  background: transparent;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   justify-content: space-between;
@@ -487,7 +562,7 @@ useHead({
 
 /* Sections */
 .card-body {
-  padding: 3rem;
+  padding: 3rem 0 0 0;
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
@@ -517,6 +592,81 @@ useHead({
   color: #475569;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
+}
+
+/* Label Row with TTS */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.label-row .label {
+  margin-bottom: 0;
+}
+
+.tts-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-tts {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(59, 130, 246, 0.06);
+  color: #60a5fa;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-tts i {
+  font-size: 0.65rem;
+}
+
+.btn-tts:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-tts.is-playing {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+  color: #93c5fd;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  animation: tts-pulse 2s infinite;
+}
+
+.btn-tts.is-paused {
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  animation: none;
+}
+
+.btn-tts-stop {
+  background: rgba(239, 68, 68, 0.06) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+  color: #f87171 !important;
+  padding: 0.4rem 0.6rem;
+}
+
+.btn-tts-stop:hover {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+@keyframes tts-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.1); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
 }
 
 /* Narrative */
@@ -594,7 +744,7 @@ useHead({
 /* Supplements */
 .supplements-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -608,13 +758,22 @@ useHead({
 }
 
 .supp-card.jokes { border-color: #f59e0b; background: rgba(245, 158, 11, 0.03); }
-.supp-card.transition { border-color: #10b981; background: rgba(16, 185, 129, 0.03); }
 
 .supp-text p {
   font-size: 0.95rem;
   line-height: 1.6;
   color: #94a3b8;
   font-style: italic;
+}
+
+/* Appended Transition Paragraph */
+.transition-p {
+  margin-top: 2rem !important;
+  color: #10b981 !important; /* Greenish to stand out as a transition */
+  font-style: italic;
+  font-weight: 600;
+  border-left: 3px solid rgba(16, 185, 129, 0.5);
+  padding-left: 1rem;
 }
 
 /* Tag Styles */
@@ -629,60 +788,17 @@ useHead({
 .type-tag.alternate { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.2); }
 .type-tag.quiz { background: rgba(139, 92, 246, 0.1); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.2); }
 
-/* Mobile Quick Nav */
-.mobile-quick-nav {
-  display: none;
-  background: #0f172a !important; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  position: sticky;
-  top: 110px; /* Synchronized with header height + buffer */
-  z-index: 999;
-  padding: 0.75rem 0;
-  width: 100%;
-}
-
-.quick-nav-items {
-  display: flex;
-  gap: 0.75rem;
-  overflow-x: auto;
-  padding: 0 1.5rem 0.25rem 1.5rem; /* Add horizontal padding here instead of parent */
-  scrollbar-width: none;
-}
-
-.quick-nav-items::-webkit-scrollbar { display: none; }
-
-.mob-nav-item {
-  flex: 0 0 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 700;
-  transition: all 0.2s;
-}
-
-.mob-nav-item.active {
-  background: rgba(59, 130, 246, 0.2);
-  color: #3b82f6;
-  border-color: rgba(59, 130, 246, 0.4);
-}
 
 /* Print & Responsive */
 @media print {
   .qna-dashboard { background: white !important; color: black !important; padding: 0 !important; }
-  .dashboard-header, .dashboard-sidebar, .btn-print, .btn-back { display: none !important; }
-  .main-layout { display: block !important; margin: 0 !important; }
+  .dashboard-header, .btn-print, .btn-back { display: none !important; }
+  .main-layout { display: block !important; margin: 0 !important; max-width: 100% !important; }
   .qna-card { 
-    break-inside: avoid; border: 1px solid #ddd !important; 
-    background: white !important; margin-bottom: 2rem !important; 
+    break-inside: avoid; border-bottom: 2px dashed #ccc !important; 
+    background: white !important; margin-bottom: 2rem !important; padding-bottom: 2rem !important;
   }
-  .card-header { background: #f8f9fa !important; color: black !important; }
+  .card-header { background: transparent !important; color: black !important; }
   .card-header h2 { color: black !important; }
   .narrative-text p, .question-item p, .opt-text { color: black !important; }
   .supp-card { background: #fcfcfc !important; border: 1px solid #eee !important; }
@@ -694,29 +810,14 @@ useHead({
     padding: 1rem 0;
   }
   .main-layout { 
-    grid-template-columns: 1fr; 
     padding-top: 1rem;
-  }
-  .dashboard-sidebar { display: none; }
-  .mobile-quick-nav {
-    display: block;
-    top: 100px; /* Adjusted for mobile header */
-  }
-  .qna-card {
-    scroll-margin-top: 180px; 
   }
 }
 
 @media (max-width: 768px) {
-  .mobile-quick-nav {
-    top: 110px; 
-  }
-  .qna-card {
-    scroll-margin-top: 170px;
-  }
-  .card-body { padding: 1.5rem; }
-  .supplements-grid, .options-grid { grid-template-columns: 1fr; }
   .card-header h2 { font-size: 1.5rem; }
   .narrative-text p { font-size: 1.1rem; }
+  .content-section { grid-template-columns: 1fr; }
+  .section-icon { display: none; }
 }
 </style>

@@ -37,7 +37,13 @@
 
 <script setup>
 import { onMounted, onUnmounted, nextTick, ref, computed, watch } from 'vue';
+import { navigateTo } from '#app';
 import gsap from 'gsap';
+
+// Automatic redirect to the target publication
+if (import.meta.server || import.meta.client) {
+  navigateTo('/publications/strategi-pertahanan-siber-2026');
+}
 
 const searchQuery = useState('searchQuery');
 const selectedType = useState('selectedType');

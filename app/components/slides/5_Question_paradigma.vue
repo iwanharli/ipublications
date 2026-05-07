@@ -9,41 +9,50 @@
       <div class="header-section">
         <div class="header-badge">
           <span class="badge-pulse"></span>
-          <span class="badge-label">PERTANYAAN INTERAKTIF</span>
+          <span class="badge-label">PERTANYAAN</span>
         </div>
         <h1 class="slide-title">
-          Mana yang paling sulit diterapkan <br/>di organisasi?
+          Mana yang paling sulit diterapkan <br/>di institusi?
         </h1>
       </div>
 
-      <div class="options-container">
+      <div class="options-container swiper-no-swiping">
         <!-- Option 1 -->
-        <div class="option-card option-1" @click="reveal(1)" :class="{ 'revealed': revealedState[1] }">
-          <div class="option-icon"><i class="fa-solid fa-laptop-code"></i></div>
-          <h3 class="option-title">Digital-First</h3>
-          <div class="option-reveal">
-            <p>Mengubah kebiasaan lama (paper-based). Transformasi sering hanya sebatas mengubah formulir kertas menjadi PDF.</p>
-            <div class="reveal-bar"><div class="bar-fill" style="width: 70%; background: #3b82f6; box-shadow: 0 0 15px #3b82f6;"></div></div>
+        <div class="option-wrapper" :class="{ 'revealed-wrapper': revealedState[1] }">
+          <div class="option-card option-1" @click="reveal(1)" :class="{ 'revealed': revealedState[1] }">
+            <div class="option-icon" @click.stop="reveal(1)"><i class="fa-solid fa-laptop-code"></i></div>
+            <h3 class="option-title">Digital-First</h3>
+            <span class="click-hint" v-if="!revealedState[1]">Klik untuk detail</span>
+            <div class="option-reveal">
+              <p>Mengubah kebiasaan lama (paper-based). Transformasi sering hanya sebatas mengubah formulir kertas menjadi PDF.</p>
+              <div class="reveal-bar"><div class="bar-fill" style="width: 70%; background: #3b82f6; box-shadow: 0 0 15px #3b82f6;"></div></div>
+            </div>
           </div>
         </div>
 
         <!-- Option 2 -->
-        <div class="option-card option-2" @click="reveal(2)" :class="{ 'revealed': revealedState[2] }">
-          <div class="option-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <h3 class="option-title">Data-Driven</h3>
-          <div class="option-reveal">
-            <p>Sulit mendapatkan data yang saling terintegrasi dan valid. Budaya kerja masih terlalu bergantung pada intuisi/asumsi.</p>
-            <div class="reveal-bar"><div class="bar-fill" style="width: 85%; background: #10b981; box-shadow: 0 0 15px #10b981;"></div></div>
+        <div class="option-wrapper" :class="{ 'revealed-wrapper': revealedState[2] }">
+          <div class="option-card option-2" @click="reveal(2)" :class="{ 'revealed': revealedState[2] }">
+            <div class="option-icon" @click.stop="reveal(2)"><i class="fa-solid fa-chart-line"></i></div>
+            <h3 class="option-title">Data-Driven</h3>
+            <span class="click-hint" v-if="!revealedState[2]">Klik untuk detail</span>
+            <div class="option-reveal">
+              <p>Sulit mendapatkan data yang saling terintegrasi dan valid. Budaya kerja masih terlalu bergantung pada intuisi/asumsi.</p>
+              <div class="reveal-bar"><div class="bar-fill" style="width: 85%; background: #10b981; box-shadow: 0 0 15px #10b981;"></div></div>
+            </div>
           </div>
         </div>
 
         <!-- Option 3 -->
-        <div class="option-card option-3" @click="reveal(3)" :class="{ 'revealed': revealedState[3] }">
-          <div class="option-icon"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3 class="option-title">Cyber-Aware</h3>
-          <div class="option-reveal">
-            <p>Sistem canggih bisa dikalahkan oleh satu keteledoran (klik phising, file APK, atau password lemah) dari seorang staf.</p>
-            <div class="reveal-bar"><div class="bar-fill" style="width: 100%; background: #f59e0b; box-shadow: 0 0 20px #f59e0b;"></div></div>
+        <div class="option-wrapper" :class="{ 'revealed-wrapper': revealedState[3] }">
+          <div class="option-card option-3" @click="reveal(3)" :class="{ 'revealed': revealedState[3] }">
+            <div class="option-icon" @click.stop="reveal(3)"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="option-title">Cyber-Aware</h3>
+            <span class="click-hint" v-if="!revealedState[3]">Klik untuk detail</span>
+            <div class="option-reveal">
+              <p>Sistem canggih bisa dikalahkan oleh satu keteledoran (klik phising, file APK, atau password lemah) dari seorang staf.</p>
+              <div class="reveal-bar"><div class="bar-fill" style="width: 100%; background: #f59e0b; box-shadow: 0 0 20px #f59e0b;"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -128,7 +137,7 @@ watch(() => props.active, (val) => {
 .orb-1 {
   width: 450px;
   height: 450px;
-  background: rgba(59, 130, 246, 0.05); /* Blue glow */
+  background: rgba(245, 158, 11, 0.05); /* Amber glow */
   top: -5%;
   left: -3%;
 }
@@ -136,7 +145,7 @@ watch(() => props.active, (val) => {
 .orb-2 {
   width: 380px;
   height: 380px;
-  background: rgba(16, 185, 129, 0.05); /* Teal glow */
+  background: rgba(239, 68, 68, 0.05); /* Red glow */
   bottom: -5%;
   right: -2%;
 }
@@ -165,6 +174,13 @@ watch(() => props.active, (val) => {
 .header-section {
   text-align: center;
   margin-bottom: 5rem;
+  pointer-events: none; /* Prevent header from blocking cards */
+  position: relative;
+  z-index: 1;
+}
+
+.header-badge {
+  pointer-events: auto; /* Only badge needs it if interactive */
 }
 
 .header-badge {
@@ -173,29 +189,29 @@ watch(() => props.active, (val) => {
   gap: 0.6rem;
   padding: 0.35rem 1.2rem;
   border-radius: 100px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: rgba(245, 158, 11, 0.05);
   margin-bottom: 1rem;
 }
 
 .badge-pulse {
   width: 6px;
   height: 6px;
-  background: #3b82f6;
+  background: #f59e0b;
   border-radius: 50%;
-  animation: pulse-blue 2s infinite;
+  animation: pulse-orange 2s infinite;
 }
 
-@keyframes pulse-blue {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
-  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+@keyframes pulse-orange {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
 }
 
 .badge-label {
   font-size: 0.6rem;
   font-weight: 800;
   letter-spacing: 0.3em;
-  color: #60a5fa;
+  color: #f59e0b;
   opacity: 0.8;
 }
 
@@ -214,19 +230,35 @@ watch(() => props.active, (val) => {
   justify-content: center;
   margin-bottom: 5rem;
   margin-top: 3rem;
+  position: relative;
+  z-index: 50; /* Ensure cards are above any potential header overlap */
+}
+
+.option-wrapper {
+  flex: 1;
+  position: relative;
+  padding-top: 40px;
+  z-index: 10;
+  cursor: pointer !important;
+}
+
+.option-wrapper.revealed-wrapper {
+  cursor: default !important;
 }
 
 .option-card {
-  flex: 1;
+  cursor: pointer !important;
+  z-index: 500; /* Extremely high z-index to force click priority */
+  pointer-events: auto !important;
+  height: 100%;
   background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.95));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
-  padding: 4rem 2.5rem 3rem 2.5rem;
+  padding: 3rem 2.5rem 3rem 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: visible;
@@ -265,7 +297,8 @@ watch(() => props.active, (val) => {
   border: 2px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 20px rgba(0,0,0,0.5), inset 0 2px 20px rgba(255,255,255,0.05);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
+  z-index: 100; /* Force icon to be on very top */
+  pointer-events: auto;
 }
 
 .option-card:hover .option-icon {
@@ -302,6 +335,23 @@ watch(() => props.active, (val) => {
 @keyframes pulse-opacity {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
+}
+
+.click-hint {
+  font-size: 0.75rem;
+  color: var(--accent-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+  opacity: 0.6;
+  animation: pulse-hint 2s infinite;
+  font-weight: 600;
+  z-index: 1;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .option-reveal {
@@ -399,20 +449,22 @@ watch(() => props.active, (val) => {
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 900px;
   margin: 0 auto;
-  background: linear-gradient(90deg, rgba(59, 130, 246, 0.08), rgba(15, 23, 42, 0.8), rgba(59, 130, 246, 0.08));
-  border: 1px solid rgba(59, 130, 246, 0.3);
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.08), rgba(15, 23, 42, 0.8), rgba(239, 68, 68, 0.08));
+  border: 1px solid rgba(239, 68, 68, 0.3);
   border-radius: 20px;
   padding: 2rem 3rem;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.5), 0 0 40px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.5), 0 0 40px rgba(239, 68, 68, 0.1);
   backdrop-filter: blur(15px);
   display: flex;
   align-items: center;
   gap: 2rem;
+  pointer-events: none; /* Block clicks when hidden */
 }
 
 .conclusion-box.visible {
   opacity: 1;
   transform: translateY(0);
+  pointer-events: auto; /* Enable when visible */
 }
 
 .conclusion-icon {

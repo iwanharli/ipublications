@@ -15,6 +15,11 @@
             </div>
             <div class="lesson-number">0{{ index + 1 }}</div>
           </div>
+          
+          <div class="lesson-visual">
+            <img :src="lesson.image" :alt="lesson.title" />
+          </div>
+
           <div class="lesson-body">
             <h2 class="lesson-title">{{ lesson.title }}</h2>
             <div class="lesson-divider"></div>
@@ -41,17 +46,20 @@ const lessons = [
   { 
     title: '3-2-1 Backup', 
     desc: 'Tiga salinan, dua media berbeda, satu lokasi terpisah/offline.',
-    icon: 'fa-solid fa-copy'
+    icon: 'fa-solid fa-copy',
+    image: '/backup_vis.png'
   },
   { 
     title: 'Air-Gapping', 
     desc: 'Data sangat rahasia tidak selalu terhubung ke jaringan umum.',
-    icon: 'fa-solid fa-link-slash' 
+    icon: 'fa-solid fa-link-slash',
+    image: '/airgap_vis.png'
   },
   { 
     title: 'Human Firewall', 
     desc: 'Pelatihan berkala & simulasi phishing untuk seluruh personel. Satu klik bisa membuka pintu serangan.',
-    icon: 'fa-solid fa-shield-halved'
+    icon: 'fa-solid fa-shield-halved',
+    image: '/humanfw_vis.png'
   }
 ];
 
@@ -101,7 +109,7 @@ watch(() => props.active, (val) => {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-top: 5rem;
+  margin-top: 3rem; /* Reduced to fit images */
 }
 
 .lesson-box {
@@ -125,7 +133,28 @@ watch(() => props.active, (val) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.lesson-visual {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.lesson-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lesson-box:hover .lesson-visual img {
+  transform: scale(1.08);
 }
 
 .lesson-icon {

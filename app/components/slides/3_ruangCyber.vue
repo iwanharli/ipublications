@@ -166,15 +166,20 @@ const scrollWrapper = ref(null);
 
 const handleKeyDown = (e) => {
   if (!props.active || !scrollWrapper.value) return;
-  const step = 200;
-  if (e.key === 'ArrowDown') {
+  
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.stopPropagation();
     e.preventDefault();
-    scrollWrapper.value.scrollBy({ top: step, behavior: 'smooth' });
-  } else if (e.key === 'ArrowUp') {
-    e.stopPropagation();
-    e.preventDefault();
-    scrollWrapper.value.scrollBy({ top: -step, behavior: 'smooth' });
+    
+    const direction = e.key === 'ArrowDown' ? 1 : -1;
+    const distance = 400;
+    
+    gsap.to(scrollWrapper.value, {
+      scrollTop: scrollWrapper.value.scrollTop + (distance * direction),
+      duration: 0.6,
+      ease: 'power2.out',
+      overwrite: 'auto'
+    });
   }
 };
 
@@ -267,48 +272,61 @@ watch(() => props.active, (val) => {
     tl.fromTo('.slide-cyber-space .slide-title',
       { y: 30, opacity: 0, clipPath: 'inset(100% 0 0 0)' },
       { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0)', duration: 0.8 },
-      '-=0.2'
+      '-=0.1'
     );
     tl.fromTo('.slide-cyber-space .slide-desc',
       { y: 10, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.5 },
-      '-=0.4'
-    );
-
-    // Panels slide in from sides
-    tl.fromTo('.panel-physical',
-      { x: -60, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8 },
       '-=0.2'
     );
-    tl.fromTo('.panel-digital',
-      { x: 60, opacity: 0 },
+
+    // Panels slide in
+    tl.fromTo('.panel-physical',
+      { x: -40, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.8 },
-      '-=0.6'
+      '+=0.1'
     );
     tl.fromTo('.connector-center',
       { scale: 0, opacity: 0 },
       { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2)' },
-      '-=0.5'
+      '-=0.4'
+    );
+    tl.fromTo('.panel-digital',
+      { x: 40, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.8 },
+      '-=0.4'
     );
 
     // Chips stagger
     tl.fromTo('.chip',
       { scale: 0.8, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.4, stagger: 0.05 },
-      '-=0.3'
+      { scale: 1, opacity: 1, duration: 0.4, stagger: 0.04 },
+      '-=0.2'
     );
 
     // Threat strip
     tl.fromTo('.threat-section',
       { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6 },
-      '-=0.2'
+      { y: 0, opacity: 1, duration: 0.6 }
     );
     tl.fromTo('.threat-item',
       { y: 15, opacity: 0, scale: 0.9 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.5, stagger: 0.06 },
-      '-=0.3'
+      { y: 0, opacity: 1, scale: 1, duration: 0.4, stagger: 0.05 },
+      '-=0.2'
+    );
+
+    // Chart Section
+    tl.fromTo('.chart-section',
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8 },
+      '+=0.1'
+    );
+
+    // Alert Section
+    tl.fromTo('.alert-section',
+      { y: 30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8 },
+      '-=0.4'
     );
 
     // Ambient

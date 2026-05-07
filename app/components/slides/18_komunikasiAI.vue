@@ -34,7 +34,7 @@
             <h2>Etika AI</h2>
           </div>
           <div class="gov-body">
-            <div v-for="(item, i) in aiItems" :key="i" class="gov-item">
+            <div v-for="(item, i) in aiItems" :key="i" class="gov-item" :class="{ 'highlighted-text': item === 'Manusia Tetap Penanggung Jawab' }">
               <i class="fa-solid fa-scale-balanced text-accent"></i>
               <span>{{ item }}</span>
             </div>
@@ -178,6 +178,22 @@ watch(() => props.active, (val) => {
 .gov-item i {
   font-size: 0.9rem;
   opacity: 0.6;
+}
+
+.highlighted-text {
+  color: white !important;
+  font-weight: 800;
+  background: rgba(251, 191, 36, 0.15);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent);
+  margin-left: -1rem;
+  transform: scale(1.02);
+}
+
+.highlighted-text i {
+  color: var(--accent) !important;
+  opacity: 1 !important;
 }
 
 .gov-footer {

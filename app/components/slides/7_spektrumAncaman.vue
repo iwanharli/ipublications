@@ -151,15 +151,20 @@ const handleScroll = () => {
 
 const handleKeyDown = (e) => {
   if (!props.active || !scrollWrapper.value) return;
-  const step = 200;
-  if (e.key === 'ArrowDown') {
+  
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
     e.stopPropagation();
     e.preventDefault();
-    scrollWrapper.value.scrollBy({ top: step, behavior: 'smooth' });
-  } else if (e.key === 'ArrowUp') {
-    e.stopPropagation();
-    e.preventDefault();
-    scrollWrapper.value.scrollBy({ top: -step, behavior: 'smooth' });
+    
+    const direction = e.key === 'ArrowDown' ? 1 : -1;
+    const distance = 400;
+    
+    gsap.to(scrollWrapper.value, {
+      scrollTop: scrollWrapper.value.scrollTop + (distance * direction),
+      duration: 0.6,
+      ease: 'power2.out',
+      overwrite: 'auto'
+    });
   }
 };
 
