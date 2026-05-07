@@ -195,10 +195,7 @@ export const presentationContent = [
       "<strong>Pukul 10.00</strong>, beberapa file tidak bisa dibuka. Folder bersama mulai terkunci. Beberapa layar menampilkan pesan aneh.",
       "<strong>Pukul 10.01</strong>, muncul pesan tebusan: <em>data Anda telah dienkripsi.</em>",
       "Pada titik ini, situasinya berubah. Ini bukan lagi masalah komputer. Ini krisis komando. Sering kali saat sistem melambat, yang pertama disalahkan adalah Wi-Fi kantor. Padahal masalahnya bukan Wi-Fi, tapi ada malware yang sedang bekerja lembur di dalam jaringan kita.”"
-    ],
-    supplements: {
-      transition: "“Ransomware menjadi berbahaya karena yang disandera bukan hanya file. Yang disandera adalah pelayanan, reputasi, dan kepercayaan publik.”"
-    }
+    ]
   },
   {
     id: "slide-7b",
