@@ -461,8 +461,6 @@ const stopTTS = () => {
 };
 
 // ─── Play All Slides ───
-const ttsPlayingAll = ref(false);
-const ttsCurrentIdx = ref(0);
 
 const playSlideAt = (idx) => {
   if (idx >= presentationContent.length) {
